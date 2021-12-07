@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Db2 Magic Command Options - Db2 Magic Commands</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../css/theme.css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Db2 Magic Command Options";
+    var mkdocs_page_input_path = "command_options.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> Db2 Magic Commands</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../installation/">Installation</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../connect/">Getting Connected</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../linevscell/">SQL Magic Commands</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../sql_options/">SQL Options</a>
+                    </li>
+                </ul>
+                <ul class="current">
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Db2 Magic Command Options</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#display-format">Display Format</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#maximum-number-of-rows">Maximum Number of Rows</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#maximum-grid-size">Maximum Grid Size</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#thread-parallelism">Thread Parallelism</a>
+    </li>
+    </ul>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../plotting/">Plotting</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../variables/">Variables</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../resultsets/">Result Sets</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../stored_procedures/">Stored Procedures</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../developmentsql/">Development SQL</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../pandasdb2/">Pandas to Db2</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../parallel/">Parallel SQL</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../macros/">Macros</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../extramacros/">Predefined Macros</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../support/">Support</a>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">Db2 Magic Commands</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Db2 Magic Command Options</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="db2-magic-options">Db2 Magic Options</h1>
+<p>The previous section discussed options that are specific for <code>%sql</code> commands and are only valid during the execution of that statement. There are options available that impact the execution of all <code>%sql</code> statements and are discussed below.</p>
+<p>There are four options that can be set with the <code>%sql</code> command. These options are shown below with the default value shown in parenthesis.</p>
+<ul>
+<li>
+<p>DISPLAY PANDAS | GRID (PANDAS)
+    Display the results as a PANDAS dataframe (default) or as a scrollable GRID.
+    <p></p>
+</li>
+<li>
+<p>MAXROWS n (10)</p>
+<p>The maximum number of rows that will be displayed before summary information is shown. If the answer set is less than this number of rows, it will be completely shown on the screen. If the answer set is larger than this amount, only the first 5 rows and last 5 rows of the answer set will be displayed. If you want to display a very large answer set, you may want to consider using the grid option <code>-grid</code> to display the results in a scrollable table. If you really want to show all results, then setting <code>MAXROWS</code> to <code>-1</code> will return all output.
+<p></p>
+</li>
+<li>
+<p>MAXGRID n (5)</p>
+<p>The maximum size of a grid display. When displaying a result set in a grid <code>-grid</code>, the default size of the display window is 5 rows. You can set this to a larger size so that more rows are shown on the screen. Note that the minimum size always remains at <code>5</code> which means that if the system is unable to display your maximum row size it will reduce the table display until it fits.
+<p></p>
+</li>
+<li>
+<p>LIST
+    Display the current settings.
+    <p></p>
+</li>
+</ul>
+<p>To set an option use either of the following commands:</p>
+<pre><code>%sql SET OPTION value
+%sql OPTION setting value [setting value...]
+</code></pre>
+<p>The <code>OPTION</code> command allows multiple options to be set with one command. When either command is executed, the current settings are displayed.</p>
+<p>For instance, to set the maximum display rows to 100:</p>
+<pre><code>%sql SET MAXROWS 100
+</code></pre>
+<h2 id="display-format">Display Format</h2>
+<p>The default display format for any data returned is Pandas. This example illustrates the standard output returned from a <code>SELECT</code> statement:</p>
+<p><img alt="Pandas" src="../img/displaypandas.png" /></p>
+<p>The Pandas output format will sometimes truncate the output (as shown above). You can adjust the number of rows that can be displayed from an answer set using the <code>MAXROWS</code> setting discussed below. This standard output may be sufficient for your requirements if you are only returning small answer sets (less than 100 rows to display). Otherwise you may consider using the <code>-grid</code> option. The same answer set using a <code>-grid</code> display is shown below.</p>
+<p><img alt="Pandas" src="../img/displaygrid.png" /></p>
+<p>The advantage of the <code>-grid</code> option is that the entire answer set can be retrieved and reviewed in the scrollable window. This is not possible when using Pandas output. It is also not possible to display all rows in the Pandas dataframe due to memory limitations when writing to a Jupyter notebook cell. The grid control removes these restrictions by allowing the entire answer set to be viewed in a grid format.</p>
+<p>The <code>DISPLAY</code> option is used to set the default display format of an SQL answer set. The default setting is <code>PANDAS</code> which is the standard output format of a Pandas dataframe. To change the default display format use the <code>SET</code> command with the <code>DISPLAY</code> option:</p>
+<pre><code>%sql SET DISPLAY [PANDAS | GRID]
+</code></pre>
+<p>Setting this value to <code>GRID</code> will result in all answer sets being displayed using the interactive grid format.</p>
+<pre><code>%sql SET DISPLAY GRID
+</code></pre>
+<p>The display format is kept with the connection information. If you start up another session using the same connection information, the last display format will be used.</p>
+<h2 id="maximum-number-of-rows">Maximum Number of Rows</h2>
+<p>The default number of rows that are displayed when using a Pandas dataframe is 10. A answer set will always display the first 5 rows and the last 5 rows of an answer set in a Jupyter notebook:</p>
+<p><img alt="Maxrows" src="../img/maxrows1.png" /></p>
+<p>The missing rows are marked with a <code>...</code> in-between the top and bottom sections of the answer set. To increase the <strong>default</strong> display size, you can change the <code>MAXROWS</code> setting. The rows that are displayed depends on how many can fit within the <code>MAXROWS</code> settings. The rules are as follows:</p>
+<ul>
+<li>If the number of rows is less than or equal to <code>MAXROWS</code>, then all rows will be displayed.</li>
+<li>If the number of rows is greater than <code>MAXROWS</code> then only the top and bottom 5 rows are displayed.</li>
+<li>If <code>MAXROWS</code> is too big for a Jupyter notebook cell, the cell will contain scroll bars allowing you to scroll through the results.</li>
+</ul>
+<p>The maximum value for <code>MAXROWS</code> is <code>100</code> to avoid memory issues with Jupyter notebooks. </p>
+<p>For the following examples, the <code>MAXROWS</code> setting is set to <code>5</code>.</p>
+<pre><code>%sql SET MAXROWS 5
+</code></pre>
+<p>The first example demonstrates when exactly 5 rows are returned from the <code>EMPLOYEE</code> table.</p>
+<p><img alt="Maxrows" src="../img/maxrows5.png" /></p>
+<p>The next example demonstrates how the answer set is split when the number of rows exceeds 5.</p>
+<p><img alt="Maxrows" src="../img/maxrows10.png" /></p>
+<p>If maximum value of  <code>MAXROWS</code> is 100. As many rows possible will be displayed in the notebook. If the number of rows is too large, the cell will contain scrollbars so that you can see all of the rows that are returned.</p>
+<p><img alt="Maxrows" src="../img/maxrows100.png" /></p>
+<p>If you want to scroll through large answer sets, you should consider using the <code>-grid</code> flag or set the <code>DISPLAY</code> option.</p>
+<h2 id="maximum-grid-size">Maximum Grid Size</h2>
+<p>The grid control displays approximately 5 lines of data in a Jupyter notebook cell. The <code>MAXGRID</code> option can be used to change the number of rows that the grid control will display in a Jupyter notebook cell. The entire answer set can be reviewed using the scroll bars on the right side and bottom of the control.</p>
+<p>The following is the default view of the grid control.</p>
+<p><img alt="Maxrows" src="../img/gridemployee.png" /></p>
+<p>To change the number of rows displayed, use the <code>MAXGRID</code> option:</p>
+<pre><code>%sql SET MAXGRID 10
+</code></pre>
+<p>The answer set will now display a minimum of 10 rows in the grid.</p>
+<p><img alt="Maxrows" src="../img/gridemployee10.png" /></p>
+<p>Note that the <code>MAXGRID</code> option does not affect the number of rows that are returned in an answer set.</p>
+<h2 id="thread-parallelism">Thread Parallelism</h2>
+<p>The Db2 magic commands have the ability to split a SQL statement into multiple threads to improve the time it takes to retrieve answer sets. This feature does not make Db2 more efficient - it provides a way to increase the utilization of Db2 and pipeline SQL statements so that less time is spent waiting for data to be retrieved. The section on parallelism explores this feature in more detail.</p>
+<p>The <code>THREADS</code> option tells Db2 the maximum of threads that it will be allowed to use when running the SQL. The SQL will be split (based on some range or key) and multi-threaded into Db2. The <code>THREADS</code> value can be anything from zero (standard SQL call) to 12. The highest performance was found to occur when using 6 to 8 threads, but this will be entirely dependent on the SQL workload. </p>
+<p>To set the number of threads use the following syntax:</p>
+<pre><code>%sql SET THREADS 0-12
+</code></pre>
+<p>The <code>THREADS</code> option does not apply to standard SQL statements. This option will only be used when the <code>USING x SELECT...</code> syntax is detected in a <code>%sql</code> or <code>%%sql</code> block.</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../plotting/" class="btn btn-neutral float-right" title="Plotting">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../sql_options/" class="btn btn-neutral" title="SQL Options"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../sql_options/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../plotting/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

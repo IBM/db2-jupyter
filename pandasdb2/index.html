@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Pandas to Db2 - Db2 Magic Commands</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../css/theme.css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Pandas to Db2";
+    var mkdocs_page_input_path = "pandasdb2.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> Db2 Magic Commands</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../installation/">Installation</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../connect/">Getting Connected</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../linevscell/">SQL Magic Commands</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../sql_options/">SQL Options</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../command_options/">Db2 Magic Command Options</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../plotting/">Plotting</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../variables/">Variables</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../resultsets/">Result Sets</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../stored_procedures/">Stored Procedures</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../developmentsql/">Development SQL</a>
+                    </li>
+                </ul>
+                <ul class="current">
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Pandas to Db2</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#create-replace-or-append-a-table">Create, Replace, or Append a Table</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#options">Options</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#with-data">With Data</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#limit-x">LIMIT x</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#columns-asis">COLUMNS ASIS</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#keep-float64-int64">KEEP FLOAT64, INT64</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../parallel/">Parallel SQL</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../macros/">Macros</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../extramacros/">Predefined Macros</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../support/">Support</a>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">Db2 Magic Commands</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Pandas to Db2</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="pandas-to-db2">Pandas to Db2</h1>
+<p>The primary purpose of the <code>%sql</code> command was to allow easy access to Db2 data from within a Jupyter notebook. However, there are situations where you may want to take the contents of a Pandas dataframe and move that into a Db2 table. There are multiple steps required to move the data from a dataframe to Db2 including:</p>
+<ul>
+<li>Determining the columns required, including the data types associated with them</li>
+<li>Creating the Table</li>
+<li>Inserting the contents of the dataframe into the table</li>
+</ul>
+<p>In order to simplify the process of saving dataframe information, an extension to the SQL syntax has been added within the Db2 magic commands. The <code>USING</code> keyword in a SQL statement is used to trigger special handling of a dataframe. The syntax of the <code>USING</code> command is:</p>
+<pre><code>USING dataframe [CREATE | REPLACE | APPEND] TABLE &lt;name&gt; options 
+</code></pre>
+<p>The purpose of the <code>USING</code> command is to create a table based on the dataframe definition, and optionally insert the data into the table. There are additional options which determine how the table is created and whether or not data is loaded into the table. </p>
+<p>The <code>dataframe</code> value refers to the Python variable that contains the dataframe contents. Do not use the SQL variable format <code>:dataframe</code> or Python value substition <code>{dataframe}</code> in the statement.</p>
+<h2 id="create-replace-or-append-a-table">Create, Replace, or Append a Table</h2>
+<p>The <code>USING</code> command has three different modes of operation:</p>
+<ul>
+<li><code>CREATE</code> - Create the table based on the dataframe contents</li>
+<li><code>REPLACE</code> - Recreate the table (delete the old one) based on the dataframe contents</li>
+<li><code>APPEND</code> - Use the existing table definition and update the contents </li>
+</ul>
+<p>After each one of these modes you must specify the name of the table. The table can be qualified with a SCHEMA name:</p>
+<pre><code>%sql USING df CREATE TABLE db2inst1.flights ...
+</code></pre>
+<p>If no options are found after the mode (<code>CREATE</code>,<code>REPLACE</code>), a table will be created with the dataframe column definitions:</p>
+<p><img alt="Pandas" src="../img/pddb21.png" /></p>
+<p>The definition of the table is displayed underneath the command. If you believe that different data types should be used for the columns, then you can copy the command into another cell and recreate the table with the proper settings.</p>
+<p>An error message will be displayed if you use the <code>CREATE</code> statement and the table already exists in the system.</p>
+<p><img alt="Pandas" src="../img/pderror.png" /></p>
+<p>In this case you should use the <code>REPLACE</code> option which will recreate the table for you. </p>
+<p>The <code>APPEND</code> mode will fail if the table has not been created. The best practice is to <code>CREATE</code> or <code>REPLACE</code> the table first and then use <code>APPEND</code>.</p>
+<p><img alt="Pandas" src="../img/appendfail.png" /></p>
+<p>If the table does exist, <code>APPEND</code> will insert the data from the dataframe into the new table.</p>
+<h2 id="options">Options</h2>
+<p>There are five options that can be specified after the mode:</p>
+<ul>
+<li><code>WITH DATA</code> - Create the table and insert the data from the dataframe</li>
+<li><code>LIMIT x</code> - Limit the amount of data loaded to <code>x</code> rows</li>
+<li><code>COLUMNS ASIS</code> - Keep the column names as found in the dataframe instead of Db2-friendly names</li>
+<li><code>KEEP FLOAT64</code> - Keep all float64 dataframe columns as is</li>
+<li><code>KEEP INT64</code> - Keep all int64 dataframe columns as is</li>
+</ul>
+<h3 id="with-data">With Data</h3>
+<p>With the <code>CREATE</code> and <code>REPLACE</code> modes, the table will be created, but no data will be inserted in the table. The <code>APPEND</code> mode assumes that you do want the data inserted so it does not require this option. When you specify the <code>WITH DATA</code> option, after creating the table the system will insert all of the data from the dataframe into the Db2 table.</p>
+<p>When data is being loaded into the table, a progress indicator will appear underneath the table definition giving an indication of how many rows have been inserted into the table.</p>
+<p><img alt="DF Create" src="../img/progress.png" /></p>
+<h3 id="limit-x">LIMIT x</h3>
+<p>The <code>WITH DATA</code> option will tell the system to insert the data from the dataframe into the Db2 table. The <code>LIMIT x</code> option will stop the inserts after <code>x</code> number of rows. This may be useful if you only want to store a subset of data into the Db2 table, or if you want to make sure that the data is being properly inserted into the table. You can always test the insert process by using the following steps:</p>
+<p><img alt="DF Create" src="../img/dfcreate.png" /></p>
+<h3 id="columns-asis">COLUMNS ASIS</h3>
+<p>When the system attempts to create the Db2 table, it takes the column names in the dataframe and makes them Db2 compatible. This means that special characters and blanks are removed from the name and replaced with underscores. In addition, the names are converted to uppercase so that SQL statements do not have to delimit column names with double quotes <code>"</code>. </p>
+<p>The SQL standard allows column names to contain special characters, as long as they are delimited with double quotes. If a column name uses standard characters <code>A-Z,0-9,_</code>, then no quotes are required around the column name. There is also no need to worry about the case of the column names since all names will be folded to uppercase. </p>
+<p>The conversion of column names can be seen in the <code>flights.csv</code> data set. The columns in this CSV file are named:</p>
+<p><img alt="DF Create" src="../img/dfcolumns.png" /></p>
+<p>During the conversion process, the columns are renamed:</p>
+<p><img alt="DF Create" src="../img/columnnames.png" /></p>
+<p>The most notable change is the conversion of blanks to underscore <code>_</code> characters. If you do <strong>not</strong> want this conversion to occur, and keep the column names in their original format, use the <code>COLUMNS ASIS</code> option. This will cause the program to create the table with the exact column names of the dataframe without any changes. The <code>CREATE</code> example below illustrates how the column names are kept the same.</p>
+<p><img alt="DF Create" src="../img/columnsasis.png" /></p>
+<p>Note that this will make creating SQL queries slightly more challenging! If you want to query the flights per annum field, you will need to make sure you place the column name in quotes and have the correct spelling:</p>
+<pre><code>%%sql
+SELECT * FROM MYFLIGHTS
+  WHERE &quot;Flights p.a.&quot; &gt; 10
+</code></pre>
+<h3 id="keep-float64-int64">KEEP FLOAT64, INT64</h3>
+<p>Pandas will often convert data into types that are larger than what is required. A good example of this is when a column with decimal or numeric values gets the data converted to float! The sample <code>EMPLOYEE</code> table illustrates this problem. A <code>DESCRIBE</code> of the <code>EMPLOYEE</code> table shows that the <code>SALARY</code> column is decimal.</p>
+<p><img alt="DF Create" src="../img/describeemployee.png" /></p>
+<p>When the dataframe is created from the <code>SELECT</code> statement, the data type for the <code>SALARY</code> column is <code>float64</code>.</p>
+<p><img alt="DF Create" src="../img/float.png" /></p>
+<p>When a table is created from this dataframe, the default behavior is to create a datatype that is closer to the values in the column. In this case the data is converted to <code>DECFLOAT</code> which is more suited to decimal numbers.</p>
+<p><img alt="DF Create" src="../img/decfloat.png" /></p>
+<p>If you do not want <code>float64</code> or <code>int64</code> values to be converted to smaller datatypes, you must use the <code>KEEP FLOAT64</code> and/or <code>KEEP INT64</code> to keep the original values.</p>
+<pre><code>%sql USING employee CREATE TABLE NEW_EMPLOYEE KEEP FLOAT64 KEEP INT64
+</code></pre>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../parallel/" class="btn btn-neutral float-right" title="Parallel SQL">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../developmentsql/" class="btn btn-neutral" title="Development SQL"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../developmentsql/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../parallel/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

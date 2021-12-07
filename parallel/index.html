@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Parallel SQL - Db2 Magic Commands</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../css/theme.css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Parallel SQL";
+    var mkdocs_page_input_path = "parallel.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> Db2 Magic Commands</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../installation/">Installation</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../connect/">Getting Connected</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../linevscell/">SQL Magic Commands</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../sql_options/">SQL Options</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../command_options/">Db2 Magic Command Options</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../plotting/">Plotting</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../variables/">Variables</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../resultsets/">Result Sets</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../stored_procedures/">Stored Procedures</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../developmentsql/">Development SQL</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../pandasdb2/">Pandas to Db2</a>
+                    </li>
+                </ul>
+                <ul class="current">
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Parallel SQL</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#enabling-multi-threaded-sql">Enabling Multi-threaded SQL</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#issuing-parallel-sql">Issuing Parallel SQL</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#slice-value">Slice Value</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#incorrect-slice-values">Incorrect Slice Values</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#generating-slices">Generating Slices</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#multi-value-slices">Multi-value Slices</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#sql-and-slice-debugging">SQL and Slice Debugging</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../macros/">Macros</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../extramacros/">Predefined Macros</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../support/">Support</a>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">Db2 Magic Commands</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Parallel SQL</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="parallel-sql-execution">Parallel SQL Execution</h1>
+<p>The Db2 magic commands provides a feature that lets you submit an SQL query using multiple processes. The SQL that you run in <code>%sql</code> and <code>%%sql</code> blocks are traditionally run in a single-threaded fashion. Each SQL statement is submitted to Db2 for processing and the remaining SQL does not get executed until the answer set has been retrieved for the SQL statement. Retrieving small answer sets (1000's to 10,000's of rows) is usually quick. If you need to return large amounts of data (1,000,000 of rows) then the network latency and retrieval time becomes a consideration.</p>
+<p>What the Db2 magic command provides is the ability to split the SQL workload up into separate processes. Each process would run independent from the other processes. This technique would result in:</p>
+<ul>
+<li>Multiple threads running SQL independently from one another</li>
+<li>Multiple result sets being returned simultaneously  over the network</li>
+<li>Db2 running each SQL statement independently, resulting in higher Db2 utilization</li>
+</ul>
+<p>The downside is that the Db2 system administrator may not like the additional workloads being run in the database! However, the SQL processing is being done on smaller chunks of data and may be able to take advantage of scans already in memory. In addition, this technique will provide a faster mechanism for returning the data to the workstation. </p>
+<p>There is some additional complexity on the part of the user. A suitable "range" condition needs to be provided so that the query can be parallelized. In addition, queries that involve averages, summarized information, etc... will not work since each thread is independent and the summarization will only be true for that slice. The final answer set is automatically collapsed into one dataframe so there is no need for the user to handle the results from multiple threads. </p>
+<h2 id="enabling-multi-threaded-sql">Enabling Multi-threaded SQL</h2>
+<p>The Db2 magic command checks at initialization time whether or not multiprocessing is enabled. If it is not, you will see a message similar to the following:</p>
+<p><img alt="No Threading" src="../img/no_multithreads.png" /></p>
+<p>To install the multiprocessing package, use the following command:</p>
+<pre><code>pip install multiprocess
+</code></pre>
+<p>Details of the feature can be found <a href="https://pypi.org/project/multiprocess/">here</a>.</p>
+<p>If multiprocessing is enabled, you will need to change the <code>THREADS</code> value to something between 0 and 12. For most cases a value between 4 and 8 should be sufficient. Only testing in your environment will determine what the best balance is for the thread count.</p>
+<pre><code>SET THREADS 4
+</code></pre>
+<p>This setting applies to all queries that will be run in multithreading mode. Traditional queries will not use this option so this can be set for your notebook, and it will not impact your normal SQL statements.</p>
+<h2 id="issuing-parallel-sql">Issuing Parallel SQL</h2>
+<p>In order to run parallel SQL, you will need to use the following syntax:</p>
+<pre><code>%sql USING slice [SELECT | WITH] SQL statement ... WHERE slicecolumn = :slice
+</code></pre>
+<p>You can only parallelize <code>SELECT</code> statements. The <code>WITH</code> is also allowed since it refers to temporary table objects that will eventually be part of a <code>SELECT</code> statement. Any <code>INSERT</code>, <code>DELETE</code>, <code>UPDATE</code>, or <code>MERGE</code> command will be ignored. SQL statement that requires exclusive locks (<code>DELETE</code>, <code>UPDATE</code>, etc...) may cause one thread to block another thread causing deadlocks and performance issues. That is why this feature is limited to querying data only.</p>
+<p>The variable that is used to parallelize the query (<code>slice</code>) must also be included in the SQL statement in the <code>WHERE</code> clause as an equality predicate <code>x=:slice</code>. </p>
+<h3 id="slice-value">Slice Value</h3>
+<p>The value <code>slice</code> is a Python list (array) variable that contains the ranges you want to use during the execution of the SQL. The range does not have to be the same as the <code>THREADS</code> settings you used. The Db2 magic command will open up <code>x</code> threads and continue to execute the SQL query until all <code>slice</code> values have been used. </p>
+<p>The <code>slice</code> value could be a month, year, department, or any column that gives a discreet number of distinct values. For instance, the following <code>FLIGHTS</code> table has 19 different columns:</p>
+<p><img alt="Flights" src="../img/flights.png" /></p>
+<p>A few columns look like candidates to use for slicing the data: <code>FF_STATUS</code>,<code>FLIGHT_DATE</code>,<code>ORIGIN</code>,<code>AIRLINE</code>. Columns that are monetary or contain may hundreds of values are not good candidates. However, there are ways of generating discrete slices with ranges. This is covered in the next section.</p>
+<p>If you are interested in the flights from 3 airports, you would create a slice based on the airport codes for those locations:</p>
+<pre><code>airports = [&quot;DFW&quot;,&quot;AUS&quot;,&quot;IAH&quot;]
+</code></pre>
+<p>Once you have determined your slice, you must add it to your SQL and the final command would be:</p>
+<pre><code>%sql USING airports SELECT ORIGIN, COUNT(*) FROM AIRPORTS WHERE ORIGIN = :airports
+</code></pre>
+<p>The Db2 magic command will take each value in the array <code>airports</code> and substitute it into the SQL statement (where the <code>:airports</code> value is) and then run it as a separate process. The results from each process will be combined together to create a final Pandas dataframe to display. The final result is shown below.</p>
+<p><img alt="Flights" src="../img/parallelresults.png" /></p>
+<p>The good news is that both results are the same! The key point is that the slice that you use must be found in the <code>WHERE</code> clause in order for each answer set to be distinct. If you do want to use summary functions like <code>SUM</code> or <code>AVG</code>, then it must be restricted to the slice value, not to the entire answer set. The following example illustrates what could go wrong. Assume you want to get the average amount of money that passengers spend on meals in Texas airports. If we restrict this to the three airports <code>DFW</code>, <code>IAH</code>, and <code>AUS</code>, the SQL would be:</p>
+<p><img alt="Flights" src="../img/averagemeals.png" /></p>
+<p>If this query was rewritten to use slices, the results would be different:</p>
+<p><img alt="Flights" src="../img/averagewrong.png" /></p>
+<p>You could get the proper result by returning the count and sum of meals across the three airports, but then you would need to compute the average yourself.</p>
+<p><img alt="Flights" src="../img/properaverage.png" /></p>
+<p>If you save the data into a dataframe, you can easily compute the average.</p>
+<p><img alt="Flights" src="../img/computedaverage.png" /></p>
+<h3 id="incorrect-slice-values">Incorrect Slice Values</h3>
+<p>The values that are used for the slices should be of the same datatype. If not, one or more of the SQL statements may fail when executed. The program will capture the error when it occurs, but the SQL may have been run multiple times and used up resources for no reason. It is recommended that the SQL be prototyped on smaller values before running the query against the entire table.</p>
+<p>The following query demonstrates what happens when one of the slices is incorrectly typed.</p>
+<p><img alt="Flights" src="../img/badvalues.png" /></p>
+<p>A simple check of the values could be done by running the SQL against a subset of the data:</p>
+<p><img alt="Flights" src="../img/quickcheck.png" /></p>
+<p>The clause <code>x = :slice</code> changes to <code>x IN (:slice)</code> and the <code>FETCH FIRST 100 ROWS</code> is added to limit the number of rows returned.</p>
+<h3 id="generating-slices">Generating Slices</h3>
+<p>The <code>USING</code> clause requires that the user know what slices to use to parallelize the query. If a column has a large number of values, it may be easier to generate the slice using the following syntax. Assume that the column that you want to slice on is called <code>EMPNO</code>.</p>
+<pre><code>empno_list = %sql -r SELECT DISTINCT(EMPNO) FROM SOME_TABLE
+</code></pre>
+<p>The <code>empno_list</code> will contain an array of values (including the column names) of <code>EMPNO</code> values from the table. To generate an array of possible values to use in the <code>USING</code> clause, the following Python code is used:</p>
+<pre><code>empnos = [x[0] for x in empno_list[1:]]
+</code></pre>
+<p>Now that the slice values are available, the final query can be created.</p>
+<pre><code>%sql USING empnos SELECT * FROM SOME_TABLE WHERE EMPNO = :empnos
+</code></pre>
+<p>Here is an example of this technique being used to query a <code>FLIGHTS</code> table based on all of the <code>ORIGIN</code> airports.</p>
+<p><img alt="Flights" src="../img/sliceexample.png" /></p>
+<h3 id="multi-value-slices">Multi-value Slices</h3>
+<p>You may have situations where there isn't an exact value that can be used to represent the slice that you want to retrieve. For example, you may have range of values you want to use to represent a section of the data. You can use an array of arrays to achieve this. Similar to all of the other examples, you would create an array of values that you want to use.</p>
+<p>One of the columns in our <code>FLIGHTS</code> table includes the departure hour. The following array creates four blocks of times that will be used to split up the query:</p>
+<pre><code>hours = [ [0,1,2,3,4,5],[6,7,8,9,10,11],[12,13,14,15,16,17],[18,19,20,21,22,23] ]
+</code></pre>
+<p>The final query is displayed below.</p>
+<p><img alt="Departure Hour" src="../img/departurehour.png" /></p>
+<p>When using a slice that contains array values, you must use <code>COLUMN_NAME IN (:slice_name)</code> in your SQL rather than <code>COLUMN_NAME = :slice_name</code>. The value you are passing is a list of values so the only way to compare multiple values is through an <code>IN</code> list.</p>
+<h3 id="sql-and-slice-debugging">SQL and Slice Debugging</h3>
+<p>If there is a situation where the answer set does not appear correct, or you are receiving an SQL error message, you may want to use the <code>-e</code> (echo) option to display the SQL that is generated in each slice. The <code>FLIGHTS</code> example in the previous section can be modified to display the SQL that is being used in the individual slices.</p>
+<p><img alt="Departure Hour" src="../img/departure_debug.png" /></p>
+<p>If you received an error message about invalid slice values, the <code>-e</code> option will usually show you the offending statement.</p>
+<p><img alt="Departure Hour" src="../img/parallelsubstitute.png" /></p>
+<p>In this example, the value <code>'A'</code> is not compatible with the <code>DEPARTURE_COLUMN</code> datatype.</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../macros/" class="btn btn-neutral float-right" title="Macros">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../pandasdb2/" class="btn btn-neutral" title="Pandas to Db2"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../pandasdb2/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../macros/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

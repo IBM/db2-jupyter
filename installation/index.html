@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Installation - Db2 Magic Commands</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../css/theme.css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Installation";
+    var mkdocs_page_input_path = "installation.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> Db2 Magic Commands</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                    </li>
+                </ul>
+                <ul class="current">
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Installation</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#pre-requisities">Pre-requisities</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#optional-components">Optional Components</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#pandas-13-support">Pandas 1.3 Support</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#qgrid-display">QGRID Display</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#multi-processing">Multi-processing</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#loading-db2-magic-commands">Loading Db2 Magic Commands</a>
+    </li>
+    </ul>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../connect/">Getting Connected</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../linevscell/">SQL Magic Commands</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../sql_options/">SQL Options</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../command_options/">Db2 Magic Command Options</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../plotting/">Plotting</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../variables/">Variables</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../resultsets/">Result Sets</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../stored_procedures/">Stored Procedures</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../developmentsql/">Development SQL</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../pandasdb2/">Pandas to Db2</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../parallel/">Parallel SQL</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../macros/">Macros</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../extramacros/">Predefined Macros</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../support/">Support</a>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">Db2 Magic Commands</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Installation</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="db2-magic-commands-installation">Db2 Magic Commands Installation</h1>
+<h2 id="pre-requisities">Pre-requisities</h2>
+<p>In order to use Db2 magic commands in your Jupyter notebook environment, you must have following pre-requisites:</p>
+<ul>
+<li>Jupyter notebooks with a Python 3+ interpreter</li>
+<li>IBM Python driver (ibm_db)</li>
+<li>Db2 LUW access </li>
+<li>Optional: qgrid, pandas, multi-threading</li>
+</ul>
+<p>The Db2 magic commands have been tested on Linux, UNIX, and Windows environments, but are not certified to run against Db2 for z, or Db2 for iSeries versions. This doesn't mean that they can't be adapted to work against these data sources, only that there has been no validation testing done against those target environments.</p>
+<p>If you are using Watson Studio, or are using a Cloud Pak for Data system, the Db2 Python client will have already been installed. If not, you will need the system administrator to install this feature. The main project page for the Python client can be found <a href="https://github.com/ibmdb/python-ibmdb">here</a>.</p>
+<p>If you have access to your Jupyter notebook environment, the Db2 Python client can be installed in one of three ways:</p>
+<ul>
+<li><code>python3 -m pip install ibm_db</code> or <code>pip install ibm_db</code></li>
+<li><code>easy_install ibm_db</code></li>
+<li><code>conda install ibm_db</code> </li>
+</ul>
+<p>Prior to running the installation you may want to run these commands to ensure the proper libraries are available for the Db2 drivers:</p>
+<ul>
+<li>RHEL/CentOS <code>yum install python3-dev</code></li>
+<li>Ubuntu <code>apt-get install python3-dev</code></li>
+</ul>
+<p>More detailed instructions can be found on the <a href="https://github.com/ibmdb/python-ibmdb#inst">Db2 Python Driver</a> support page.</p>
+<h2 id="optional-components">Optional Components</h2>
+<p>There are three libraries that the Db2 magic commands load in and will use if available:</p>
+<ul>
+<li>Pandas dataframes 1.3 data type conversion</li>
+<li>QGRID Display </li>
+<li>Multi-processing</li>
+</ul>
+<h3 id="pandas-13-support">Pandas 1.3 Support</h3>
+<p>If your current version of Pandas is equal to 1.3 or greater, the Db2 magic commands are able to load data into a data frame using a more efficient storage representation. To check your Pandas version, run the following command inside a Jupyter code cell:</p>
+<pre><code>pandas.__version__
+</code></pre>
+<p>The result will be the release, version, and modification level of Pandas that you are currently running.</p>
+<p><img alt="Pandas version" src="../img/pandas_version.png" /></p>
+<p>Normally the Pandas control will take Db2 strings and represent them as objects, and decimal numeric types and convert them to float. In the 1.3 release of Pandas, the type of data type can be explicitly set, and this will significantly reduce the amount of memory that Pandas requires to store the Db2 answer set. See <a href="https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.read_sql_query.html#pandas.read_sql_query">read_sql_query</a> for more details of this feature. In the event you do not have a version that supports this feature, the Db2 magic commands will print a warning message.</p>
+<p><img alt="Pandas Old" src="../img/pandas_old.png" /></p>
+<h3 id="qgrid-display">QGRID Display</h3>
+<p>The Db2 magic command will check to see whether or not you have the QGRID control installed in your Jupyter environment. If it is not available, it will print a warning message:</p>
+<p><img alt="No QGRID" src="../img/no_qgrid.png" /></p>
+<p>The default method of displaying result sets is to use Pandas formatting. For instance, the following result set is produced from querying the contents of the sample <code>EMPLOYEE</code> table:</p>
+<p><img alt="Employees Pandas" src="../img/employee_pandas.png" /></p>
+<p>The amount of data that is displayed is limited to 10 rows, with the first and last five rows being shown. There are ways to adjust the number of rows displayed and the settings are covered in another chapter. If you use install the <a href="https://github.com/quantopian/qgrid">QGRID control</a>, the results can be displayed in a scrollable windows:</p>
+<p><img alt="Employees QGRID" src="../img/employee_qgrid.png" /></p>
+<p>The QGRID control allows you to scroll through the entire answer set rather than having to print the contents of Pandas dataframe. This makes it much easier for you to review the results of your queries rather than having without having to adjust the Pandas display limits.</p>
+<p>To install the QGRID control, use one of the following options. For a non-conda installation use:</p>
+<pre><code>pip install qgrid
+jupyter nbextension enable --py --sys-prefix qgrid
+</code></pre>
+<p>The following is only required if you have not enabled the ipywidgets nbextensions:</p>
+<pre><code>jupyter nbextension enable --py --sys-prefix widgetsnbextension
+</code></pre>
+<p>If you are using <code>conda</code> as the Jupyter notebook and Python distribution, use the following command:</p>
+<pre><code>conda config --add channels conda-forge
+conda install qgrid
+</code></pre>
+<h3 id="multi-processing">Multi-processing</h3>
+<p>The Db2 magic command can split a query into multiple processes (independent of the Db2 LUW version). This technique is useful when a large amount of data needs to be retrieved, or if it is more efficient to search for rows based on a range of values. The multi-processing feature will initiate "x" number of processes, each running the same SQL with a specific range value. To the Db2 server this looks like "x" number of users requesting similar data. In effect you are forcing Db2 to do more work on your behalf! This doesn't change the performance of Db2 itself, but may allow Db2 to optimize the answer set for each thread and improve the speed of answer set retrieval. You should always check with the database administrator to verify that using multi-processing will not cause performance issues in the database.</p>
+<p>When the Db2 magic command initializes, it will display a message if multi-processing is not available:</p>
+<p><img alt="No Threading" src="../img/no_multithreads.png" /></p>
+<p>To install the multiprocessing package, use the following command:</p>
+<pre><code>pip install multiprocess
+</code></pre>
+<p>Details of the feature can be found <a href="https://pypi.org/project/multiprocess/">here</a>.</p>
+<h2 id="loading-db2-magic-commands">Loading Db2 Magic Commands</h2>
+<p>Once you have <code>ibm_db</code> installed and any additional features, you will need to download the Db2 magic commands. The Db2 magic commands can be downloaded and placed directly to the directory that your Jupyter notebooks are stored in, or can be downloaded from within a Jupyter notebook.</p>
+<p>To load the Db2 magic commands into your notebook, use the following syntax:</p>
+<pre><code>!wget https://raw.githubusercontent.com/IBM/db2-jupyter/master/db2.ipynb
+
+</code></pre>
+<p>Once you have loaded the Db2 magic commands into your notebook, you are able to query Db2 tables using standard SQL syntax:</p>
+<p><img alt="Intro Sample" src="../img/intro_sample.png" /></p>
+<p>The following sections will describe how to get started with the Db2 magic commands and how to become more productive when querying Db2 databases.</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../connect/" class="btn btn-neutral float-right" title="Getting Connected">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href=".." class="btn btn-neutral" title="Home"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href=".." style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../connect/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

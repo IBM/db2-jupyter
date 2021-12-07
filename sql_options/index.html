@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>SQL Options - Db2 Magic Commands</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../css/theme.css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "SQL Options";
+    var mkdocs_page_input_path = "sql_options.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> Db2 Magic Commands</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../installation/">Installation</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../connect/">Getting Connected</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../linevscell/">SQL Magic Commands</a>
+                    </li>
+                </ul>
+                <ul class="current">
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">SQL Options</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#delimiters-d">Delimiters -d</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#display-all-results-a-all">Display all results -a,-all</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#grid-display-grid">Grid Display -grid</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#quiet-mode-q">Quiet Mode -q</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#json-formatting-of-first-column-j">JSON Formatting of First Column -j</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#retrieve-rows-as-json-records-json">Retrieve Rows as JSON Records -json</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#retrieve-data-as-a-list-r-array">Retrieve Data as a List -r,-array</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#echo-sql-e">Echo SQL -e</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#plot-data-line-pie-bar">Plot Data -line, -pie, -bar</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#display-help-h-help">Display Help -h,-help,?</a>
+    </li>
+    </ul>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../command_options/">Db2 Magic Command Options</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../plotting/">Plotting</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../variables/">Variables</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../resultsets/">Result Sets</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../stored_procedures/">Stored Procedures</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../developmentsql/">Development SQL</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../pandasdb2/">Pandas to Db2</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../parallel/">Parallel SQL</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../macros/">Macros</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../extramacros/">Predefined Macros</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../support/">Support</a>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">Db2 Magic Commands</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>SQL Options</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="sql-options">SQL Options</h1>
+<p>Both forms of the <code>%sql</code> command have options that can be used to change the behavior of the code. For both forms of the command (<code>%sql</code>, <code>%%sql</code>), the options must be on the same line as the command:</p>
+<pre><code>%sql -e ...
+%%sql -e
+</code></pre>
+<p>The only difference is that the <code>%sql</code> command can have SQL following the parameters, while the <code>%%sql</code> requires the SQL to be placed on subsequent lines.</p>
+<p>There are a number of parameters that you can specify as part of the <code>%sql</code> statement.</p>
+<ul>
+<li><code>-d</code> - Use alternative statement delimiter @</li>
+<li><code>-q</code>,<code>-quiet</code> - Suppress messages</li>
+<li><code>-j</code> - JSON formatting of the first column</li>
+<li><code>-json</code> - Retrieve the result set as a JSON record</li>
+<li><code>-a</code>,<code>-all</code> - Show all output</li>
+<li><code>-r</code>,<code>-array</code> - Return the results into a variable (list of rows)</li>
+<li><code>-e</code>,<code>-echo</code> - Echo macro substitution  </li>
+<li><code>-h</code>,<code>-help</code> - Display help information</li>
+<li><code>-line</code>,<code>-bar</code>,<code>-pie</code> - Plot data</li>
+<li><code>-grid</code> - Display results in a scrollable grid</li>
+</ul>
+<p>Multiple parameters are allowed on a command line. Each option should be separated by a space:</p>
+<pre><code>%sql -a -j ...
+</code></pre>
+<p>The sections below will explain the options in more detail.</p>
+<h3 id="delimiters-d">Delimiters <code>-d</code></h3>
+<p>The default delimiter for all SQL statements is the semicolon <code>;</code>. However, this becomes a problem when you try to create a trigger, function, or procedure that uses SQLPL (or PL/SQL). Use the <code>-d</code> option to turn the SQL delimiter into the at <code>@</code> sign. The semi-colon is then ignored as a delimiter.</p>
+<p>For example, the following SQL will use the @ sign as the delimiter.</p>
+<pre><code>%%sql -d
+DROP TABLE STUFF
+@
+CREATE TABLE STUFF (A INT)
+@
+INSERT INTO STUFF VALUES
+  1,2,3
+@
+SELECT * FROM STUFF
+@
+</code></pre>
+<p>The delimiter change will only take place for the statements following the <code>%%sql</code> command. Subsequent cells in the notebook will still use the semicolon. You must use the <code>-d</code> option for every cell that needs to use the semicolon in the script.</p>
+<h3 id="display-all-results-a-all">Display all results <code>-a</code>,<code>-all</code></h3>
+<p>The default number of rows displayed for any result set is 10. You have the option of changing this option when initially connecting to the database. If you want to override the number of rows displayed, you can either update the control variable, or use the <code>-a</code> option. The <code>-a</code> option will display all of the rows in the answer set. For instance, the following SQL will only show 10 rows even though we have many more row in the table.</p>
+<p><img alt="Display Some" src="../img/display_some.png" /></p>
+<p>You will notice that the displayed result will split the visible rows to the first 5 rows and the last 5 rows. Using the <code>-a</code> option will display all of the values. The display has been cut off, but all 41 values are displayed.</p>
+<p><img alt="Display All" src="../img/display_all.png" /></p>
+<p>If you want a scrollable list, use the <code>-grid</code> option which is described in the next section. You can also change the number of rows that are displayed by default by using the <code>MAXROWS</code> option.</p>
+<h3 id="grid-display-grid">Grid Display <code>-grid</code></h3>
+<p>When output is produced in Pandas format, the size of the result set will be limited to a subset of the total number of rows. If you want to view all of the rows returned by the SQL, then you may want to use the <code>-grid</code> option. In order to use this feature, you must have the <code>QGRID</code> library installed on your system. See the pre-requisites section on details of this feature.</p>
+<p>Using the <code>-grid</code> option will display an answer set in a scrollable grid within the notebook:</p>
+<p><img alt="Display Grid" src="../img/display_grid.png" /></p>
+<p>You can use the scroll bars in the display to see additional columns or rows of the answer set. The QGRID display also allows for the sorting of the result sets by ascending or descending order by clicking on a column name. </p>
+<p><strong>Note</strong>: The QGRID control cannot display result sets that have duplicate columns names. For instance, the following SQL query is returned in the following Pandas format:</p>
+<p><img alt="Display Grid" src="../img/display_average.png" /></p>
+<p>The original SALARY column is not shown in the QGRID display. The last SALARY calculation (SALARY + BONUS) is what is displayed. Attempting to use the QGRID control will result in only one column being displayed.</p>
+<p><img alt="Display Grid" src="../img/display_badaverage.png" /></p>
+<p>This situation can occur when you join two tables together and select columns from both. If there are columns with the same name, then the last column in the SELECT list with that name will be displayed.</p>
+<p><img alt="Display Grid" src="../img/display_error.png" /></p>
+<h3 id="quiet-mode-q">Quiet Mode <code>-q</code></h3>
+<p>Every SQL statement will result in some output. You will either get an answer set (SELECT), or an indication if the command worked. For instance, the following set of SQL will generate some error messages since the tables will probably not exist:</p>
+<p><img alt="SQL Not Quiet" src="../img/sql_notquiet.png" /></p>
+<p>If you know that these errors may occur, you can silence them with the <code>-q</code> option.</p>
+<p><img alt="SQL Not Quiet" src="../img/sql_quiet.png" /></p>
+<p>SQL output will not be suppressed, so the <code>VALUES</code> clause will still display results.</p>
+<h3 id="json-formatting-of-first-column-j">JSON Formatting of First Column <code>-j</code></h3>
+<p>If you are retrieving JSON data from a Db2 table, you have the option of storing it as a character string in Pandas or converting it into a dictionary in Python. Normally an SQL statement with JSON data would just be retrieved as a character string.</p>
+<p><img alt="JSON String" src="../img/json_string.png" /></p>
+<p>If you use the <code>-j</code> option, the program will convert the row(s) into an array of dictionaries. Usually you would use the assignment statement and the <code>%sql</code> command when using this option.</p>
+<p><img alt="JSON String" src="../img/json_dict.png" /></p>
+<p>The following example illustrates multiple rows being returned and queried.</p>
+<p><img alt="JSON String" src="../img/json_dicts.png" /></p>
+<h3 id="retrieve-rows-as-json-records-json">Retrieve Rows as JSON Records <code>-json</code></h3>
+<p>The previous json option <code>-j</code> was used to convert the first column of an answer set into a Python dictionary. The <code>-json</code> flag will take the answer set and create one dictionary entry for the contents of the row. This function is useful when you need to pass the contents of the result set to a system that requires the data in JSON format.</p>
+<p>The following example retrieves the <code>EMPLOYEE</code> data for employee <code>000010</code> as a JSON record:</p>
+<p><img alt="JSON String" src="../img/json_row.png" /></p>
+<p>The data is always returned as an array of JSON values with each column value in the JSON record tagged with the column name (in lower case).</p>
+<h3 id="retrieve-data-as-a-list-r-array">Retrieve Data as a List <code>-r</code>,<code>-array</code></h3>
+<p>The default storage format of a SQL result set is a Pandas dataframe. If you need to manipulate the result set as a Python list, then the <code>-r</code> or <code>-array</code> option needs to be used. The data being retrieved will be converted to a conventional Python list and can be printed or assigned to a variable.</p>
+<p><img alt="Array" src="../img/row_array.png" /></p>
+<p>The first row (0) will contain the names of the columns being returned, while the remainder of the rows will contain the data. To refer to a row in the answer set you would use <code>answer[x][y]</code> where <code>x</code> is the row (starting at 1) and <code>y</code> referring to the column (starting at 0).</p>
+<p><img alt="Array" src="../img/row_array_example.png" /></p>
+<h3 id="echo-sql-e">Echo SQL <code>-e</code></h3>
+<p>The echo command <code>-e</code> will display the contents of the SQL command after all substitutions have been done. The echo command is useful when debugging your SQL when you appear to be getting incorrect results. For example, the following SQL will fail with an end-of-statement error which isn't that useful at determining what went wrong!</p>
+<p><img alt="Echo" src="../img/sql_error.png" /></p>
+<p>Adding the <code>-e</code> option to the SQL will confirm that the variable that was used in the SQL statement did not have a proper value assigned to it.</p>
+<p><img alt="Echo" src="../img/sql_error_echo.png" /></p>
+<h3 id="plot-data-line-pie-bar">Plot Data <code>-line</code>, <code>-pie</code>, <code>-bar</code></h3>
+<p>The three plotting options (<code>-line -pie -bar</code>) are used to create simple plots of data. There is an entire section in the documentation that will cover the basics of using these plotting options.</p>
+<h3 id="display-help-h-help">Display Help <code>-h</code>,<code>-help</code>,<code>?</code></h3>
+<p>When the <code>%sql</code> command is issued with the <code>-h</code> option, a link to the online documentation will be produced as output. Clicking on the link will result in the help manual being displayed in another browser tab or window.</p>
+<p><img alt="Help" src="../img/db2help.png" /></p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../command_options/" class="btn btn-neutral float-right" title="Db2 Magic Command Options">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../linevscell/" class="btn btn-neutral" title="SQL Magic Commands"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../linevscell/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../command_options/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>
