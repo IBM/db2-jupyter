@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Getting Connected - Db2 Magic Commands</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../css/theme.css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Getting Connected";
+    var mkdocs_page_input_path = "connect.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> Db2 Magic Commands</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../installation/">Installation</a>
+                    </li>
+                </ul>
+                <ul class="current">
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Getting Connected</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#connect-syntax">Connect Syntax</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#standard-connection">Standard Connection</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#passwords">Passwords</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#connection-with-credentials">Connection with Credentials</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#closing-a-connection">Closing a Connection</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#reseting-a-connection">Reseting a Connection</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../linevscell/">SQL Magic Commands</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../sql_options/">SQL Options</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../command_options/">Db2 Magic Command Options</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../plotting/">Plotting</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../variables/">Variables</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../resultsets/">Result Sets</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../stored_procedures/">Stored Procedures</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../developmentsql/">Development SQL</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../pandasdb2/">Pandas to Db2</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../parallel/">Parallel SQL</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../macros/">Macros</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../extramacros/">Predefined Macros</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../support/">Support</a>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">Db2 Magic Commands</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Getting Connected</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="connecting-to-db2">Connecting to Db2</h1>
+<p>Before any SQL commands can be issued, a connection needs to be made to the Db2 database that you will be using. The connection can be done manually (through the use of the CONNECT command), or automatically when the first <code>%sql</code> command is issued.</p>
+<p>The Db2 magic command tracks whether or not a connection has occurred in the past and saves this information between notebooks and sessions. When you start up a notebook and issue a command, the program will reconnect to the database using your credentials from the last session. In the event that you have not connected before, the system will require that you execute the <code>CONNECT</code> command. To connect to a Db2 database you will need the following information:</p>
+<ul>
+<li>Database name </li>
+<li>Hostname </li>
+<li>Db2 port number</li>
+<li>Userid</li>
+<li>Password</li>
+</ul>
+<p>You may also require two additional pieces of information:</p>
+<ul>
+<li>SSL Security - Request that SSL connections be used with Db2 and optionally the location of the SSL file that contains required certificate information</li>
+<li>PASSTHRU - Additional ODBC keywords that need to be supplied to the Db2 driver</li>
+</ul>
+<p>All of the information supplied will be stored in the directory that the notebooks are stored on. Once you have entered the information, the system will attempt to connect to the database for you and then you can run all of the SQL scripts. More details on the <code>CONNECT</code>syntax will be found in a section below.</p>
+<p>If you have credentials available from Db2 on Cloud or CP4D, place the contents of the credentials into a variable and then use the <code>CONNECT CREDENTIALS &lt;var&gt;</code> syntax to connect to the database.</p>
+<pre><code>db2blu = { &quot;uid&quot; : &quot;xyz123456&quot;, ...}
+%sql CONNECT CREDENTIALS db2blu
+</code></pre>
+<p>If the connection is successful using the credentials, the variable will be saved to disk so that you can connected from within another notebook using the same syntax.</p>
+<h2 id="connect-syntax">Connect Syntax</h2>
+<p>The <code>CONNECT</code> command has four different options that are listed below. You must explicitly connect to a Db2 database for the first time. Subsequent connections are <strong>not</strong> required if you connecting to the same database. When the Db2 magic command executes your SQL command, it checks to see whether or not you have already connected to the database. If not, it will check to see if there was a successful connection previously and will use those credentials to reconnect.</p>
+<p>You can also force a connection to the previous database by issuing the <code>CONNECT</code> command with no parameters.</p>
+<p><img alt="Connect 1" src="../img/connect1.png" /></p>
+<h3 id="standard-connection">Standard Connection</h3>
+<p>The format of the <code>CONNECT</code> command is:</p>
+<pre><code>%sql CONNECT TO database USER userid USING password | ? 
+                HOST ip address PORT port number 
+                SSL [TRUE | ON | FALSE | OFF | certificate ]
+                PASSTHRU ODBC/CLI settings
+</code></pre>
+<p>The required fields are:</p>
+<ul>
+<li>Database - Database name you want to connect to</li>
+<li>Hostname - <code>localhost</code> if Db2 is running on your own machine or the IP address or symbolic name of the server</li>
+<li>PORT - The port to use for connecting to Db2. This is usually 50000. </li>
+<li>Userid - The userid to use when connecting to the database.</li>
+<li>Password - The password for the userid. Use a question mark <code>?</code> to be prompted to enter the password without displaying the text.</li>
+</ul>
+<p>There are two optional fields. The SSL option ensures that the transmission of the SQL and answer sets are encrypted "on the wire". SSL is typically required when using public networks to communicate to a Db2 database. For internal systems this may not be the case. If you are required to use SSL communication, you must specify <code>SSL [ ON | TRUE ]</code>, use an SSL port on Db2 (traditionally 50001) and optionally supply a certificate file.</p>
+<p>If your workstation has already been configured to use SSL communication, then the <code>SSL ON</code> parameter is required. If you have been given access to a Db2 database and have been provided with an SSL certificate, then you will use the <code>SSL certificate</code> option. The certificate option requires the location and name of the file that contains the <code>SSL</code> certificate which is used for communicating with Db2. Normally this certificate would have been provided to you and placed onto your local file system.</p>
+<p>The format of the <code>SSL</code> certificate option is <code>SSL filename</code> where <code>filename</code> is the fully qualified location of the SSL file. </p>
+<pre><code>%sql CONNECT TO BLUDB USER BLUADMIN USING ? HOST 145.23.24.1 PORT 50001 SSL /ssl/bludb.cert
+</code></pre>
+<p>If you have any additional parameters to pass to the Db2 ODBC/CLI driver, place them into a string with semi-colons separating each parameter <strong>without</strong> blanks between keywords. For example to set the timeout interval and security for a connection:</p>
+<pre><code>%sql CONNECT ... PASSTHRU ConnectTimeout=15;Security=SSL;
+</code></pre>
+<p>Details of all Db2 CLI settings can be found in the <a href="https://www.ibm.com/docs/en/db2/11.5?topic=odbc-cliodbc-configuration-keywords">Db2 ODBC/CLI documentation</a>.</p>
+<p><strong>Note</strong>: The <code>CONNECT</code> command will not return an error if there is a problem with the <code>PASSTHRU</code> parameters. </p>
+<h3 id="passwords">Passwords</h3>
+<p>If you use a <code>?</code> for the password field, the system will prompt you for a password. This avoids typing the password as clear text on the screen. If a connection is not successful, the system will print the error message associated with the connect request.</p>
+<p><img alt="Password" src="../img/password.png" /></p>
+<h3 id="connection-with-credentials">Connection with Credentials</h3>
+<p>The <code>CREDENTIALS</code> option allows you to use credentials that are supplied by Db2 on Cloud instances. The credentials can be supplied as a variable and if successful, the variable will be saved to disk for future use. If you create another notebook and use the identical syntax, if the variable is not defined, the contents on disk will be used as the credentials. You should assign the credentials to a variable that represents the database (or schema) that you are communicating with. Using familiar names makes it easier to remember the credentials when connecting. </p>
+<p>Credentials are usually supplied as a JSON dictionary that looks similar to the following:</p>
+<pre><code>{
+  &quot;hostname&quot;: &quot;somesite-txn-blue.net&quot;,
+  &quot;password&quot;: &quot;somethingrandom&quot;,
+  &quot;https_url&quot;: &quot;https://somesite-txn-blue.net&quot;,
+  &quot;port&quot;: 50000,
+  &quot;ssldsn&quot;: &quot;DATABASE=BLUDB;HOSTNAME=somesite-txn-blue.net;PORT=50001;PROTOCOL=TCPIP;UID=db2user;PWD=somethingrandom;Security=SSL;&quot;, 
+  &quot;host&quot;  : &quot;somesite-txn-blue.net&quot;,
+  &quot;jdbcurl&quot;: &quot;jdbc:db2://somesite-txn-blue.net:50000/BLUDB&quot;,
+  &quot;uri&quot;: &quot;db2://db2user:somethingrandom@somesite-txn.blue.net:50000/BLUDB&quot;,
+  &quot;db&quot;: &quot;BLUDB&quot;,
+  &quot;dsn&quot;: &quot;DATABASE=BLUDB;HOSTNAME=somesite-txn-blue.net;PORT=50000;PROTOCOL=TCPIP;UID=db2user;PWD=somethingrandom;&quot;,
+  &quot;username&quot;: &quot;db2user&quot;,
+  &quot;ssljdbcurl&quot;: &quot;jdbc:db2://somesite-txn-blue.net:50001/BLUDB:sslConnection=true;&quot;
+}
+</code></pre>
+<p>To use this as a connection document, assign this dictionary value to a variable:</p>
+<pre><code>bludb = {
+  &quot;hostname&quot;: &quot;somesite-txn-blue.net&quot;,
+  &quot;password&quot;: &quot;somethingrandom&quot;,...
+}
+</code></pre>
+<p>Then use the following syntax to connect to the database:</p>
+<pre><code>%sql CONNECT CREDENTIALS bludb
+</code></pre>
+<p>The system will attempt to connect to the database using the following process:</p>
+<ol>
+<li>If the <code>bludb</code> variable exists in your Jupyter notebook, it will use the contents of that variable to connect to the database.</li>
+<li>If <code>bludb</code> does not exist, the program will check the local directory that the notebook is in to find a file called <code>bludb.pickle</code> which contains the credentials.</li>
+<li>If neither of the above exist the program will issue a connection error.</li>
+</ol>
+<p>If a connection was successfully made, the credentials are written to disk using the name of the variable as the file name and the file type being <code>pickle</code>. A <code>pickle</code> file is a Python format that allows structures and data types to be written to a file and easily read back in. </p>
+<p>Note that if you want to use the traditional <code>CONNECT</code> syntax, you can extract the values required from the credentials file. You will need the following:</p>
+<ul>
+<li><code>db</code> - Database name</li>
+<li><code>username</code>  - Connection userid</li>
+<li><code>password</code>  - Connection password</li>
+<li><code>hostname</code>  - Host</li>
+<li><code>port</code>      - Port number</li>
+<li><code>SSL</code>       - Add this keyword if you need to connect via SSL</li>
+</ul>
+<h3 id="closing-a-connection">Closing a Connection</h3>
+<p><code>CONNECT CLOSE</code> will close the current connection, but will not reset the database parameters. This means that if you issue the <code>CONNECT</code> command again, the system will reconnect you to the database.</p>
+<pre><code>%sql CONNECT CLOSE
+</code></pre>
+<p>If you issue another SQL statement after closing the connection, the program will reconnect to last database you were connected to. If you don't want this behavior, use the <code>CONNECT RESET</code> command.</p>
+<h3 id="reseting-a-connection">Reseting a Connection</h3>
+<p><code>CONNECT RESET</code> will close the current connection and remove any information on the connection. You will need to issue a new <code>CONNECT</code>statement with all of the connection information. </p>
+<pre><code>%sql CONNECT RESET
+</code></pre>
+<p>Issuing a SQL statement after a <code>CONNECT RESET</code> will result in a connection error. </p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../linevscell/" class="btn btn-neutral float-right" title="SQL Magic Commands">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../installation/" class="btn btn-neutral" title="Installation"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../installation/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../linevscell/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

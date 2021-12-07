@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Macros - Db2 Magic Commands</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../css/theme.css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Macros";
+    var mkdocs_page_input_path = "macros.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> Db2 Magic Commands</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../installation/">Installation</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../connect/">Getting Connected</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../linevscell/">SQL Magic Commands</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../sql_options/">SQL Options</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../command_options/">Db2 Magic Command Options</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../plotting/">Plotting</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../variables/">Variables</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../resultsets/">Result Sets</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../stored_procedures/">Stored Procedures</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../developmentsql/">Development SQL</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../pandasdb2/">Pandas to Db2</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../parallel/">Parallel SQL</a>
+                    </li>
+                </ul>
+                <ul class="current">
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Macros</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#macro-basics">Macro Basics</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#creating-a-macro">Creating a Macro</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#macro-parameters-and-tokens">Macro Parameters and Tokens</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#using-token-lists">Using Token Lists</a>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#macro-coding-overview">Macro Coding Overview</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#comment">Comment</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#exit-command-and-return-command">Exit Command and Return Command</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#echo-command">Echo Command</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#var-command">Var Command</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#ifelseendif-command">If/Else/Endif Command</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#flags">Flags</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../extramacros/">Predefined Macros</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../support/">Support</a>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">Db2 Magic Commands</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Macros</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="macros">Macros</h1>
+<p>The <code>%sql</code> command allows the use of user-defined macros. Macros can be used to generate frequently used SQL and simplify scripting. Macro substitution is done prior to any SQL being executed. Macros replace the text in the <code>%%sql</code> block with the SQL that is generated in the macro. For example, there a number of commands that are available in Db2 magic that have been created as macros:</p>
+<ul>
+<li>LIST TABLES FOR SCHEMA </li>
+<li>DESCRIBE TABLE x</li>
+<li>SAMPLEDATA</li>
+<li>SET OPTION VALUE</li>
+</ul>
+<p>You can view the code in either the <code>db2.ipynb</code> notebook or the <code>db2magic.py</code> file.</p>
+<h2 id="macro-basics">Macro Basics</h2>
+<p>A Macro command contains logic and SQL text that you want to have substituted into your script. The <code>%sql</code> command will execute any macros found in text first before attempting to run the SQL. The macro name must be the first keyword after the <code>%sql</code> command (ignoring any flags). For instance, the following <code>%sql</code> command would consider <code>LIST</code> as the macro name:</p>
+<pre><code>%sql LIST TABLES FOR SCHEMA DB2INST1
+</code></pre>
+<p>The <code>%sql</code> processor first checks to see if this first keyword has been defined as a macro. If not, it will process it as a regular SQL statement. </p>
+<p>Macros can be used in <code>%sql</code> lines or as part of a <code>%%sql</code> block. The contents of the macros are expanded and replace the text in the SQL block and then the SQL statements are executed. Macros are handled the same was as SQL statements. Anything that follows the macro name, up to the end of the SQL block, or a SQL delimiter (semi-colon) are considered parameters of the macro.</p>
+<p>For instance, the <code>LIST</code> macro in the above example assumes that everything following the <code>LIST</code> keyword is a parameter. In a <code>%%sql</code> block, all of the values up to a delimiter or end of the block are considered part of the macro:</p>
+<pre><code>%%sql
+LIST TABLES
+  FOR SCHEMA
+  DB2INST1;
+</code></pre>
+<h2 id="creating-a-macro">Creating a Macro</h2>
+<p>To define a macro, the <code>%%sql define &lt;name&gt;</code> command is used. The body of the macro is found in the cell below the definition of the macro. This simple macro called <code>EMPTABLE</code> will substitute a SELECT statement into a SQL block.</p>
+<pre><code>%%sql define emptable
+select empno, firstnme, lastname from employee
+</code></pre>
+<p>The name of the macro follows the <code>%%sql</code> define command and is <strong>not</strong> case sensitive. To use the macro, we can place it anywhere in a <code>%sql</code> block. This first example uses the macro by itself.</p>
+<p><img alt="Employee table" src="../img/macro_employee.png" /></p>
+<p>The actual SQL that is generated is not shown by default. If you do want to see the SQL that gets generated, you can use the <code>-e</code> (echo) option to display the final SQL statement. The following example will display the generated SQL. Note that the echo setting is only used to display results for the current cell that is executing.</p>
+<p><img alt="Employee table" src="../img/macro_employee_echo.png" /></p>
+<p>The DEFINE command will replace any existing macro with the same name. In addition, macros only exist within your notebook and will need to be recreated if you restart the notebook kernel or re-run the <code>%db2.ipynb</code> notebook. If you create another Jupyter notebook, it will not contain any macros that you may have created. If there are macros that you want to share across notebooks, you should create a separate notebook and place all of the macro definitions in there. Then you can include these macros by executing the <code>%run</code> command using the name of the notebook that contains the macros.</p>
+<h2 id="macro-parameters-and-tokens">Macro Parameters and Tokens</h2>
+<p>The text that follows the name of the macro is tokenized (split by spaces). In order to use any tokens that follow the macro name, you can refer to them in your macro body using the special sequence <code>{#}</code> where the number sign represents the nth token in the string. The tokens that are placed after the name of the macro can be any number, character string, or quoted string that is separated by blanks. Any number of parameters are permitted in a macro definition. For instance, the following string has 5 tokens:</p>
+<pre><code>LIST 1234 &quot;Here's a string&quot; AbCD-12 'String'
+</code></pre>
+<p>The tokens are <code>LIST</code>, <code>1234</code>, <code>"Here's a string"</code>, <code>AbCD-12</code>, and <code>'String'</code>. </p>
+<p>Tokens are numbered from 0 to n-1 where token number 0 (zero) is the name of the macro and 1 to n-1 (maximum of 9) are the tokens following the macro name. In the example above, token 0 is <code>LIST</code> while token 1 is <code>1234</code> and so on.</p>
+<p>Quotes and brackets have special handling. Quotes will ensure that spaces inside the string will not split the string into multiple tokens. Note that spaces are used as delimiters. Values found between parenthesis <code>()</code> will be kept together as one value regardless of the spaces that are found. Parsing is relatively simple. If you have a string similar to the following, it will not observe SQL parsing rules.</p>
+<pre><code>LIST (&quot;this is&quot;,&quot;parameter&quot;) FROM EMPLOYEE
+</code></pre>
+<p>The parser will generate the following tokens.</p>
+<p><code>LIST</code>, <code>( "this is" , "parameter" )</code>, <code>FROM</code>, <code>EMPLOYEE</code></p>
+<p>The values in parenthesis are kept together even though there are spaces inside the brackets! </p>
+<p>From a macro perspective this means that any tokens that you want to pass to the routine needs to be kept relatively simple and separated with blanks or enclosed with parathesis. The following macro prints the employee ID, last name and salary based on an employee number list. The regular SQL would look similar to this:</p>
+<pre><code>SELECT EMPNO, LASTNAME, SALARY
+  FROM EMPLOYEE
+  WHERE EMPNO IN ('000010','000020','000030')
+</code></pre>
+<p>There are two ways of creating a macro to run this query. The first macro assumes that you will provide the name of the salary column as a parameter, and the employee numbers as a list in parenthesis:</p>
+<pre><code>%%sql define showemp
+SELECT EMPNO, LASTNAME, {1}
+  FROM EMPLOYEE
+  WHERE EMPNO IN {2}
+</code></pre>
+<p>To execute this query your SQL would be:</p>
+<p><img alt="ShowEMP 1" src="../img/showemp_1.png" /></p>
+<p>The other way to define the macro would be to supply the list of employee numbers as a comma-separated list and then have the macro body insert that into an IN list:</p>
+<pre><code>%%sql define showemp
+SELECT EMPNO, LASTNAME, {1}
+  FROM EMPLOYEE
+  WHERE EMPNO IN ({*2})
+</code></pre>
+<p>To execute this query your SQL would be:</p>
+<p><img alt="ShowEMP 1" src="../img/showemp_2.png" /></p>
+<p>Either method will work but the second example has the advantage of working with Python arrays. Db2 magic commands will unravel a Python array into a list of values. If you provide a Python variable to the macro, the value will be substituted into the macro. If the variable happens to be a list or tuple, the items will be entered as a string of values, each separated with a comma. </p>
+<p>For instance, the following commands will print the values <code>1,2,3</code>.</p>
+<p><img alt="Values array" src="../img/values_array.png" /></p>
+<p>The <code>showemp</code> macro can use the same technique to select a list of employees based on the contents of a Python list or tuple.</p>
+<p><img alt="Values array" src="../img/showemp_3.png" /></p>
+<h3 id="using-token-lists">Using Token Lists</h3>
+<p>As described in the previous section, tokens are numbered from 1 to n, left to right as they are found in the statement. Tokens are delimited by blanks and quotes strings will have blanks ignored. The following macro has 5 tokens:</p>
+<pre><code>emptable lastname firstnme salary bonus '000010'
+</code></pre>
+<p>Token <code>{0}</code> refers to the name of the macro. Here is a macro that will select data from the EMPLOYEE table using the columns listed for a specific employee number:</p>
+<pre><code>%%sql define emptable
+SELECT {1},{2},{3},{4} 
+FROM EMPLOYEE
+WHERE EMPNO = {5}
+</code></pre>
+<p>The results are shown below.
+<img alt="Emptable1" src="../img/emptable_1.png" /></p>
+<p>Using specific token numbers works fine if you know exactly how many tokens your SQL statement requires. In the previous example, exactly four columns are required in the answer set. What would happen if you wanted a variable number of columns to be returned in the answer set? You could add logic to the macro to provide this functionality, but it would need a large number of <code>if</code> statements to cover all possibilities! The easier approach is to use a variable token list instead of a token number. The format of a variable token list is <code>{*x}</code> or <code>{,x}</code> where <code>x</code> refers to the token number where the list will begin. You can only have one token list in your macro and will always be at the end of your macro. When building a macro you would place the fixed tokens at the beginning of the macro definition and then the variable number of tokens will be found at the end. The <code>{*x}</code> will concatenate values with a blank between each value while <code>{,x}</code> will place a comma between each value.</p>
+<p>The previous <code>emptable</code> macro could be rewritten as:</p>
+<pre><code>%%sql define emptable
+SELECT {*2}
+FROM EMPLOYEE
+WHERE EMPNO  = {1}
+</code></pre>
+<p><img alt="Emptable2" src="../img/emptable_2.png" /></p>
+<h2 id="macro-coding-overview">Macro Coding Overview</h2>
+<p>Macros can contain any type of text, including SQL commands. In addition to the text, macros can also contain the following keywords:</p>
+<ul>
+<li><code>#</code> - Comment (first character in the line)</li>
+<li><code>echo</code> - Display a message</li>
+<li><code>return</code> - Exit the macro but return any SQL that was generated</li>
+<li><code>exit</code> - Exit the macro immediately with no generated code</li>
+<li><code>if/else/endif</code> - Conditional logic</li>
+<li><code>var</code> - Set a variable</li>
+<li><code>flags</code> - Set flags to be used with the block</li>
+</ul>
+<p>The only restriction with macros is that macros cannot be nested. This means you can't call a macro from within a macro. The sections below explain the use of each of these statement types.</p>
+<h3 id="comment">Comment</h3>
+<p>You can comment out lines or add documentation to your macros by placing a <code>#</code> symbol at the beginning of any line. The <code>#</code> symbol will only be recognized as a comment if there is nothing in front of it, otherwise it is considered part of the SQL you are generating.</p>
+<p>The following is an example of a macro definition with some comments.</p>
+<p><img alt="Comment" src="../img/macro_comment.png" /></p>
+<h3 id="exit-command-and-return-command">Exit Command and Return Command</h3>
+<p>The exit command will terminate the processing within a macro and not run the generated SQL. You would use this when a condition is not met within the macro (like a missing parameter). The exit command can contain a message that will be displayed before terminating the macro.</p>
+<p>The return command will also stop the processing of the macro but will return any generated SQL back for execution.</p>
+<pre><code>%%sql define showexit
+echo This message gets shown
+SELECT * FROM EMPLOYEE FETCH FIRST ROW ONLY
+exit I just exited the macro
+echo This message does not get shown
+</code></pre>
+<p>The macro that was defined will not show the second statement, nor will it execute the SQL that was defined in the macro body. Note that the echo command displays messages in green while the exit command displays it in red.</p>
+<p><img alt="Exit" src="../img/macro_exit.png" /></p>
+<p>If we change the exit to a return, the SQL will be executed.</p>
+<p><img alt="Return" src="../img/macro_return.png" /></p>
+<h3 id="echo-command">Echo Command</h3>
+<p>As you already noticed in the previous example, the echo command will display information on the screen. Any text following the command will have variables substituted and then displayed with a green box surrounding it. The following code illustrates the use of the command.</p>
+<pre><code class="language-sql">%%sql define showecho
+echo Here is a message
+echo Two lines are shown
+</code></pre>
+<p>The echo command will show each line as a separate box.</p>
+<p><img alt="Echo" src="../img/macro_echo.png" /></p>
+<p>If you want to have a message across multiple lines use <code>&lt;br&gt;</code> to start a new line.</p>
+<p><img alt="Echo" src="../img/macro_echo2.png" /></p>
+<h3 id="var-command">Var Command</h3>
+<p>The var (variable) command sets a macro variable to a value. A variable is referred to in the macro script using curly braces {name}. By default the arguments that are used in the macro call are assigned the variable names <code>{0}</code> to <code>{n-1}</code>. The variable zero contains the name of the macro, while each token after the macro name is assigned to one of these numbered variables. There is also a system variable <code>{argc}</code> which contains a count of the number of tokens found (including the name of the macro).</p>
+<p>To set a variable within a macro you would use the var command:</p>
+<pre><code>var name value
+</code></pre>
+<p>The variable name can be any name as long as it only includes letters, numbers, underscore _ and $. Variable names are case sensitive so <code>{a}</code> and <code>{A}</code> are different. When the macro finishes executing, the contents of the variables will be lost.</p>
+<p>A variable can be converted to uppercase by placing the <code>^</code> beside the variable name or number.</p>
+<pre><code>%%sql define runit
+echo The first parameter is {^1}
+</code></pre>
+<p><img alt="Var 1" src="../img/var1.png" /></p>
+<p>The string following the variable name can include quotes and these will not be removed.</p>
+<pre><code>%%sql define runit
+var hello This is a long string without quotes
+var hello2 'This is a long string with quotes'
+echo {hello} &lt;br&gt;{hello2}
+</code></pre>
+<p><img alt="Var 2" src="../img/var2.png" /></p>
+<p>When processing a macro, each one of the tokens is automatically assigned to a variable (1, 2, ..., n) and variable zero {0} is assigned the name of the macro. The following macro will be used to show how all of the tokens are passed to the routine.</p>
+<pre><code>%%sql define showvar
+echo Token(1)={1} &lt;br&gt;Token(2)={2} &lt;br&gt;All={*0}&lt;br&gt;After Token 0={*1}
+     &lt;br&gt;After Token 0 with commas={,1}&lt;br&gt;Count={argc}
+</code></pre>
+<p>Calling the macro will show how the variable names get assigned and used.
+<img alt="Var 3" src="../img/var3.png" /></p>
+<p>If the token does not exist, a <code>null</code> keyword will be shown. If you use <code>{*#}</code> then if no values are found and an empty string is returned.
+<img alt="Var 4" src="../img/var4.png" /></p>
+<p>Finally, any string that is supplied to the macro will include the quotes in the variable. The Hello There string will include the quotes when displayed:
+<img alt="Var 5" src="../img/var5.png" /></p>
+<p>The count of the total number of parameters passed is found in the <code>{argc}</code> variable. You can use this variable to decide whether or not the user has supplied the proper number of tokens or change which code should be executed.</p>
+<pre><code>%%sql define showvar
+echo The number of unnamed parameters is {argc}.
+</code></pre>
+<p>The count of tokens does not include the name of the macro.</p>
+<p><img alt="Var 6" src="../img/var6.png" /></p>
+<h3 id="ifelseendif-command">If/Else/Endif Command</h3>
+<p>If you need to add conditional logic to your macro, then you should use the <code>if/else/endif</code> commands. The format of the <code>if</code> statement is:</p>
+<pre><code>if variable condition value
+   statements
+else
+   statements
+endif
+</code></pre>
+<p>The <code>else</code> portion is optional, but the block must be closed with the <code>endif</code> command. If statements can be nested up to 9 levels deep:</p>
+<pre><code>if condition 1
+   if condition 2
+      statements
+   else
+      if condition 3
+         statements
+      end if 
+   endif
+endif
+</code></pre>
+<p>If the condition in the <code>if</code> clause is true, then anything following the <code>if</code> statement will be executed and included in the final SQL statement. For instance, the following code will create a SQL statement based on the value of parameter 1:</p>
+<pre><code>if {1} = &quot;&quot;
+   SELECT * FROM EMPLOYEE
+else
+   SELECT {1} FROM EMPLOYEE
+endif
+</code></pre>
+<p>The <code>if</code> statement requires a condition to determine whether or not the block should be executed. The condition uses the following format:</p>
+<pre><code>if {variable} condition {variable} | constant | null
+</code></pre>
+<p>Variable can be a number from 1 to n which represents the tokens that are parsed during the macro call. So 
+<code>{1}</code> refers to the first argument. The variable can also be the name of a named parameter.</p>
+<p>The condition is one of the following comparison operators:</p>
+<ul>
+<li><code>=</code>, <code>==</code> : Equal to</li>
+<li><code>&lt;</code> : Less than</li>
+<li><code>&gt;</code> : Greater than</li>
+<li><code>&lt;=</code>, <code>=&lt;</code> : Less than or equal to</li>
+<li><code>&gt;=</code>, <code>=&gt;</code> : Greater than or equal to</li>
+<li><code>!=</code>, <code>&lt;&gt;</code> : Not equal to</li>
+</ul>
+<p>The variable or constant will have quotes stripped away before doing the comparison. If you are testing for the existence of a variable, or to check if a token is empty, use the <code>null</code> keyword.</p>
+<pre><code>%%sql define showif
+if {argc} = 0
+   exit No parameters supplied
+else
+   if {argc} = &quot;1&quot;
+       echo One parameter was supplied
+   else
+       echo More than one parameter was supplied: {argc}
+   endif
+endif
+</code></pre>
+<p>Running the previous macro with no parameters will check to see if the option keyword was used.
+<img alt="If 1" src="../img/if1.png" /></p>
+<p>Now include one parameter.
+<img alt="If 2" src="../img/if2.png" /></p>
+<p>Finally, issue the macro with multiple tokens.
+<img alt="If 3" src="../img/if3.png" /></p>
+<p>One additional option is available for variable substitution. If the first character of the variable name or parameter number is the <code>^</code> symbol, it will uppercase the entire string.</p>
+<pre><code>%%sql define showif
+if {1} &lt;&gt; null
+   echo The first token is: {^1}
+else
+   echo You didn't supply a token
+endif
+</code></pre>
+<p>The first parameter is converted to uppercase.</p>
+<p><img alt="If 4" src="../img/if4.png" /></p>
+<h3 id="flags">Flags</h3>
+<p>When a macro is executed, flags that are found in the <code>%sql</code> line or block will be used during the execution of the macro. For instance, the <code>-e</code> (echo) flag will be set when the following macro is executed:</p>
+<pre><code>%sql -e showif
+</code></pre>
+<p>There are circumstances where you want the macro to run with certain flags set (e.g. <code>-q</code> to suppress error messages). In order to set flags during the execution of a macro, use the <code>flags</code> command:</p>
+<pre><code>flags -e -d ...
+</code></pre>
+<p>The flags that are provided in the list will be set during the execution of the macro. One situation where you must use the <code>flags</code> option is for SQL blocks that require the use the alternate delimiter <code>@</code> instead of a semi-colon <code>;</code>.  Usually the <code>@</code> delimiter is required for stored procedures, functions, or SQL BEGIN blocks that include multiple SQL statements that must be delimited with semi-colons. In this case, the <code>@</code> delimiter must be used to delimit the entire SQL block.</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../extramacros/" class="btn btn-neutral float-right" title="Predefined Macros">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../parallel/" class="btn btn-neutral" title="Parallel SQL"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../parallel/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../extramacros/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>SQL Magic Commands - Db2 Magic Commands</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../css/theme.css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "SQL Magic Commands";
+    var mkdocs_page_input_path = "linevscell.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> Db2 Magic Commands</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../installation/">Installation</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../connect/">Getting Connected</a>
+                    </li>
+                </ul>
+                <ul class="current">
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">SQL Magic Commands</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#line-command-sql">Line Command %sql</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#cell-command-sql">Cell Command %%sql</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#output-and-assignment-statements">Output and Assignment Statements</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#multiple-result-sets">Multiple Result Sets</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#python-versus-db2-character-strings">Python versus Db2 Character Strings</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#built-in-variables">Built-in Variables</a>
+    </li>
+    </ul>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../sql_options/">SQL Options</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../command_options/">Db2 Magic Command Options</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../plotting/">Plotting</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../variables/">Variables</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../resultsets/">Result Sets</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../stored_procedures/">Stored Procedures</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../developmentsql/">Development SQL</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../pandasdb2/">Pandas to Db2</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../parallel/">Parallel SQL</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../macros/">Macros</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../extramacros/">Predefined Macros</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../support/">Support</a>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">Db2 Magic Commands</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>SQL Magic Commands</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="sql-magic-commands">SQL Magic Commands</h1>
+<p>The Db2 extension is made up of one magic command that works either at the LINE level (<code>%sql</code>) or at the CELL level (<code>%%sql</code>). Both versions of the <code>%sql</code> commands provide the ability to run Db2 SQL commands including:</p>
+<ul>
+<li>DCL - Setting permissions for database objects</li>
+<li>DDL - Creating or dropping database objects</li>
+<li>DML - Insert, update, delete, or select data from tables</li>
+<li>Administration - A subset of administration commands using the <code>ADMIN_CMD</code> function</li>
+</ul>
+<p>The syntax of the <code>%sql</code> statement is:</p>
+<pre><code>%sql -options sql 
+</code></pre>
+<p>The syntax for <code>%%sql</code> is:</p>
+<pre><code>%%sql -options
+sql 1
+sql 2
+...
+</code></pre>
+<p>The difference between the two <code>%sql</code> commands is that <code>%sql</code> only allows for a single statement to be executed, while the <code>%%sql</code> allows a block of SQL to be executed. </p>
+<h2 id="line-command-sql">Line Command <code>%sql</code></h2>
+<p>In a Jupyter notebook, a code cell can contain Python code and magic commands. You can use the single line version of the <code>%sql</code> command along with Python code in a cell:</p>
+<p><img alt="Cell 1" src="../img/cell1.png" /></p>
+<p>The entire SQL statement must be found after the <code>%sql</code> command. You can use two techniques to allow for larger SQL statements, but the major restriction is that only <strong>one</strong> SQL statement is executed.</p>
+<p>To extend the SQL over multiple lines, use the Python <code>\</code> character as the last character of a string. This will allow you to continue the statement onto the next line:</p>
+<p><img alt="Cell 2" src="../img/cell2.png" /></p>
+<p><strong>Note:</strong> Make absolutely sure that there are <strong>no</strong> characters, even spaces, following the <code>\</code> character, otherwise the statement will be terminated at that point.</p>
+<p>The other option is to create a Python variable that contains the SQL string using triple quotes (<code>'''</code>,<code>"""</code>). If you are using variable substitution in the string then you must remember to use the <code>f"""</code> qualifier at the beginning of the string to ensure the variable substitution is done.</p>
+<p><img alt="Cell 3" src="../img/cell3.png" /></p>
+<p>When using this technique to create the SQL statement, you do <strong>not</strong> need to use the continuation characters. This will simplify the creation of your SQL. </p>
+<p>In summary, the single line version of the <code>%sql</code> command can run a single SQL statement and can also coexist with Python statements in the same code cell.</p>
+<h2 id="cell-command-sql">Cell Command <code>%%sql</code></h2>
+<p>If you want to run a large SQL statement, or multiple SQL statements, then you must use the <code>%%sql</code> command. Note that when you use the <code>%%sql</code> form of the command, the entire contents of the cell is considered part of the command, so you cannot mix Python statements in the cell.</p>
+<p>The following is an example of using the <code>%%sql</code> command:</p>
+<p><img alt="Cell 4" src="../img/cell4.png" /></p>
+<p>The cell contains only the SQL statement and nothing else. The previous <code>%sql</code> examples combined Python and the magic command. A <code>%%sql</code> cell block can contain more than one SQL statement:</p>
+<p><img alt="Cell 5" src="../img/cell5.png" /></p>
+<p>If there is more than one SQL statement in the block, you must terminate each statement with a semi-colon <code>;</code>. If you are creating stored procedures or functions, then you may need to change the delimiter to an at <code>@</code> sign by using the option <code>-d</code>.</p>
+<pre><code>%%sql -d
+DROP TABLE NEW_EMPLOYEE@
+CREATE TABLE NEW_EMPLOYEE LIKE EMPLOYEE@
+</code></pre>
+<h2 id="output-and-assignment-statements">Output and Assignment Statements</h2>
+<p>The <code>%sql</code> and <code>%%sql</code> commands will generate output when a <code>SELECT</code> statement produces results. Both of forms of the command will display the results as a Pandas dataframe.</p>
+<p><img alt="Cell 6" src="../img/cell6.png" /></p>
+<p>The <code>%sql</code> command provides the option of assigning the output to a Python variable:</p>
+<pre><code>results = %sql SELECT * FROM DEPARTMENT
+</code></pre>
+<p>The <code>results</code> variable will contain the answer set as a Pandas dataframe. You can use the various Pandas functions to manipulate the dataframe including the ability to display certain portions of the data, do calculations across ranges, and plot the data. </p>
+<p><img alt="Cell 7" src="../img/cell7.png" /></p>
+<p>The ability to assign a result set to a Python variable is <strong>only</strong> available for the <code>%sql</code> command.</p>
+<h2 id="multiple-result-sets">Multiple Result Sets</h2>
+<p>When using the <code>%%sql</code> command, you could have multiple <code>SELECT</code> statements in your SQL:</p>
+<pre><code>%%sql
+SELECT * FROM EMPLOYEE;
+SELECT * FROM DEPARTMENT;
+</code></pre>
+<p>It's not recommended that you do this because of the way the dataframes are displayed. By default, the Db2 magic commands will display the results in the Pandas dataframe format. When you execute the above code, you will only see one result set displayed:</p>
+<p><img alt="Cell 8" src="../img/cell8.png" /></p>
+<p>The first <code>SELECT</code> is the one that is always displayed. If you do want to see multiple result sets, you must use the <code>-grid</code> option and have the QGRID extension installed. If you use the <code>-grid</code> option, then the two answer sets will be displayed.</p>
+<p><img alt="Cell 9" src="../img/cell9.png" /></p>
+<h2 id="python-versus-db2-character-strings">Python versus Db2 Character Strings</h2>
+<p>Character strings require special handling when dealing with Db2. The single quote character <code>'</code> is reserved for delimiting string constants, while the double quote <code>"</code> is used for naming columns that require special characters. You cannot use the double quote character to delimit strings that happen to contain the single quote character. What Db2 requires for single quotes in a string is to place two quotes in a row to have them interpreted as a single quote character. For instance, the next statement will select one employee from the table who has a quote in their last name: <code>O'CONNELL</code>.</p>
+<pre><code>%sql SELECT * FROM EMPLOYEE WHERE LASTNAME = 'O''CONNELL'
+</code></pre>
+<p>Python handles quotes differently! You can assign a string to a Python variable using single or double quotes. The following assignment statements are not identical!</p>
+<p><img alt="Quotes" src="../img/cell10.png" /></p>
+<p>If you use the same syntax as Db2, Python will remove the quote in the string! It interprets this as two strings (<code>O</code> and <code>CONNELL</code>) being concatenated together. That probably isn't what you want! So the safest approach is to use double quotes around your string when you assign it to a variable. Then you can use the variable in the SQL statement as shown in the following example.</p>
+<p><img alt="Quotes" src="../img/cell11.png" /></p>
+<p>Notice how the string constant was updated to contain two quotes when inserted into the SQL statement. This is done automatically by the <code>%sql</code> magic command, so there is no need to use the two single quotes when assigning a string to a variable. However, you must use the two single quotes when using constants in a SQL statement. </p>
+<h2 id="built-in-variables">Built-in Variables</h2>
+<p>There are four built-in variables that you have access to in your code cells. These pre-defined variables are:</p>
+<ul>
+<li><code>sqlcode</code> - The <code>SQLCODE</code> returned by the last statement executed</li>
+<li><code>sqlstate</code> - The <code>SQLSTATE</code> returned by the last statement executed</li>
+<li><code>sqlelapsed</code> - The time taken to execute the last statement</li>
+<li><code>sqlerror</code> - The error message associated with the <code>sqlcode</code> value</li>
+</ul>
+<p>Normally these variables are used for application development, but you may find the <code>sqlelapsed</code> useful for timing SQL statements.</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../sql_options/" class="btn btn-neutral float-right" title="SQL Options">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../connect/" class="btn btn-neutral" title="Getting Connected"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../connect/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../sql_options/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>
