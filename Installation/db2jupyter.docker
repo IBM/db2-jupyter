@@ -1,0 +1,51 @@
+#
+# Jupyter notebooks for Db2 using Python 3.x format
+# Version 1.6
+# 2019-10-22
+# Author: George Baklarz
+#
+
+# Build image:
+# docker build -t db2jupyter -f db2jupyter.docker . 
+
+# Run image:
+# docker run --name db2jupyter -d -p 8888:8888 db2jupyter 
+
+FROM continuumio/anaconda3
+
+# 1. Update the distribution
+# 2. Update apt-get and install the gcc compiler
+# 3. easy_install the Db2 drivers (ibm-db)
+# 4. Remove temp files
+
+RUN conda update -y conda && \
+    conda install -y -c conda-forge ipywidgets qgrid && \
+    apt-get update && \ 
+    apt-get install -y gcc  && \
+    easy_install ibm-db && \
+    rm -rf /var/lib/apt/lists/*
+ 
+# Create the directory for Jupyter defaults and insert the settings into the file
+# 1. Allow connection without a password
+# 2. True deletion of files (bypasses a bug in Jupyter)
+# 3. Allow root to run Jupyter
+# 4. Clone the Db2-Samples Jupyter notebooks files into the /opt/notebooks directory
+
+RUN mkdir /root/.jupyter && \
+    echo "c.NotebookApp.token = u''" >> ~/.jupyter/jupyter_notebook_config.py &&  \
+    echo "c.FileContentsManager.delete_to_trash=False" >> ~/.jupyter/jupyter_notebook_config.py && \
+    echo "c.NotebookApp.allow_root=True" >>  ~/.jupyter/jupyter_notebook_config.py && \
+    git clone git://github.com/DB2-Samples/jupyterlab /opt/notebooks
+
+#
+# Command to start Jupyter in the container
+# Updated --ip='*' to --ip='0.0.0.0' 
+#
+
+CMD jupyter notebook --NotebookApp.token= --notebook-dir=/opt/notebooks --ip='0.0.0.0' --port=8888 --no-browser --allow-root
+
+ENV   DESCRIPTION="Db2 Jupyter Notebook" \
+      VERSION="1.6" \
+      BUILD_DATE="2019-10-22"
+      
+EXPOSE 8888

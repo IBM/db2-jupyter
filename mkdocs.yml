@@ -1,0 +1,20 @@
+site_name: Db2 Magic Commands
+theme:
+  name: readthedocs
+nav:
+  - Home: index.md
+  - Installation: installation.md
+  - Getting Connected: connect.md  
+  - SQL Magic Commands : linevscell.md
+  - SQL Options: sql_options.md
+  - Db2 Magic Command Options: command_options.md  
+  - Plotting: plotting.md
+  - Variables: variables.md
+  - Result Sets: resultsets.md
+  - Stored Procedures: stored_procedures.md
+  - Development SQL: developmentsql.md
+  - Pandas to Db2: pandasdb2.md
+  - Parallel SQL: parallel.md
+  - Macros: macros.md
+  - Predefined Macros: extramacros.md
+  - Support: support.md
