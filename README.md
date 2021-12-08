@@ -1,66 +1,75 @@
-# Db2 Jupyter Notebook Extensions
-A Jupyter notebook and magic functions to demonstrate Db2 LUW 11 features.
+# Db2 Magic Command for Jupyter Notebooks
 
-This code is imported as a Jupyter notebook extension in any notebooks you create with Db2 code in it. Place the following line of code in any notebook that you want to use these commands with:
-```Python
+Jupyter notebooks include the ability to extend the syntax available within code blocks with a feature called [Magic](https://ipython.readthedocs.io/en/stable/interactive/magics.html) commands. Magic commands start with a percent sign `%` and provide a variety of features within a notebook environment, including modifying notebook behavior, executing OS commands, extending notebook functionality and with Db2 magic, a way of interacting with a Db2 database.
+
+Once you have loaded the Db2 magic commands into your notebook, you are able to query Db2 tables using standard SQL syntax:
+
+![Intro Sample](docs/img/intro_sample.png)
+
+Db2 magic commands provide a number of features that will simplify your use of Db2 databases, including:
+
+- Simplified connections to data sources
+- Ability to store result sets into Pandas dataframes
+- Create Db2 tables from Pandas dataframes and populate the tables with the data frame contents
+- Run the majority of DCL, DDL, and DML statements that are available in Db2
+- Create functions, stored procedures, and run a subset of administrative commands
+- Allow for parallel execution of SQL queries even on non-warehousing systems
+- And much more!
+
+## Pre-requisites
+
+If you are running on a Jupyter notebook service (Watson Studio), you may already have some of these pre-requisites installed. You can check to see if the Db2 libraries are installed by running the following command in a Jupyter notebook code cell:
+```
+import ibm_db
+```
+
+If the command returns sucessfully, then you do not need to install `ibm_db` and can continue to the *Loading Db2 Magic Commands* section.
+
+If you have access to your Jupyter notebook environment, the Db2 Python client can be installed in one of three ways:
+
+- `python3 -m pip install ibm_db` or `pip install ibm_db`
+- `easy_install ibm_db`
+- `conda install ibm_db` 
+
+Prior to running the installation you may want to run these commands to ensure the proper libraries are available for the Db2 drivers:
+
+- RHEL/CentOS `yum install python3-dev`
+- Ubuntu `apt-get install python3-dev`
+
+More detailed instructions can be found on the [Db2 Python Driver](https://github.com/ibmdb/python-ibmdb#inst) support page.
+
+## Loading Db2 Magic Commands
+
+Once you have `ibm_db` installed, you will need to download the Db2 magic commands. The Db2 magic commands can be downloaded and placed directly to the directory that your Jupyter notebooks are stored in, or can be downloaded from within a Jupyter notebook.
+
+To load the Db2 magic commands into your notebook, run the following command in your Jupyter notebook:
+```
+!wget https://raw.githubusercontent.com/IBM/db2-jupyter/master/db2.ipynb
+```
+
+Once you have loaded the Db2 magic commands into your notebook, you are able to query Db2 tables using standard SQL syntax:
+```
 %run db2.ipynb
+%sql connect to sample
+%sql select * from employee
 ```
 
-This code defines a Jupyter/Python magic command called `%sql` which allows you to execute Db2 specific calls to the database. There are other packages available for manipulating databases, but this one has been specifically designed for demonstrating a number of the SQL features available in Db2.
+## Db2 Magic Commands Help
 
-There are two ways of executing the `%sql` command. A single line SQL statement would use the line format of the magic command:
-```Python
-%sql SELECT * FROM EMPLOYEE
-```
+For more information on the Db2 Magic commands, refer the online [Db2 Magic Commands](https://github.com/IBM/db2-jupyter) documentation.
 
-If you have a large block of sql then you would place the %%sql command at the beginning of the block and then place the SQL statements into the remainder of the block. Using this form of the `%%sql` statement means that the notebook cell can only contain SQL and no other statements.
-```Python
-%%sql
-SELECT * FROM EMPLOYEE
-ORDER BY LASTNAME
-```
+# Support
 
-You can have multiple lines in the SQL block (`%%sql`). The default SQL delimiter is the semi-column (`;`). If you have scripts (triggers, procedures, functions) that use the semi-colon as part of the script, you will need to use the -d option to change the delimiter to an at "@" sign. 
-```Python
-%%sql -d
-SELECT * FROM EMPLOYEE
-@
-CREATE PROCEDURE ...
-@
-```
+For any questions regarding the Db2 Magic commands, including any suggestions, general comments, or bug reports, please contact:
 
-The `%sql` command allows most DB2 commands to execute and has a special version of the CONNECT statement. A CONNECT by itself will attempt to reconnect to the database using previously used settings. If it cannot connect, it will prompt the user for additional information. 
+* George Baklarz `baklarz@ca.ibm.com`
+* Phil Downey `phil.downey1@ibm.com`
 
-The CONNECT command has the following format:
-```Python
-%sql CONNECT TO <database> USER <userid> USING <password | ?> HOST <ip address> PORT <port>
-```
+George & Phil
 
-If you use a "?" for the password field, the system will prompt you for a password. This avoids typing the password as clear text on the screen. If a connection is not successful, the system will print the error message associated with the connect request.
+### Acknowledgements
 
-If the connection is successful, the parameters are saved on your system and will be used the next time you run a SQL statement, or when you issue the %sql CONNECT command with no parameters.
+We would like to thank the following people who helped in early prototying, testing, suggestions, and feedback on the Db2 Magic commands.
 
-In addition to the -d option, there are a number different options that you can specify at the beginning of the SQL:
-
-- -d - Delimiter: Change SQL delimiter to "@" from ";"
-- -q - Quiet: Quiet results - no answer set or messages returned from the function
-- -r - Return the result set as a data frame for Python usage
-- -t - Time: Time the following SQL statement and return the number of times it executes in 1 second
-- -j - JSON: Create a pretty JSON representation. Only the first column is formatted
-- -a - All: Return all rows in answer set and do not limit display
-- -pb - Plot Bar: Plot the results as a bar chart
-- -pl - Plot Line: Plot the results as a line chart
-- -pp - Plot Pie: Plot the results as a pie chart
-- -i - Interactive plotting and viewing of the data
-- -sampledata - Create and load the EMPLOYEE and DEPARTMENT tables
-
-One final note. You can pass python variables to the %sql command by using the \{\} braces with the name of the variable inbetween. Note that you will need to place proper punctuation around the variable in the event the SQL command requires it. For instance, the following example will find employee '000010' in the EMPLOYEE table.
-```Python
-empno = '000010'
-%sql SELECT LASTNAME FROM EMPLOYEE WHERE EMPNO='{empno}'
-```
-
-The other option is to use a colon in front of a variable name and then no quotes are required.
-```Python
-%sql SELECT LASTNAME FROM EMPLOYEE WHERE EMPNO=:empno
-```
+* Peter Kohlmann
+* Dean Compher
