@@ -44,7 +44,7 @@ Once you have `ibm_db` installed, you will need to download the Db2 magic comman
 
 To load the Db2 magic commands into your notebook, run the following command in your Jupyter notebook:
 ```
-!wget https://raw.githubusercontent.com/IBM/db2-jupyter/master/db2.ipynb
+!wget https://raw.githubusercontent.com/IBM/db2-jupyter/master/db2.ipynb -O db2.ipynb
 ```
 
 Once you have loaded the Db2 magic commands into your notebook, you are able to query Db2 tables using standard SQL syntax:
