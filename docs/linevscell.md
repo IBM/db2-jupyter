@@ -56,7 +56,7 @@ The cell contains only the SQL statement and nothing else. The previous `%sql` e
 
 ![Cell 5](img/cell5.png)
 
-If there is more than one SQL statement in the block, you must terminate each statement with a semi-colon `;`. If you are creating stored procedures or functions, then you may need to change the delimiter to an at `@` sign by using the option `-d`.
+If there is more than one SQL statement in the block, you must terminate each statement with a semicolon `;`. If you are creating stored procedures or functions, then you may need to change the delimiter to an at `@` sign by using the option `-d`.
 
 ```
 %%sql -d
@@ -94,7 +94,7 @@ It's not recommended that you do this because of the way the dataframes are disp
 
 ![Cell 8](img/cell8.png)
 
-The first `SELECT` is the one that is always displayed. If you do want to see multiple result sets, you must use the `-grid` option and have the QGRID extension installed. If you use the `-grid` option, then the two answer sets will be displayed.
+The first `SELECT` is the one that is always displayed. If you do want to see multiple result sets, you must use the `-grid` option and have the ipydatagrid extension installed. If you use the `-grid` option, then the two answer sets will be displayed.
 
 ![Cell 9](img/cell9.png)
 

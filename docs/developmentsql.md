@@ -9,11 +9,11 @@ The `%sql` and `%%sql` commands deals with SQL statements and commands that are 
 
 In addition, the `sqlcode`, `sqlstate` and `sqlerror` fields are populated after every statement so you can use these variables to test for errors.
 
-Autocommit is the default manner in which SQL statements are executed. At the end of the successful completion of a statement, the results are commited to the database. There is no concept of a transaction where multiple DML/DDL statements are considered one transaction. The `AUTOCOMMIT` command allows you to turn autocommit `OFF` or `ON`. This means that the set of SQL commands run after the `AUTOCOMMIT OFF` command are executed are not commited to the database until a `COMMIT` or `ROLLBACK` command is issued.
+Autocommit is the default manner in which SQL statements are executed. At the end of the successful completion of a statement, the results are committed to the database. There is no concept of a transaction where multiple DML/DDL statements are considered one transaction. The `AUTOCOMMIT` command allows you to turn autocommit `OFF` or `ON`. This means that the set of SQL commands run after the `AUTOCOMMIT OFF` command are executed are not committed to the database until a `COMMIT` or `ROLLBACK` command is issued.
 
-`COMMIT (WORK)` will finalize all of the transactions (COMMIT) to the database and `ROLLBACK` will undo all of the changes. If you issue a `SELECT` statement during the execution of your block, the results will reflect all of your changes. If you `ROLLBACK` the transaction, the changes will be lost.
+`COMMIT (WORK)` will finalize all transactions (COMMIT) to the database and `ROLLBACK` will undo the changes. If you issue a `SELECT` statement during the execution of your block, the results will reflect all of your changes. If you `ROLLBACK` the transaction, the changes will be lost.
 
-`PREPARE` is typically used in a situation where you want to repeatidly execute an SQL statement with different variables without incurring the SQL compilation overhead. For instance:
+`PREPARE` is typically used in a situation where you want to repeatedly execute an SQL statement with different variables without incurring the SQL compilation overhead. For instance:
 ```
 x = %sql PREPARE SELECT LASTNAME FROM EMPLOYEE WHERE EMPNO=?
 for y in ['000010','000020','000030']:
@@ -53,7 +53,7 @@ Autocommit can be turned on or off using the following syntax:
 %sql AUTOCOMMIT ON | OFF
 ```
 
-If you turn `AUTOCOMMIT OFF` then you need to make sure that you `COMMIT` work at the end of your code. If you don't there is possible you lose your work if the connection is lost to Db2.
+If you turn `AUTOCOMMIT OFF` then you need to make sure that you `COMMIT` work at the end of your code. If you don't, there is a possibility that you will lose your work if the connection to Db2 is lost.
 
 ### COMMIT, ROLLBACK
 
@@ -62,9 +62,9 @@ To `COMMIT` all changes to the database you must use the following syntax:
 %sql COMMIT [WORK | HOLD]
 ```
 
-The command `COMMIT` or `COMMIT WORK` are identical and will commit all work to the database. Issuing a `COMMIT` command also closes all open cursors or statements that are open. If you had created a prepared statement (see section below) then the compiled statement will be no longer valid. By issuing a `COMMIT` you are releasing all of the resources and locks that your application may be holding.
+The command `COMMIT` or `COMMIT WORK` are identical and will commit all work to the database. Issuing a `COMMIT` command also closes all open cursors or statements that are open. If you had created a prepared statement (see section below) then the compiled statement will be no longer valid. By issuing a `COMMIT` you are releasing the resources and locks that your application may be holding.
 
-`COMMIT HOLD` will allow you to commit your work to disk, but keeps all of the resources open for further execution. This is useful for situations where you are inserting or updating 1000's of records and do not want to tie up log space waiting for a commit to occur. The following pseudocode gives you an example how this would be used:
+`COMMIT HOLD` will allow you to commit your work to disk, but keeps the resources open for further execution. This is useful for situations where you are inserting or updating 1000s of records and do not want to tie up log space waiting for a commit to occur. The following pseudocode gives you an example how this would be used:
 ```
 %sql autocommit off
 for i = 1 to 1000
@@ -78,11 +78,11 @@ end for
 %sql autocommit on
 ```
 
-You should always remember to turn `AUTOCOMMIT ON` at the end of any code block or you will have to issue `COMMIT` at the end of any SQL command to commit it to the database.
+You should always remember to turn `AUTOCOMMIT ON` at the end of any code block, or you will have to issue `COMMIT` at the end of any SQL command to commit it to the database.
 
 ## PREPARE and EXECUTE
 
-The `PREPARE` and `EXECUTE` commands are useful in situations where you want to repeat an SQL statement multiple times while just changing the parameter values. There isn't any benefit from using these statements for simple tasks that may only run occasionally. The benefit of `PREPARE` and `EXECUTE` is more evident when dealing with a large number of transactions that are the same.
+The `PREPARE` and `EXECUTE` commands are useful in situations where you want to repeat an SQL statement multiple times while just changing the parameter values. There isn't any benefit from using these statements for simple tasks that may only run occasionally. The benefit of `PREPARE` and `EXECUTE` is more evident when dealing with several transactions that are the same.
 
 The `PREPARE` statement can be used against many types of SQL, but in this implementation, only the following SQL statements are supported:
 
@@ -113,14 +113,14 @@ Once you have prepared a statement, you can execute it using the following synta
 %sql EXECUTE :stmt USING :v1,:v2,:v3,....
 ```
 
-You must provide the statement variable `:stmt` to the `EXECUTE` statement so it knows which prepared code to execute. You can create many prepared statements and use them throughout your code.
+You must provide the statement variable `:stmt` to the `EXECUTE` statement so that it knows which prepared code to execute. You can create many prepared statements and use them throughout your code.
 
 The values that following the `USING` clause are either constants or SQL host variable names separated by commas. If you place a colon `:` in front of a variable name, it will be immediately substituted into the statement:
 ```
 %sql EXECUTE :stmt USING 3,'asdsa',24.5,:x,x
 ```
 
-Variables without a colon in front of them are linked in dynamically. When the `EXECUTE` statement is processed, the value in the variable is taken directly from memory so there is no conflict with data type, quotes, or anything that might be interpreted incorrectly. In the sample above we have the same variable specified twice:
+Variables without a colon in front of them are linked in dynamically. When the `EXECUTE` statement is processed, the value in the variable is taken directly from memory so that there is no conflict with data type, quotes, or anything that might be interpreted incorrectly. In the sample above we have the same variable specified twice:
 ```
 :x,x
 ```
@@ -131,14 +131,6 @@ EXECUTE 0x7f2ef37782d0 USING 3,'asdsa',24.5,'Hello',x
 ```
 
 The contents of `:stmt` and `:x` are placed into the string and then the statement is executed. The variable `x` is left as is. When execution of the prepared statement occurs, the value of the variable `x` is linked directly to the SQL statement so that the data is retrieved directly from the variable rather than it being materialized in the SQL statement. You can use either format when creating your statements. There is a performance penalty when using the `:var` format since the value must be materialized into the SQL statement, and then parsed again. 
-
-
-
-
-
-
-
-
 
 When using linked variables you can specify what the underlying data type is so that Db2 does not try to incorrectly translate a value. The previous section mentioned the use of the `CAST` function to ensure the proper data type is used. With linked variables, you can specify four types of data:
 
@@ -205,13 +197,13 @@ This would work as long as the total number of parameters supplied by the name a
 
 The following examples will show the use of `AUTOCOMMIT` and `PREPARE`/`EXECUTE` when running SQL statements.
 
-This first SQL statement will load the `EMPLOYEE` and `DEPARTMENT` tables (if they don't already exist) and then return an array of all of the employees in the company using a `SELECT` statement. The data is returned as a Python list (array) with the `-r` option.
+This first SQL statement will load the `EMPLOYEE` and `DEPARTMENT` tables (if they don't already exist) and then return an array of the employees in the company using a `SELECT` statement. The data is returned as a Python list (array) with the `-r` option.
 ```
 %sql SAMPLEDATA
 employees = %sql -r select * from employee
 ```
 
-The employees variable contains all of the employee data as a Python array. The next statement will retrieve the contents of the first row only (Remember that row 0 contains the name of the columns).
+The employees variable contains the employee data as a Python array. The next statement will retrieve the contents of the first row only (Remember that row 0 contains the name of the columns).
 ![Develop 1](img/develop1.png)
 
 We now will create another EMPLOYEE table that is an exact duplicate of what we already have.
@@ -223,7 +215,7 @@ CREATE TABLE EMPLOYEE2 AS (SELECT * FROM EMPLOYEE) DEFINITION ONLY;
 
 ### Loop with INSERT Statements
 
-One could always use SQL to insert into this table, but we will use a loop to execute insert statements. The loop will be timed so we can get a sense of the cost of running this code. In order to make the loop run bit a longer the insert block is run 50 times.
+One could always use SQL to insert into this table, but we will use a loop to execute insert statements. The loop will be timed so that we can get a sense of the cost of running this code. In order to make the loop run bit a longer the insert block is run 50 times.
 ![Develop 2](img/develop2.png)
 
 
@@ -237,7 +229,7 @@ Note that this code is run with `AUTOCOMMIT OFF` which tells Db2 to commit every
 
 ### Loop with PREPARE Statement and Arrays
 
-You will notice that it is a bit tedious to write out all of the columns that are required as part of an `INSERT `statement. A simpler option is to use a Python list or array to and assign it directly in the EXECUTE statement. So rather than:
+You will notice that it is a bit tedious to write out the columns that are required as part of an `INSERT `statement. A simpler option is to use a Python list or array to and assign it directly in the EXECUTE statement. So rather than:
 ```
 %sql execute :prep using :empno, :firstnme, ...
 ```

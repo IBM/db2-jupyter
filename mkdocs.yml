@@ -1,6 +1,5 @@
 site_name: Db2 Magic Commands
-theme:
-  name: readthedocs
+
 nav:
   - Home: index.md
   - Installation: installation.md
@@ -18,3 +17,18 @@ nav:
   - Macros: macros.md
   - Predefined Macros: extramacros.md
   - Support: support.md
+  
+# Copyright
+copyright: Copyright &copy; 2023 IBM 
+
+# Theme
+theme:
+  name: material
+  font:
+    text: IBM Plex Sans
+    code: IBM Plex Mono
+  logo: img/IBM_logo®_rev_RGB.png  
+  palette:
+    scheme: default
+    primary: black
+    accent: black  

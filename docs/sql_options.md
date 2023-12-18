@@ -30,7 +30,7 @@ The sections below will explain the options in more detail.
 
 ### Delimiters `-d`
 
-The default delimiter for all SQL statements is the semicolon `;`. However, this becomes a problem when you try to create a trigger, function, or procedure that uses SQLPL (or PL/SQL). Use the `-d` option to turn the SQL delimiter into the at `@` sign. The semi-colon is then ignored as a delimiter.
+The default delimiter for all SQL statements is the semicolon `;`. However, this becomes a problem when you try to create a trigger, function, or procedure that uses SQLPL (or PL/SQL). Use the `-d` option to turn the SQL delimiter into the at `@` sign. The semicolon is then ignored as a delimiter.
 
 For example, the following SQL will use the @ sign as the delimiter.
 ```
@@ -50,11 +50,11 @@ The delimiter change will only take place for the statements following the `%%sq
 
 ### Display all results `-a`,`-all`
 
-The default number of rows displayed for any result set is 10. You have the option of changing this option when initially connecting to the database. If you want to override the number of rows displayed, you can either update the control variable, or use the `-a` option. The `-a` option will display all of the rows in the answer set. For instance, the following SQL will only show 10 rows even though we have many more row in the table.
+The default number of rows displayed for any result set is 10. You have the option of changing this option when initially connecting to the database. If you want to override the number of rows displayed, you can either update the control variable, or use the `-a` option. The `-a` option will display all rows in the answer set. For instance, the following SQL will only show 10 rows even though we have several rows in the table.
 
 ![Display Some](img/display_some.png)
 
-You will notice that the displayed result will split the visible rows to the first 5 rows and the last 5 rows. Using the `-a` option will display all of the values. The display has been cut off, but all 41 values are displayed.
+You will notice that the displayed result will split the visible rows to the first 5 rows and the last 5 rows. Using the `-a` option will display all values. The display has been cut off, but all 41 values are displayed.
 
 ![Display All](img/display_all.png)
 
@@ -62,19 +62,19 @@ If you want a scrollable list, use the `-grid` option which is described in the 
 
 ### Grid Display `-grid`
 
-When output is produced in Pandas format, the size of the result set will be limited to a subset of the total number of rows. If you want to view all of the rows returned by the SQL, then you may want to use the `-grid` option. In order to use this feature, you must have the `QGRID` library installed on your system. See the pre-requisites section on details of this feature.
+When output is produced in Pandas format, the size of the result set will be limited to a subset of the total number of rows. If you want to view all rows returned by the SQL, then you may want to use the `-grid` option. In order to use this feature, you must have the `ipydatagrid` library installed on your system. See the prerequisites section on details of this feature.
 
 Using the `-grid` option will display an answer set in a scrollable grid within the notebook:
 
 ![Display Grid](img/display_grid.png)
 
-You can use the scroll bars in the display to see additional columns or rows of the answer set. The QGRID display also allows for the sorting of the result sets by ascending or descending order by clicking on a column name. 
+You can use the scroll bars in the display to see additional columns or rows of the answer set. The ipydatagrid display also allows for the sorting of the result sets by ascending or descending order by clicking on a column name. 
 
-**Note**: The QGRID control cannot display result sets that have duplicate columns names. For instance, the following SQL query is returned in the following Pandas format:
+**Note**: The ipydatagrid control cannot display result sets that have duplicate columns names. For instance, the following SQL query is returned in the following Pandas format:
 
 ![Display Grid](img/display_average.png)
 
-The original SALARY column is not shown in the QGRID display. The last SALARY calculation (SALARY + BONUS) is what is displayed. Attempting to use the QGRID control will result in only one column being displayed.
+The original SALARY column is not shown in the ipydatagrid display. The last SALARY calculation (SALARY + BONUS) is what is displayed. Attempting to use the ipydatagrid control will result in only one column being displayed.
 
 ![Display Grid](img/display_badaverage.png)
 
@@ -110,7 +110,7 @@ The following example illustrates multiple rows being returned and queried.
 
 ### Retrieve Rows as JSON Records `-json`
 
-The previous json option `-j` was used to convert the first column of an answer set into a Python dictionary. The `-json` flag will take the answer set and create one dictionary entry for the contents of the row. This function is useful when you need to pass the contents of the result set to a system that requires the data in JSON format.
+The previous JSON option `-j` was used to convert the first column of an answer set into a Python dictionary. The `-json` flag will take the answer set and create one dictionary entry for the contents of the row. This function is useful when you need to pass the contents of the result set to a system that requires the data in JSON format.
 
 The following example retrieves the `EMPLOYEE` data for employee `000010` as a JSON record:
 

@@ -9,7 +9,7 @@ George & Phil
 
 ### Acknowledgements
 
-We would like to thank the following people who helped in early prototying, testing, suggestions, and feedback on the Db2 Magic commands.
+We would like to thank the following people who helped in early prototyping, testing, suggestions, and feedback on the Db2 Magic commands.
 
 * Peter Kohlmann
 * Dean Compher

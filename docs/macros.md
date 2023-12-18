@@ -1,6 +1,6 @@
 # Macros
 
-The `%sql` command allows the use of user-defined macros. Macros can be used to generate frequently used SQL and simplify scripting. Macro substitution is done prior to any SQL being executed. Macros replace the text in the `%%sql` block with the SQL that is generated in the macro. For example, there a number of commands that are available in Db2 magic that have been created as macros:
+The `%sql` command allows the use of user-defined macros. Macros can be used to generate frequently used SQL and simplify scripting. Macro substitution is done prior to any SQL being executed. Macros replace the text in the `%%sql` block with the SQL that is generated in the macro. For example, there are a number of commands that are available in Db2 magic that have been created as macros:
 
 - LIST TABLES FOR SCHEMA 
 - DESCRIBE TABLE x
@@ -17,9 +17,9 @@ A Macro command contains logic and SQL text that you want to have substituted in
 ```
 The `%sql` processor first checks to see if this first keyword has been defined as a macro. If not, it will process it as a regular SQL statement. 
 
-Macros can be used in `%sql` lines or as part of a `%%sql` block. The contents of the macros are expanded and replace the text in the SQL block and then the SQL statements are executed. Macros are handled the same was as SQL statements. Anything that follows the macro name, up to the end of the SQL block, or a SQL delimiter (semi-colon) are considered parameters of the macro.
+Macros can be used in `%sql` lines or as part of a `%%sql` block. The contents of the macros are expanded and replace the text in the SQL block and then the SQL statements are executed. Macros are handled the same was as SQL statements. Anything that follows the macro name, up to the end of the SQL block, or a SQL delimiter (semicolon) are considered parameters of the macro.
 
-For instance, the `LIST` macro in the above example assumes that everything following the `LIST` keyword is a parameter. In a `%%sql` block, all of the values up to a delimiter or end of the block are considered part of the macro:
+For instance, the `LIST` macro in the above example assumes that everything following the `LIST` keyword is a parameter. In a `%%sql` block, the values up to a delimiter, or end of the block, are considered part of the macro:
 ```
 %%sql
 LIST TABLES
@@ -34,7 +34,7 @@ To define a macro, the `%%sql define <name>` command is used. The body of the ma
 %%sql define emptable
 select empno, firstnme, lastname from employee
 ```
-The name of the macro follows the `%%sql` define command and is **not** case sensitive. To use the macro, we can place it anywhere in a `%sql` block. This first example uses the macro by itself.
+The name of the macro follows the `%%sql` define command and is **not** case-sensitive. To use the macro, we can place it anywhere in a `%sql` block. This first example uses the macro by itself.
 
 ![Employee table](img/macro_employee.png)
 
@@ -42,7 +42,7 @@ The actual SQL that is generated is not shown by default. If you do want to see 
 
 ![Employee table](img/macro_employee_echo.png)
 
-The DEFINE command will replace any existing macro with the same name. In addition, macros only exist within your notebook and will need to be recreated if you restart the notebook kernel or re-run the `%db2.ipynb` notebook. If you create another Jupyter notebook, it will not contain any macros that you may have created. If there are macros that you want to share across notebooks, you should create a separate notebook and place all of the macro definitions in there. Then you can include these macros by executing the `%run` command using the name of the notebook that contains the macros.
+The DEFINE command will replace any existing macro with the same name. In addition, macros only exist within your notebook and will need to be recreated if you restart the notebook kernel or re-run the `%db2.ipynb` notebook. If you create another Jupyter notebook, it will not contain any macros that you may have created. If there are macros that you want to share across notebooks, you should create a separate notebook and place the macro definitions in there. Then you can include these macros by executing the `%run` command using the name of the notebook that contains the macros.
 
 ## Macro Parameters and Tokens
 
@@ -62,15 +62,15 @@ The parser will generate the following tokens.
 
 `LIST`, `( "this is" , "parameter" )`, `FROM`, `EMPLOYEE`
 
-The values in parenthesis are kept together even though there are spaces inside the brackets! 
+The values in parentheses are kept together even though there are spaces inside the brackets! 
 
-From a macro perspective this means that any tokens that you want to pass to the routine needs to be kept relatively simple and separated with blanks or enclosed with parathesis. The following macro prints the employee ID, last name and salary based on an employee number list. The regular SQL would look similar to this:
+From a macro perspective this means that any tokens that you want to pass to the routine needs to be kept relatively simple and separated with blanks or enclosed with parentheses. The following macro prints the employee ID, last name and salary based on an employee number list. The regular SQL would look similar to this:
 ```
 SELECT EMPNO, LASTNAME, SALARY
   FROM EMPLOYEE
   WHERE EMPNO IN ('000010','000020','000030')
 ```
-There are two ways of creating a macro to run this query. The first macro assumes that you will provide the name of the salary column as a parameter, and the employee numbers as a list in parenthesis:
+There are two ways of creating a macro to run this query. The first macro assumes that you will provide the name of the salary column as a parameter, and the employee numbers as a list in parentheses:
 ```
 %%sql define showemp
 SELECT EMPNO, LASTNAME, {1}
@@ -92,7 +92,7 @@ To execute this query your SQL would be:
 
 ![ShowEMP 1](img/showemp_2.png)
 
-Either method will work but the second example has the advantage of working with Python arrays. Db2 magic commands will unravel a Python array into a list of values. If you provide a Python variable to the macro, the value will be substituted into the macro. If the variable happens to be a list or tuple, the items will be entered as a string of values, each separated with a comma. 
+Either method will work, but the second example has the advantage of working with Python arrays. Db2 magic commands will unravel a Python array into a list of values. If you provide a Python variable to the macro, the value will be substituted into the macro. If the variable happens to be a list or tuple, the items will be entered as a string of values, each separated with a comma. 
 
 For instance, the following commands will print the values `1,2,3`.
 
@@ -118,7 +118,7 @@ WHERE EMPNO = {5}
 The results are shown below.
 ![Emptable1](img/emptable_1.png)
 
-Using specific token numbers works fine if you know exactly how many tokens your SQL statement requires. In the previous example, exactly four columns are required in the answer set. What would happen if you wanted a variable number of columns to be returned in the answer set? You could add logic to the macro to provide this functionality, but it would need a large number of `if` statements to cover all possibilities! The easier approach is to use a variable token list instead of a token number. The format of a variable token list is `{*x}` or `{,x}` where `x` refers to the token number where the list will begin. You can only have one token list in your macro and will always be at the end of your macro. When building a macro you would place the fixed tokens at the beginning of the macro definition and then the variable number of tokens will be found at the end. The `{*x}` will concatenate values with a blank between each value while `{,x}` will place a comma between each value.
+Using specific token numbers works fine if you know exactly how many tokens your SQL statement requires. In the previous example, exactly four columns are required in the answer set. What would happen if you wanted a variable number of columns to be returned in the answer set? You could add logic to the macro to provide this functionality, but it would need several `if` statements to cover all possibilities! The easier approach is to use a variable token list instead of a token number. The format of a variable token list is `{*x}` or `{,x}` where `x` refers to the token number where the list will begin. You can only have one token list in your macro and will always be at the end of your macro. When building a macro you would place the fixed tokens at the beginning of the macro definition and then the variable number of tokens will be found at the end. The `{*x}` will concatenate values with a blank between each value while `{,x}` will place a comma between each value.
 
 The previous `emptable` macro could be rewritten as:
 ```
@@ -190,13 +190,13 @@ If you want to have a message across multiple lines use `<br>` to start a new li
 
 ### Var Command
 
-The var (variable) command sets a macro variable to a value. A variable is referred to in the macro script using curly braces {name}. By default the arguments that are used in the macro call are assigned the variable names `{0}` to `{n-1}`. The variable zero contains the name of the macro, while each token after the macro name is assigned to one of these numbered variables. There is also a system variable `{argc}` which contains a count of the number of tokens found (including the name of the macro).
+The var (variable) command sets a macro variable to a value. A variable is referred to in the macro script using curly braces {name}. By default, the arguments that are used in the macro call are assigned the variable names `{0}` to `{n-1}`. The variable zero contains the name of the macro, while each token after the macro name is assigned to one of these numbered variables. There is also a system variable `{argc}` which contains a count of the number of tokens found (including the name of the macro).
 
 To set a variable within a macro you would use the var command:
 ```
 var name value
 ```
-The variable name can be any name as long as it only includes letters, numbers, underscore _ and $. Variable names are case sensitive so `{a}` and `{A}` are different. When the macro finishes executing, the contents of the variables will be lost.
+The variable name can be any name as long as it only includes letters, numbers, underscore _ and $. Variable names are case-sensitive so `{a}` and `{A}` are different. When the macro finishes executing, the contents of the variables will be lost.
 
 A variable can be converted to uppercase by placing the `^` beside the variable name or number.
 ```
@@ -216,7 +216,7 @@ echo {hello} <br>{hello2}
 
 ![Var 2](img/var2.png)
 
-When processing a macro, each one of the tokens is automatically assigned to a variable (1, 2, ..., n) and variable zero {0} is assigned the name of the macro. The following macro will be used to show how all of the tokens are passed to the routine.
+When processing a macro, each one of the tokens is automatically assigned to a variable (1, 2, ..., n) and variable zero {0} is assigned the name of the macro. The following macro will be used to show how the tokens are passed to the routine.
 ```
 %%sql define showvar
 echo Token(1)={1} <br>Token(2)={2} <br>All={*0}<br>After Token 0={*1}
@@ -231,7 +231,7 @@ If the token does not exist, a `null` keyword will be shown. If you use `{*#}` t
 Finally, any string that is supplied to the macro will include the quotes in the variable. The Hello There string will include the quotes when displayed:
 ![Var 5](img/var5.png)
 
-The count of the total number of parameters passed is found in the `{argc}` variable. You can use this variable to decide whether or not the user has supplied the proper number of tokens or change which code should be executed.
+The count of the total number of parameters passed is found in the `{argc}` variable. You can use this variable to decide whether the user has supplied the proper number of tokens or change which code should be executed.
 ```
 %%sql define showvar
 echo The number of unnamed parameters is {argc}.
@@ -272,7 +272,7 @@ else
 endif
 ```
 
-The `if` statement requires a condition to determine whether or not the block should be executed. The condition uses the following format:
+The `if` statement requires a condition to determine whether the block should be executed. The condition uses the following format:
 ```
 if {variable} condition {variable} | constant | null
 ```
@@ -336,4 +336,4 @@ There are circumstances where you want the macro to run with certain flags set (
 flags -e -d ...
 ```
 
-The flags that are provided in the list will be set during the execution of the macro. One situation where you must use the `flags` option is for SQL blocks that require the use the alternate delimiter `@` instead of a semi-colon `;`.  Usually the `@` delimiter is required for stored procedures, functions, or SQL BEGIN blocks that include multiple SQL statements that must be delimited with semi-colons. In this case, the `@` delimiter must be used to delimit the entire SQL block.
+The flags that are provided in the list will be set during the execution of the macro. One situation where you must use the `flags` option is for SQL blocks that require the use the alternate delimiter `@` instead of a semicolon `;`.  Usually the `@` delimiter is required for stored procedures, functions, or SQL BEGIN blocks that include multiple SQL statements that must be delimited with semicolons. In this case, the `@` delimiter must be used to delimit the entire SQL block.

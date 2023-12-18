@@ -11,9 +11,9 @@ In order to simplify the process of saving dataframe information, an extension t
 USING dataframe [CREATE | REPLACE | APPEND] TABLE <name> options 
 ```
 
-The purpose of the `USING` command is to create a table based on the dataframe definition, and optionally insert the data into the table. There are additional options which determine how the table is created and whether or not data is loaded into the table. 
+The purpose of the `USING` command is to create a table based on the dataframe definition, and optionally insert the data into the table. There are additional options which determine how the table is created and whether data is loaded into the table. 
 
-The `dataframe` value refers to the Python variable that contains the dataframe contents. Do not use the SQL variable format `:dataframe` or Python value substition `{dataframe}` in the statement.
+The `dataframe` value refers to the Python variable that contains the dataframe contents. Do not use the SQL variable format `:dataframe` or Python value substitution `{dataframe}` in the statement.
 
 ## Create, Replace, or Append a Table
 
@@ -59,7 +59,7 @@ There are five options that can be specified after the mode:
 
 ### With Data
 
-With the `CREATE` and `REPLACE` modes, the table will be created, but no data will be inserted in the table. The `APPEND` mode assumes that you do want the data inserted so it does not require this option. When you specify the `WITH DATA` option, after creating the table the system will insert all of the data from the dataframe into the Db2 table.
+With the `CREATE` and `REPLACE` modes, the table will be created, but no data will be inserted in the table. The `APPEND` mode assumes that you do want the data inserted so it does not require this option. When you specify the `WITH DATA` option, after creating the table the system will insert the data from the dataframe into the Db2 table.
 
 When data is being loaded into the table, a progress indicator will appear underneath the table definition giving an indication of how many rows have been inserted into the table.
 

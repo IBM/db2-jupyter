@@ -24,7 +24,7 @@ Rather than returning a dataframe result set, this option will produce a list of
 The number of rows in the result set can be determined by using the length function and subtracting one for the header row.
 ![Results](img/results4.png)
 
-If you want to iterate over all of the rows and columns, you could use the following Python syntax instead of creating a for loop that goes from 0 to 41.
+If you want to iterate over all rows and columns, you could use the following Python syntax instead of creating a for loop that goes from 0 to 41.
 ![Results](img/results5.png)
 
 If you don't want the header row, modify the first line to start at the first row instead of row zero.

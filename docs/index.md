@@ -16,4 +16,4 @@ Db2 magic commands provide a number of features that will simplify your use of D
 - Allow for parallel execution of SQL queries even on non-warehousing systems
 - And much more!
 
-The following sections will describe how to get started with the Db2 magic commands as well as the pre-requisites that are required to run the code in your environment.
+The following sections will describe how to get started with the Db2 magic commands as well as the prerequisites that are required to run the code in your environment.

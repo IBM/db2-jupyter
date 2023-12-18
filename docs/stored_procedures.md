@@ -37,12 +37,12 @@ The next statement will execute the stored procedure and display the results by 
 Adding the `-a` (all output) flag to a stored procedure call will display all results. This is the same behavior when running regular SQL statements. If you want to assign the result to a variable, you only need to add an assignment statement to the SQL.
 ![Stored Procs](img/storeproc2.png)
 
-The use of the `-r `(raw output) flag will force the output to be converted into a two-dimensional array. The first line of th array will contain the column names, while the remainder will have the results in it. This format is useful if you want to write an application in Python to manipulate the data.
+The use of the `-r `(raw output) flag will force the output to be converted into a two-dimensional array. The first line of the array will contain the column names, while the remainder will have the results in it. This format is useful if you want to write an application in Python to manipulate the data.
 ```
 %sql -r CALL SHOWEMP
 ```
 
-The stored procedure is now modified to accept a single argument which is the employee number. The employee number is supplied to the stored procedure and one record is returned with all of the details of the employee.
+The stored procedure is now modified to accept a single argument which is the employee number. The employee number is supplied to the stored procedure and one record is returned with all details of the employee.
 ```
 %%sql -d
 CREATE OR REPLACE PROCEDURE SHOWEMP(in inempno char(6))
@@ -71,7 +71,7 @@ results = %sql -r CALL SHOWEMP('000010')
 The first value in the results array (`results[0]`) is the answer set array, while the subsequent values are the parameters that are passed (or returned) by the stored procedure. `results[1]` will be equal to the employee number we were searching for.
 ![Stored Procs](img/storeproc4.png)
 
-The use of the `-r `flag becomes mandatory when you are retrieving an answer set from a stored procedure, and also need to access the return results of the arguments to the stored procedure. SQL stored procedures can have input, output, and input/output values. These values are returned back via the `%sql` command but can only be accessed when you use the `-r` flag.
+The use of the `-r `flag becomes mandatory when you are retrieving an answer set from a stored procedure, and also need to access the return results of the arguments to the stored procedure. SQL stored procedures can have input, output, and input/output values. These values are returned via the `%sql` command but can only be accessed when you use the `-r` flag.
 
 The following stored procedure will return the employees in a department and also a count of the records found.
 ```
@@ -89,12 +89,12 @@ end@
 A normal call to this stored procedure (no flags) will return the result set. Note we must supply the second parameter here but do not supply a value since it is an output value. The `null` keyword must be used.
 ![Stored Procs](img/storeproc5.png)
 
-To access the value of the rowcount, the `-r `flag must be used and the results assigned to a variable.
+To access the value of the rowcount, the `-r `flag must be used, and the results assigned to a variable.
 ![Stored Procs](img/storeproc6.png)
 
 The first value of the `results` array will the answer set as an array. The second value will be the department that we requested, and the third will be the rowcount.
 
-An alternative way of accessing the results is to create an assignment statement with the answer set and all of the parameters supplied. The following SQL will assign the answer set and parameters directly to variables rather than an array.
+An alternative way of accessing the results is to create an assignment statement with the answer set and all parameters supplied. The following SQL will assign the answer set and parameters directly to variables rather than an array.
 ![Stored Procs](img/storeproc7.png)
 
 

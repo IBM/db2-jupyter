@@ -1,13 +1,13 @@
 # Db2 Magic Commands Installation
 
-## Pre-requisities
+## Prerequisities
 
-In order to use Db2 magic commands in your Jupyter notebook environment, you must have following pre-requisites:
+In order to use Db2 magic commands in your Jupyter notebook environment, you must have following prerequisites:
 
 - Jupyter notebooks with a Python 3+ interpreter
 - IBM Python driver (ibm_db)
 - Db2 LUW access 
-- Optional: qgrid, pandas, multi-threading
+- Optional: ipydatagrid, pandas, multi-threading
 
 The Db2 magic commands have been tested on Linux, UNIX, and Windows environments, but are not certified to run against Db2 for z, or Db2 for iSeries versions. This doesn't mean that they can't be adapted to work against these data sources, only that there has been no validation testing done against those target environments.
 
@@ -31,7 +31,7 @@ More detailed instructions can be found on the [Db2 Python Driver](https://githu
 There are three libraries that the Db2 magic commands load in and will use if available:
 
 - Pandas dataframes 1.3 data type conversion
-- QGRID Display 
+- ipydatagrid Display 
 - Multi-processing
 
 ### Pandas 1.3 Support
@@ -50,27 +50,27 @@ Normally the Pandas control will take Db2 strings and represent them as objects,
 
 ![Pandas Old](img/pandas_old.png)
 
-### QGRID Display
+### ipydatagrid Display
 
-The Db2 magic command will check to see whether or not you have the QGRID control installed in your Jupyter environment. If it is not available, it will print a warning message:
+The Db2 magic command will check to see whether you have the ipydatagrid control installed in your Jupyter environment. If it is not available, it will print a warning message:
 
-![No QGRID](img/no_qgrid.png)
+![No ipydatagrid](img/no_qgrid.png)
 
 The default method of displaying result sets is to use Pandas formatting. For instance, the following result set is produced from querying the contents of the sample `EMPLOYEE` table:
 
 ![Employees Pandas](img/employee_pandas.png)
 
-The amount of data that is displayed is limited to 10 rows, with the first and last five rows being shown. There are ways to adjust the number of rows displayed and the settings are covered in another chapter. If you use install the [QGRID control](https://github.com/quantopian/qgrid), the results can be displayed in a scrollable windows:
+The amount of data that is displayed is limited to 10 rows, with the first and last five rows being shown. There are ways to adjust the number of rows displayed, and the settings are covered in another chapter. If you install the [ipydatagrid](https://github.com/bloomberg/ipydatagrid#Usage-and-Examples), the results can be displayed in a scrollable window:
 
-![Employees QGRID](img/employee_qgrid.png)
+![Employees ipydatagrid](img/employee_qgrid.png)
 
-The QGRID control allows you to scroll through the entire answer set rather than having to print the contents of Pandas dataframe. This makes it much easier for you to review the results of your queries rather than having without having to adjust the Pandas display limits.
+The ipydatagrid control allows you to scroll through the entire answer set rather than having to print the contents of Pandas dataframe. This makes it much easier for you to review the results of your queries rather than having without having to adjust the Pandas display limits.
 
-To install the QGRID control, use one of the following options. For a non-conda installation use:
+To install the ipydatagrid control, use one of the following options. For a non-conda installation use:
 
 ```
-pip install qgrid
-jupyter nbextension enable --py --sys-prefix qgrid
+pip install ipydatagrid
+jupyter nbextension enable --py --sys-prefix ipydatagrid
 ```
 
 The following is only required if you have not enabled the ipywidgets nbextensions:
@@ -82,14 +82,14 @@ If you are using `conda` as the Jupyter notebook and Python distribution, use th
 
 ```
 conda config --add channels conda-forge
-conda install qgrid
+conda install ipydatagrid
 ```
 
 ### Multi-processing
 
-The Db2 magic command can split a query into multiple processes (independent of the Db2 LUW version). This technique is useful when a large amount of data needs to be retrieved, or if it is more efficient to search for rows based on a range of values. The multi-processing feature will initiate "x" number of processes, each running the same SQL with a specific range value. To the Db2 server this looks like "x" number of users requesting similar data. In effect you are forcing Db2 to do more work on your behalf! This doesn't change the performance of Db2 itself, but may allow Db2 to optimize the answer set for each thread and improve the speed of answer set retrieval. You should always check with the database administrator to verify that using multi-processing will not cause performance issues in the database.
+The Db2 magic command can split a query into multiple processes (independent of the Db2 LUW version). This technique is useful when a large amount of data needs to be retrieved, or if it is more efficient to search for rows based on a range of values. The multiprocessing feature will initiate "x" number of processes, each running the same SQL with a specific range value. To the Db2 server this looks like "x" number of users requesting similar data. In effect, you are forcing Db2 to do more work on your behalf! This doesn't change the performance of Db2 itself, but may allow Db2 to optimize the answer set for each thread and improve the speed of answer set retrieval. You should always check with the database administrator to verify that using multiprocessing will not cause performance issues in the database.
 
-When the Db2 magic command initializes, it will display a message if multi-processing is not available:
+When the Db2 magic command initializes, it will display a message if multiprocessing is not available:
 
 ![No Threading](img/no_multithreads.png)
 
@@ -107,7 +107,7 @@ Once you have `ibm_db` installed and any additional features, you will need to d
 
 To load the Db2 magic commands into your notebook, use the following syntax:
 ```
-!wget https://raw.githubusercontent.com/IBM/db2-jupyter/master/db2.ipynb
+!wget https://raw.githubusercontent.com/IBM/db2-jupyter/master/db2.ipynb -O db2.ipynb
 
 ```
 

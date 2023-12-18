@@ -2,7 +2,7 @@
 
 Before any SQL commands can be issued, a connection needs to be made to the Db2 database that you will be using. The connection can be done manually (through the use of the CONNECT command), or automatically when the first `%sql` command is issued.
 
-The Db2 magic command tracks whether or not a connection has occurred in the past and saves this information between notebooks and sessions. When you start up a notebook and issue a command, the program will reconnect to the database using your credentials from the last session. In the event that you have not connected before, the system will require that you execute the `CONNECT` command. To connect to a Db2 database you will need the following information:
+The Db2 magic command tracks whether a connection has occurred in the past and saves this information between notebooks and sessions. When you start up a notebook and issue a command, the program will reconnect to the database using your credentials from the last session. In the event that you have not connected before, the system will require that you execute the `CONNECT` command. To connect to a Db2 database you will need the following information:
 
   * Database name 
   * Hostname 
@@ -13,9 +13,12 @@ The Db2 magic command tracks whether or not a connection has occurred in the pas
 You may also require two additional pieces of information:
 
   * SSL Security - Request that SSL connections be used with Db2 and optionally the location of the SSL file that contains required certificate information
-  * PASSTHRU - Additional ODBC keywords that need to be supplied to the Db2 driver
+  * SSL File - The certificate file (if required)
+  * API Key - An API key that is provided to connect to Db2
+  * Access Token - An access token that is provided to connect to Db2
+  * DSN - A string that contains the ODBC connection string 
 
-All of the information supplied will be stored in the directory that the notebooks are stored on. Once you have entered the information, the system will attempt to connect to the database for you and then you can run all of the SQL scripts. More details on the `CONNECT `syntax will be found in a section below.
+The information supplied will be stored in the directory that the notebooks are stored on. Once you have entered the information, the system will attempt to connect to the database for you, and then you can run all SQL scripts. More details on the `CONNECT `syntax will be found in a section below.
 
 If you have credentials available from Db2 on Cloud or CP4D, place the contents of the credentials into a variable and then use the `CONNECT CREDENTIALS <var>` syntax to connect to the database.
 ```
@@ -23,11 +26,11 @@ db2blu = { "uid" : "xyz123456", ...}
 %sql CONNECT CREDENTIALS db2blu
 ```
 
-If the connection is successful using the credentials, the variable will be saved to disk so that you can connected from within another notebook using the same syntax.
+If the connection is successful using the credentials, the variable will be saved to disk so that you can connect from within another notebook using the same syntax.
 
 ## Connect Syntax
 
-The `CONNECT` command has four different options that are listed below. You must explicitly connect to a Db2 database for the first time. Subsequent connections are **not** required if you connecting to the same database. When the Db2 magic command executes your SQL command, it checks to see whether or not you have already connected to the database. If not, it will check to see if there was a successful connection previously and will use those credentials to reconnect.
+The `CONNECT` command has four different options that are listed below. You must explicitly connect to a Db2 database for the first time. Subsequent connections are **not** required if you are connecting to the same database. When the Db2 magic command executes your SQL command, it checks to see whether you have already connected to the database. If not, it will check to see if there was a successful connection previously and will use those credentials to reconnect.
 
 You can also force a connection to the previous database by issuing the `CONNECT` command with no parameters.
 
@@ -38,9 +41,9 @@ You can also force a connection to the previous database by issuing the `CONNECT
 The format of the `CONNECT` command is:
 ```
 %sql CONNECT TO database USER userid USING password | ? 
-                HOST ip address PORT port number 
-                SSL [TRUE | ON | FALSE | OFF | certificate ]
-                PASSTHRU ODBC/CLI settings
+                HOST ip_address PORT port_number 
+                [ SSL ] [ SSLFILE file ] [ APIKEY key ] [ ACCESSTOKEN token ] 
+                [ DNS "string" ]
 ```
 
 The required fields are:
@@ -48,27 +51,43 @@ The required fields are:
   * Database - Database name you want to connect to
   * Hostname - `localhost` if Db2 is running on your own machine or the IP address or symbolic name of the server
   * PORT - The port to use for connecting to Db2. This is usually 50000. 
+
+When connecting using an apikey or access token, you will need to provide the key value after the keyword. The SSL security settings are already preconfigured when using these settings.
+
+  * APIKEY value - the value of the APIKEY 
+  * ACCESSTOKEN value - the value of the access token
+
+If not using APIKEY/ACCESSTOKEN, you will need to provide your credentials to connect:
+
   * Userid - The userid to use when connecting to the database.
   * Password - The password for the userid. Use a question mark `?` to be prompted to enter the password without displaying the text.
 
-There are two optional fields. The SSL option ensures that the transmission of the SQL and answer sets are encrypted "on the wire". SSL is typically required when using public networks to communicate to a Db2 database. For internal systems this may not be the case. If you are required to use SSL communication, you must specify `SSL [ ON | TRUE ]`, use an SSL port on Db2 (traditionally 50001) and optionally supply a certificate file.
+There are two optional fields. The SSL option ensures that the transmission of the SQL and answer sets are encrypted "on the wire". SSL is typically required when using public networks to communicate to a Db2 database. For internal systems this may not be the case. If you are required to use SSL communication, you must specify `SSL` in the connection string. The use of an SSL port on Db2 (traditionally 50001) may require a certificate file.
 
-If your workstation has already been configured to use SSL communication, then the `SSL ON` parameter is required. If you have been given access to a Db2 database and have been provided with an SSL certificate, then you will use the `SSL certificate` option. The certificate option requires the location and name of the file that contains the `SSL` certificate which is used for communicating with Db2. Normally this certificate would have been provided to you and placed onto your local file system.
+If your workstation has already been configured to use SSL communication, then only the `SSL` parameter is required. If you have been given access to a Db2 database and have been provided with an SSL certificate, then you will use the `SSLFILE` option. The certificate option requires the location and name of the file that contains the `SSL` certificate which is used for communicating with Db2. Normally this certificate would have been provided to you and placed onto your local file system.
 
-The format of the `SSL` certificate option is `SSL filename` where `filename` is the fully qualified location of the SSL file. 
+The format of the `SSLFILE` certificate option is `SSLFILE filename` where `filename` is the fully qualified location of the SSL file. You do not need to specify `SSL` as part of the connection string since it is assumed that you will be using `SSL` communication when you supply a certificate file. 
 
 ```
-%sql CONNECT TO BLUDB USER BLUADMIN USING ? HOST 145.23.24.1 PORT 50001 SSL /ssl/bludb.cert
+%sql CONNECT TO BLUDB USER BLUADMIN USING ? HOST 145.23.24.1 PORT 50001 SSLFILE /ssl/bludb.cert
 ```
 
-If you have any additional parameters to pass to the Db2 ODBC/CLI driver, place them into a string with semi-colons separating each parameter **without** blanks between keywords. For example to set the timeout interval and security for a connection:
+If you want to use an ODBC connection string, rather than using the CONNECT syntax, you can supply it by using the DSN option.
+
+* DSN "dsn string"
+
+The value in the `"dsn string"` will be passed to the connect routine without modification. A sample DSN string is found below:
+
 ```
-%sql CONNECT ... PASSTHRU ConnectTimeout=15;Security=SSL;
+dsn = "DRIVER={IBM DB2 ODBC DRIVER};DATABASE=BLUDB;HOSTNAME=some.random.location.com;PORT=12345;PROTOCOL=TCPIP;ConnectTimeout=15;LONGDATACOMPAT=1;AUTHENTICATION=GSSplugin;SECURITY=SSL;APIKEY=lKJH896HUGY102938unad9eYtw;"
+
+%sql CONNECT DSN "{dsn}"
 ```
+
+Note how the DSN string must be surrounded in quotes in the `CONNECT` command.
 
 Details of all Db2 CLI settings can be found in the [Db2 ODBC/CLI documentation](https://www.ibm.com/docs/en/db2/11.5?topic=odbc-cliodbc-configuration-keywords).
 
-**Note**: The `CONNECT` command will not return an error if there is a problem with the `PASSTHRU` parameters. 
 
 ### Passwords
 
@@ -140,7 +159,7 @@ If you issue another SQL statement after closing the connection, the program wil
 
 ### Reseting a Connection
 
-`CONNECT RESET` will close the current connection and remove any information on the connection. You will need to issue a new `CONNECT `statement with all of the connection information. 
+`CONNECT RESET` will close the current connection and remove any information on the connection. You will need to issue a new `CONNECT `statement with the connection information. 
 ```
 %sql CONNECT RESET
 ```

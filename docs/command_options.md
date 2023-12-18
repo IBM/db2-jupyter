@@ -1,8 +1,8 @@
 # Db2 Magic Options
 
-The previous section discussed options that are specific for `%sql` commands and are only valid during the execution of that statement. There are options available that impact the execution of all `%sql` statements and are discussed below.
+The previous section discussed options that are specific for `%sql` commands and are only valid during the execution of that statement. There are options available that impact the execution of the `%sql` statements and are discussed below.
 
-There are four options that can be set with the `%sql` command. These options are shown below with the default value shown in parenthesis.
+There are four options that can be set with the `%sql` command. These options are shown below with the default value shown in parentheses.
 
 * DISPLAY PANDAS | GRID (PANDAS)
 
@@ -43,7 +43,7 @@ The default display format for any data returned is Pandas. This example illustr
 
 ![Pandas](img/displaypandas.png)
 
-The Pandas output format will sometimes truncate the output (as shown above). You can adjust the number of rows that can be displayed from an answer set using the `MAXROWS` setting discussed below. This standard output may be sufficient for your requirements if you are only returning small answer sets (less than 100 rows to display). Otherwise you may consider using the `-grid` option. The same answer set using a `-grid` display is shown below.
+The Pandas output format will sometimes truncate the output (as shown above). You can adjust the number of rows that can be displayed from an answer set using the `MAXROWS` setting discussed below. This standard output may be sufficient for your requirements if you are only returning small answer sets (less than 100 rows to display). Otherwise, you may consider using the `-grid` option. The same answer set using a `-grid` display is shown below.
 
 ![Pandas](img/displaygrid.png)
 
@@ -63,7 +63,7 @@ The display format is kept with the connection information. If you start up anot
 
 ## Maximum Number of Rows
 
-The default number of rows that are displayed when using a Pandas dataframe is 10. A answer set will always display the first 5 rows and the last 5 rows of an answer set in a Jupyter notebook:
+The default number of rows that are displayed when using a Pandas dataframe is 10. An answer set will always display the first 5 rows and the last 5 rows of an answer set in a Jupyter notebook:
 
 ![Maxrows](img/maxrows1.png)
 
@@ -88,7 +88,7 @@ The next example demonstrates how the answer set is split when the number of row
 
 ![Maxrows](img/maxrows10.png)
 
-If maximum value of  `MAXROWS` is 100. As many rows possible will be displayed in the notebook. If the number of rows is too large, the cell will contain scrollbars so that you can see all of the rows that are returned.
+If maximum value of `MAXROWS` is 100. As many rows possible will be displayed in the notebook. If the number of rows is too large, the cell will contain scrollbars so that you can see all rows that are returned.
 
 ![Maxrows](img/maxrows100.png)
 
@@ -117,7 +117,7 @@ Note that the `MAXGRID` option does not affect the number of rows that are retur
 
 The Db2 magic commands have the ability to split a SQL statement into multiple threads to improve the time it takes to retrieve answer sets. This feature does not make Db2 more efficient - it provides a way to increase the utilization of Db2 and pipeline SQL statements so that less time is spent waiting for data to be retrieved. The section on parallelism explores this feature in more detail.
 
-The `THREADS` option tells Db2 the maximum of threads that it will be allowed to use when running the SQL. The SQL will be split (based on some range or key) and multi-threaded into Db2. The `THREADS` value can be anything from zero (standard SQL call) to 12. The highest performance was found to occur when using 6 to 8 threads, but this will be entirely dependent on the SQL workload. 
+The `THREADS` option tells Db2 the maximum of threads that it will be allowed to use when running the SQL. The SQL will be split (based on some range or key) and multithreaded into Db2. The `THREADS` value can be anything from zero (standard SQL call) to 12. The highest performance was found to occur when using 6 to 8 threads, but this will be entirely dependent on the SQL workload. 
 
 To set the number of threads use the following syntax:
 ```
