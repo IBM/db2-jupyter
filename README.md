@@ -23,7 +23,7 @@ If you are running on a Jupyter notebook service (Watson Studio), you may alread
 import ibm_db
 ```
 
-If the command returns sucessfully, then you do not need to install `ibm_db` and can continue to the *Loading Db2 Magic Commands* section.
+If the command returns successfully, then you do not need to install `ibm_db` and can continue to the *Loading Db2 Magic Commands* section.
 
 If you have access to your Jupyter notebook environment, the Db2 Python client can be installed in one of three ways:
 
@@ -44,7 +44,7 @@ Once you have `ibm_db` installed, you will need to download the Db2 magic comman
 
 To load the Db2 magic commands into your notebook, run the following command in your Jupyter notebook:
 ```
-!wget https://raw.githubusercontent.com/IBM/db2-jupyter/master/db2.ipynb
+!wget https://raw.githubusercontent.com/IBM/db2-jupyter/master/db2.ipynb -O db2.ipynb
 ```
 
 Once you have loaded the Db2 magic commands into your notebook, you are able to query Db2 tables using standard SQL syntax:
@@ -65,7 +65,7 @@ George & Phil
 
 ### Acknowledgements
 
-We would like to thank the following people who helped in early prototying, testing, suggestions, and feedback on the Db2 Magic commands.
+We would like to thank the following people who helped in early prototyping, testing, suggestions, and feedback on the Db2 Magic commands.
 
 * Peter Kohlmann
 * Dean Compher
@@ -125,14 +125,14 @@ message associated with the connect request.
 If the connection is successful, the parameters are saved on your system and will be used the next time you
 run a SQL statement, or when you issue the %sql CONNECT command with no parameters.
 
-In addition to the -d option, there are a number different options that you can specify at the beginning of 
+In addition to the -d option, there are a several different options that you can specify at the beginning of 
 the SQL:
 
    - `-d, -delim` - Change SQL delimiter to "`@`" from "`;`"
    - `-q, -quiet` - Quiet results - no messages returned from the function
    - `-r, -array` - Return the result set as an array of values instead of a dataframe
    - `-j` - Format the first character column of the result set as a JSON record
-   - `-json` - Return result set as an array of json records
+   - `-json` - Return result set as an array of JSON records
    - `-a, -all` - Return all rows in answer set and do not limit display
    - `-grid` - Display the results in a scrollable grid
    - `-e, -echo` - Any macro expansions are displayed in an output box 
@@ -160,11 +160,11 @@ The previous set of `%sql` and `%%sql` commands deals with SQL statements and co
 - PREPARE 
 - EXECUTE
 
-Autocommit is the default manner in which SQL statements are executed. At the end of the successful completion of a statement, the results are commited to the database. There is no concept of a transaction where multiple DML/DDL statements are considered one transaction. The `AUTOCOMMIT` command allows you to turn autocommit `OFF` or `ON`. This means that the set of SQL commands run after the `AUTOCOMMIT OFF` command are executed are not commited to the database until a `COMMIT` or `ROLLBACK` command is issued.
+Autocommit is the default manner in which SQL statements are executed. At the end of the successful completion of a statement, the results are committed to the database. There is no concept of a transaction where multiple DML/DDL statements are considered one transaction. The `AUTOCOMMIT` command allows you to turn autocommit `OFF` or `ON`. This means that the set of SQL commands run after the `AUTOCOMMIT OFF` command are executed are not committed to the database until a `COMMIT` or `ROLLBACK` command is issued.
 
-`COMMIT` (`WORK`) will finalize all of the transactions (`COMMIT`) to the database and `ROLLBACK` will undo all of the changes. If you issue a `SELECT` statement during the execution of your block, the results will reflect all of your changes. If you `ROLLBACK` the transaction, the changes will be lost.
+`COMMIT` (`WORK`) will finalize all transactions (`COMMIT`) to the database and `ROLLBACK` will undo all changes. If you issue a `SELECT` statement during the execution of your block, the results will reflect all of your changes. If you `ROLLBACK` the transaction, the changes will be lost.
 
-`PREPARE` is typically used in a situation where you want to repeatidly execute a SQL statement with different variables without incurring the SQL compilation overhead. For instance:
+`PREPARE` is typically used in a situation where you want to repeatedly execute a SQL statement with different variables without incurring the SQL compilation overhead. For instance:
 ```
 x = %sql PREPARE SELECT LASTNAME FROM EMPLOYEE WHERE EMPNO=?
 for y in ['000010','000020','000030']:
