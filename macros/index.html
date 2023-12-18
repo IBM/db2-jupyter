@@ -1,178 +1,672 @@
-<!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  
-  
-  <link rel="shortcut icon" href="../img/favicon.ico">
-  <title>Macros - Db2 Magic Commands</title>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
-  <link rel="stylesheet" href="../css/theme.css" />
-  <link rel="stylesheet" href="../css/theme_extra.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
-  
-  <script>
-    // Current page data
-    var mkdocs_page_name = "Macros";
-    var mkdocs_page_input_path = "macros.md";
-    var mkdocs_page_url = null;
-  </script>
-  
-  <script src="../js/jquery-2.1.1.min.js" defer></script>
-  <script src="../js/modernizr-2.8.3.min.js" defer></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
-  <script>hljs.initHighlightingOnLoad();</script> 
-</head>
-
-<body class="wy-body-for-nav" role="document">
-
-  <div class="wy-grid-for-nav">
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.3.1, mkdocs-material-8.3.9">
+    
+    
+      
+        <title>Macros - Db2 Magic Commands</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.1d29e8d0.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.cbb835fc.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#000000">
+        
+      
+      
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:300,300i,400,400i,700,700i%7CIBM+Plex+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"IBM Plex Sans";--md-code-font:"IBM Plex Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
 
     
-    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
-    <div class="wy-side-scroll">
-      <div class="wy-side-nav-search">
-        <a href=".." class="icon icon-home"> Db2 Magic Commands</a>
-        <div role="search">
-  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
-      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
-  </form>
-</div>
-      </div>
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="black">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#macros" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
 
-      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
-                    </li>
-                </ul>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../installation/">Installation</a>
-                    </li>
-                </ul>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../connect/">Getting Connected</a>
-                    </li>
-                </ul>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../linevscell/">SQL Magic Commands</a>
-                    </li>
-                </ul>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../sql_options/">SQL Options</a>
-                    </li>
-                </ul>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../command_options/">Db2 Magic Command Options</a>
-                    </li>
-                </ul>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../plotting/">Plotting</a>
-                    </li>
-                </ul>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../variables/">Variables</a>
-                    </li>
-                </ul>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../resultsets/">Result Sets</a>
-                    </li>
-                </ul>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../stored_procedures/">Stored Procedures</a>
-                    </li>
-                </ul>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../developmentsql/">Development SQL</a>
-                    </li>
-                </ul>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../pandasdb2/">Pandas to Db2</a>
-                    </li>
-                </ul>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../parallel/">Parallel SQL</a>
-                    </li>
-                </ul>
-                <ul class="current">
-                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Macros</a>
-    <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#macro-basics">Macro Basics</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#creating-a-macro">Creating a Macro</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#macro-parameters-and-tokens">Macro Parameters and Tokens</a>
-        <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#using-token-lists">Using Token Lists</a>
-    </li>
-        </ul>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#macro-coding-overview">Macro Coding Overview</a>
-        <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#comment">Comment</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#exit-command-and-return-command">Exit Command and Return Command</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#echo-command">Echo Command</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#var-command">Var Command</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#ifelseendif-command">If/Else/Endif Command</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#flags">Flags</a>
-    </li>
-        </ul>
-    </li>
-    </ul>
-                    </li>
-                </ul>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../extramacros/">Predefined Macros</a>
-                    </li>
-                </ul>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../support/">Support</a>
-                    </li>
-                </ul>
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Db2 Magic Commands" class="md-header__button md-logo" aria-label="Db2 Magic Commands" data-md-component="logo">
+      
+  <img src="../img/IBM_logo®_rev_RGB.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Db2 Magic Commands
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Macros
+            
+          </span>
+        </div>
       </div>
     </div>
-    </nav>
-
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="..">Db2 Magic Commands</a>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
       </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
 
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Db2 Magic Commands" class="md-nav__button md-logo" aria-label="Db2 Magic Commands" data-md-component="logo">
       
-      <div class="wy-nav-content">
-        <div class="rst-content">
-          <div role="navigation" aria-label="breadcrumbs navigation">
-  <ul class="wy-breadcrumbs">
-    <li><a href="..">Docs</a> &raquo;</li>
+  <img src="../img/IBM_logo®_rev_RGB.png" alt="logo">
+
+    </a>
+    Db2 Magic Commands
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
     
       
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
     
-    <li>Macros</li>
-    <li class="wy-breadcrumbs-aside">
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../installation/" class="md-nav__link">
+        Installation
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../connect/" class="md-nav__link">
+        Getting Connected
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../linevscell/" class="md-nav__link">
+        SQL Magic Commands
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sql_options/" class="md-nav__link">
+        SQL Options
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../command_options/" class="md-nav__link">
+        Db2 Magic Command Options
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../plotting/" class="md-nav__link">
+        Plotting
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../variables/" class="md-nav__link">
+        Variables
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../resultsets/" class="md-nav__link">
+        Result Sets
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../stored_procedures/" class="md-nav__link">
+        Stored Procedures
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../developmentsql/" class="md-nav__link">
+        Development SQL
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pandasdb2/" class="md-nav__link">
+        Pandas to Db2
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../parallel/" class="md-nav__link">
+        Parallel SQL
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Macros
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Macros
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#macro-basics" class="md-nav__link">
+    Macro Basics
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#creating-a-macro" class="md-nav__link">
+    Creating a Macro
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#macro-parameters-and-tokens" class="md-nav__link">
+    Macro Parameters and Tokens
+  </a>
+  
+    <nav class="md-nav" aria-label="Macro Parameters and Tokens">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#using-token-lists" class="md-nav__link">
+    Using Token Lists
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#macro-coding-overview" class="md-nav__link">
+    Macro Coding Overview
+  </a>
+  
+    <nav class="md-nav" aria-label="Macro Coding Overview">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#comment" class="md-nav__link">
+    Comment
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exit-command-and-return-command" class="md-nav__link">
+    Exit Command and Return Command
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#echo-command" class="md-nav__link">
+    Echo Command
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#var-command" class="md-nav__link">
+    Var Command
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ifelseendif-command" class="md-nav__link">
+    If/Else/Endif Command
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#flags" class="md-nav__link">
+    Flags
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
-  </ul>
   
-  <hr/>
-</div>
 
-          <div role="main">
-            <div class="section">
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../extramacros/" class="md-nav__link">
+        Predefined Macros
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../support/" class="md-nav__link">
+        Support
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
               
-                <h1 id="macros">Macros</h1>
-<p>The <code>%sql</code> command allows the use of user-defined macros. Macros can be used to generate frequently used SQL and simplify scripting. Macro substitution is done prior to any SQL being executed. Macros replace the text in the <code>%%sql</code> block with the SQL that is generated in the macro. For example, there a number of commands that are available in Db2 magic that have been created as macros:</p>
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#macro-basics" class="md-nav__link">
+    Macro Basics
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#creating-a-macro" class="md-nav__link">
+    Creating a Macro
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#macro-parameters-and-tokens" class="md-nav__link">
+    Macro Parameters and Tokens
+  </a>
+  
+    <nav class="md-nav" aria-label="Macro Parameters and Tokens">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#using-token-lists" class="md-nav__link">
+    Using Token Lists
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#macro-coding-overview" class="md-nav__link">
+    Macro Coding Overview
+  </a>
+  
+    <nav class="md-nav" aria-label="Macro Coding Overview">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#comment" class="md-nav__link">
+    Comment
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#exit-command-and-return-command" class="md-nav__link">
+    Exit Command and Return Command
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#echo-command" class="md-nav__link">
+    Echo Command
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#var-command" class="md-nav__link">
+    Var Command
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ifelseendif-command" class="md-nav__link">
+    If/Else/Endif Command
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#flags" class="md-nav__link">
+    Flags
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+
+
+<h1 id="macros">Macros</h1>
+<p>The <code>%sql</code> command allows the use of user-defined macros. Macros can be used to generate frequently used SQL and simplify scripting. Macro substitution is done prior to any SQL being executed. Macros replace the text in the <code>%%sql</code> block with the SQL that is generated in the macro. For example, there are a number of commands that are available in Db2 magic that have been created as macros:</p>
 <ul>
 <li>LIST TABLES FOR SCHEMA </li>
 <li>DESCRIBE TABLE x</li>
@@ -185,8 +679,8 @@
 <pre><code>%sql LIST TABLES FOR SCHEMA DB2INST1
 </code></pre>
 <p>The <code>%sql</code> processor first checks to see if this first keyword has been defined as a macro. If not, it will process it as a regular SQL statement. </p>
-<p>Macros can be used in <code>%sql</code> lines or as part of a <code>%%sql</code> block. The contents of the macros are expanded and replace the text in the SQL block and then the SQL statements are executed. Macros are handled the same was as SQL statements. Anything that follows the macro name, up to the end of the SQL block, or a SQL delimiter (semi-colon) are considered parameters of the macro.</p>
-<p>For instance, the <code>LIST</code> macro in the above example assumes that everything following the <code>LIST</code> keyword is a parameter. In a <code>%%sql</code> block, all of the values up to a delimiter or end of the block are considered part of the macro:</p>
+<p>Macros can be used in <code>%sql</code> lines or as part of a <code>%%sql</code> block. The contents of the macros are expanded and replace the text in the SQL block and then the SQL statements are executed. Macros are handled the same was as SQL statements. Anything that follows the macro name, up to the end of the SQL block, or a SQL delimiter (semicolon) are considered parameters of the macro.</p>
+<p>For instance, the <code>LIST</code> macro in the above example assumes that everything following the <code>LIST</code> keyword is a parameter. In a <code>%%sql</code> block, the values up to a delimiter, or end of the block, are considered part of the macro:</p>
 <pre><code>%%sql
 LIST TABLES
   FOR SCHEMA
@@ -197,11 +691,11 @@ LIST TABLES
 <pre><code>%%sql define emptable
 select empno, firstnme, lastname from employee
 </code></pre>
-<p>The name of the macro follows the <code>%%sql</code> define command and is <strong>not</strong> case sensitive. To use the macro, we can place it anywhere in a <code>%sql</code> block. This first example uses the macro by itself.</p>
+<p>The name of the macro follows the <code>%%sql</code> define command and is <strong>not</strong> case-sensitive. To use the macro, we can place it anywhere in a <code>%sql</code> block. This first example uses the macro by itself.</p>
 <p><img alt="Employee table" src="../img/macro_employee.png" /></p>
 <p>The actual SQL that is generated is not shown by default. If you do want to see the SQL that gets generated, you can use the <code>-e</code> (echo) option to display the final SQL statement. The following example will display the generated SQL. Note that the echo setting is only used to display results for the current cell that is executing.</p>
 <p><img alt="Employee table" src="../img/macro_employee_echo.png" /></p>
-<p>The DEFINE command will replace any existing macro with the same name. In addition, macros only exist within your notebook and will need to be recreated if you restart the notebook kernel or re-run the <code>%db2.ipynb</code> notebook. If you create another Jupyter notebook, it will not contain any macros that you may have created. If there are macros that you want to share across notebooks, you should create a separate notebook and place all of the macro definitions in there. Then you can include these macros by executing the <code>%run</code> command using the name of the notebook that contains the macros.</p>
+<p>The DEFINE command will replace any existing macro with the same name. In addition, macros only exist within your notebook and will need to be recreated if you restart the notebook kernel or re-run the <code>%db2.ipynb</code> notebook. If you create another Jupyter notebook, it will not contain any macros that you may have created. If there are macros that you want to share across notebooks, you should create a separate notebook and place the macro definitions in there. Then you can include these macros by executing the <code>%run</code> command using the name of the notebook that contains the macros.</p>
 <h2 id="macro-parameters-and-tokens">Macro Parameters and Tokens</h2>
 <p>The text that follows the name of the macro is tokenized (split by spaces). In order to use any tokens that follow the macro name, you can refer to them in your macro body using the special sequence <code>{#}</code> where the number sign represents the nth token in the string. The tokens that are placed after the name of the macro can be any number, character string, or quoted string that is separated by blanks. Any number of parameters are permitted in a macro definition. For instance, the following string has 5 tokens:</p>
 <pre><code>LIST 1234 &quot;Here's a string&quot; AbCD-12 'String'
@@ -213,13 +707,13 @@ select empno, firstnme, lastname from employee
 </code></pre>
 <p>The parser will generate the following tokens.</p>
 <p><code>LIST</code>, <code>( "this is" , "parameter" )</code>, <code>FROM</code>, <code>EMPLOYEE</code></p>
-<p>The values in parenthesis are kept together even though there are spaces inside the brackets! </p>
-<p>From a macro perspective this means that any tokens that you want to pass to the routine needs to be kept relatively simple and separated with blanks or enclosed with parathesis. The following macro prints the employee ID, last name and salary based on an employee number list. The regular SQL would look similar to this:</p>
+<p>The values in parentheses are kept together even though there are spaces inside the brackets! </p>
+<p>From a macro perspective this means that any tokens that you want to pass to the routine needs to be kept relatively simple and separated with blanks or enclosed with parentheses. The following macro prints the employee ID, last name and salary based on an employee number list. The regular SQL would look similar to this:</p>
 <pre><code>SELECT EMPNO, LASTNAME, SALARY
   FROM EMPLOYEE
   WHERE EMPNO IN ('000010','000020','000030')
 </code></pre>
-<p>There are two ways of creating a macro to run this query. The first macro assumes that you will provide the name of the salary column as a parameter, and the employee numbers as a list in parenthesis:</p>
+<p>There are two ways of creating a macro to run this query. The first macro assumes that you will provide the name of the salary column as a parameter, and the employee numbers as a list in parentheses:</p>
 <pre><code>%%sql define showemp
 SELECT EMPNO, LASTNAME, {1}
   FROM EMPLOYEE
@@ -235,7 +729,7 @@ SELECT EMPNO, LASTNAME, {1}
 </code></pre>
 <p>To execute this query your SQL would be:</p>
 <p><img alt="ShowEMP 1" src="../img/showemp_2.png" /></p>
-<p>Either method will work but the second example has the advantage of working with Python arrays. Db2 magic commands will unravel a Python array into a list of values. If you provide a Python variable to the macro, the value will be substituted into the macro. If the variable happens to be a list or tuple, the items will be entered as a string of values, each separated with a comma. </p>
+<p>Either method will work, but the second example has the advantage of working with Python arrays. Db2 magic commands will unravel a Python array into a list of values. If you provide a Python variable to the macro, the value will be substituted into the macro. If the variable happens to be a list or tuple, the items will be entered as a string of values, each separated with a comma. </p>
 <p>For instance, the following commands will print the values <code>1,2,3</code>.</p>
 <p><img alt="Values array" src="../img/values_array.png" /></p>
 <p>The <code>showemp</code> macro can use the same technique to select a list of employees based on the contents of a Python list or tuple.</p>
@@ -252,7 +746,7 @@ WHERE EMPNO = {5}
 </code></pre>
 <p>The results are shown below.
 <img alt="Emptable1" src="../img/emptable_1.png" /></p>
-<p>Using specific token numbers works fine if you know exactly how many tokens your SQL statement requires. In the previous example, exactly four columns are required in the answer set. What would happen if you wanted a variable number of columns to be returned in the answer set? You could add logic to the macro to provide this functionality, but it would need a large number of <code>if</code> statements to cover all possibilities! The easier approach is to use a variable token list instead of a token number. The format of a variable token list is <code>{*x}</code> or <code>{,x}</code> where <code>x</code> refers to the token number where the list will begin. You can only have one token list in your macro and will always be at the end of your macro. When building a macro you would place the fixed tokens at the beginning of the macro definition and then the variable number of tokens will be found at the end. The <code>{*x}</code> will concatenate values with a blank between each value while <code>{,x}</code> will place a comma between each value.</p>
+<p>Using specific token numbers works fine if you know exactly how many tokens your SQL statement requires. In the previous example, exactly four columns are required in the answer set. What would happen if you wanted a variable number of columns to be returned in the answer set? You could add logic to the macro to provide this functionality, but it would need several <code>if</code> statements to cover all possibilities! The easier approach is to use a variable token list instead of a token number. The format of a variable token list is <code>{*x}</code> or <code>{,x}</code> where <code>x</code> refers to the token number where the list will begin. You can only have one token list in your macro and will always be at the end of your macro. When building a macro you would place the fixed tokens at the beginning of the macro definition and then the variable number of tokens will be found at the end. The <code>{*x}</code> will concatenate values with a blank between each value while <code>{,x}</code> will place a comma between each value.</p>
 <p>The previous <code>emptable</code> macro could be rewritten as:</p>
 <pre><code>%%sql define emptable
 SELECT {*2}
@@ -300,11 +794,11 @@ echo Two lines are shown
 <p>If you want to have a message across multiple lines use <code>&lt;br&gt;</code> to start a new line.</p>
 <p><img alt="Echo" src="../img/macro_echo2.png" /></p>
 <h3 id="var-command">Var Command</h3>
-<p>The var (variable) command sets a macro variable to a value. A variable is referred to in the macro script using curly braces {name}. By default the arguments that are used in the macro call are assigned the variable names <code>{0}</code> to <code>{n-1}</code>. The variable zero contains the name of the macro, while each token after the macro name is assigned to one of these numbered variables. There is also a system variable <code>{argc}</code> which contains a count of the number of tokens found (including the name of the macro).</p>
+<p>The var (variable) command sets a macro variable to a value. A variable is referred to in the macro script using curly braces {name}. By default, the arguments that are used in the macro call are assigned the variable names <code>{0}</code> to <code>{n-1}</code>. The variable zero contains the name of the macro, while each token after the macro name is assigned to one of these numbered variables. There is also a system variable <code>{argc}</code> which contains a count of the number of tokens found (including the name of the macro).</p>
 <p>To set a variable within a macro you would use the var command:</p>
 <pre><code>var name value
 </code></pre>
-<p>The variable name can be any name as long as it only includes letters, numbers, underscore _ and $. Variable names are case sensitive so <code>{a}</code> and <code>{A}</code> are different. When the macro finishes executing, the contents of the variables will be lost.</p>
+<p>The variable name can be any name as long as it only includes letters, numbers, underscore _ and $. Variable names are case-sensitive so <code>{a}</code> and <code>{A}</code> are different. When the macro finishes executing, the contents of the variables will be lost.</p>
 <p>A variable can be converted to uppercase by placing the <code>^</code> beside the variable name or number.</p>
 <pre><code>%%sql define runit
 echo The first parameter is {^1}
@@ -317,7 +811,7 @@ var hello2 'This is a long string with quotes'
 echo {hello} &lt;br&gt;{hello2}
 </code></pre>
 <p><img alt="Var 2" src="../img/var2.png" /></p>
-<p>When processing a macro, each one of the tokens is automatically assigned to a variable (1, 2, ..., n) and variable zero {0} is assigned the name of the macro. The following macro will be used to show how all of the tokens are passed to the routine.</p>
+<p>When processing a macro, each one of the tokens is automatically assigned to a variable (1, 2, ..., n) and variable zero {0} is assigned the name of the macro. The following macro will be used to show how the tokens are passed to the routine.</p>
 <pre><code>%%sql define showvar
 echo Token(1)={1} &lt;br&gt;Token(2)={2} &lt;br&gt;All={*0}&lt;br&gt;After Token 0={*1}
      &lt;br&gt;After Token 0 with commas={,1}&lt;br&gt;Count={argc}
@@ -328,7 +822,7 @@ echo Token(1)={1} &lt;br&gt;Token(2)={2} &lt;br&gt;All={*0}&lt;br&gt;After Token
 <img alt="Var 4" src="../img/var4.png" /></p>
 <p>Finally, any string that is supplied to the macro will include the quotes in the variable. The Hello There string will include the quotes when displayed:
 <img alt="Var 5" src="../img/var5.png" /></p>
-<p>The count of the total number of parameters passed is found in the <code>{argc}</code> variable. You can use this variable to decide whether or not the user has supplied the proper number of tokens or change which code should be executed.</p>
+<p>The count of the total number of parameters passed is found in the <code>{argc}</code> variable. You can use this variable to decide whether the user has supplied the proper number of tokens or change which code should be executed.</p>
 <pre><code>%%sql define showvar
 echo The number of unnamed parameters is {argc}.
 </code></pre>
@@ -360,7 +854,7 @@ else
    SELECT {1} FROM EMPLOYEE
 endif
 </code></pre>
-<p>The <code>if</code> statement requires a condition to determine whether or not the block should be executed. The condition uses the following format:</p>
+<p>The <code>if</code> statement requires a condition to determine whether the block should be executed. The condition uses the following format:</p>
 <pre><code>if {variable} condition {variable} | constant | null
 </code></pre>
 <p>Variable can be a number from 1 to n which represents the tokens that are parsed during the macro call. So 
@@ -409,59 +903,83 @@ endif
 <p>There are circumstances where you want the macro to run with certain flags set (e.g. <code>-q</code> to suppress error messages). In order to set flags during the execution of a macro, use the <code>flags</code> command:</p>
 <pre><code>flags -e -d ...
 </code></pre>
-<p>The flags that are provided in the list will be set during the execution of the macro. One situation where you must use the <code>flags</code> option is for SQL blocks that require the use the alternate delimiter <code>@</code> instead of a semi-colon <code>;</code>.  Usually the <code>@</code> delimiter is required for stored procedures, functions, or SQL BEGIN blocks that include multiple SQL statements that must be delimited with semi-colons. In this case, the <code>@</code> delimiter must be used to delimit the entire SQL block.</p>
+<p>The flags that are provided in the list will be set during the execution of the macro. One situation where you must use the <code>flags</code> option is for SQL blocks that require the use the alternate delimiter <code>@</code> instead of a semicolon <code>;</code>.  Usually the <code>@</code> delimiter is required for stored procedures, functions, or SQL BEGIN blocks that include multiple SQL statements that must be delimited with semicolons. In this case, the <code>@</code> delimiter must be used to delimit the entire SQL block.</p>
+
               
+            </article>
+            
+          </div>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+    <nav class="md-footer__inner md-grid" aria-label="Footer" >
+      
+        
+        <a href="../parallel/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Parallel SQL" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Parallel SQL
             </div>
           </div>
-          <footer>
+        </a>
+      
+      
+        
+        <a href="../extramacros/" class="md-footer__link md-footer__link--next" aria-label="Next: Predefined Macros" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Predefined Macros
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
   
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="../extramacros/" class="btn btn-neutral float-right" title="Predefined Macros">Next <span class="icon icon-circle-arrow-right"></span></a>
-      
-      
-        <a href="../parallel/" class="btn btn-neutral" title="Parallel SQL"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-      
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2023 IBM
     </div>
   
-
-  <hr/>
-
-  <div role="contentinfo">
-    <!-- Copyright etc -->
-    
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
   </div>
-
-  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
 </footer>
       
-        </div>
-      </div>
-
-    </section>
-
-  </div>
-
-  <div class="rst-versions" role="note" aria-label="versions">
-  <span class="rst-current-version" data-toggle="rst-current-version">
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.b97dbffb.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
     
     
-      <span><a href="../parallel/" style="color: #fcfcfc">&laquo; Previous</a></span>
+      <script src="../assets/javascripts/bundle.6c7ad80a.min.js"></script>
+      
     
-    
-      <span><a href="../extramacros/" style="color: #fcfcfc">Next &raquo;</a></span>
-    
-  </span>
-</div>
-    <script>var base_url = '..';</script>
-    <script src="../js/theme_extra.js" defer></script>
-    <script src="../js/theme.js" defer></script>
-      <script src="../search/main.js" defer></script>
-    <script defer>
-        window.onload = function () {
-            SphinxRtdTheme.Navigation.enable(true);
-        };
-    </script>
-
-</body>
+  </body>
 </html>

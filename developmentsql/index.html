@@ -1,181 +1,697 @@
-<!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
-<head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  
-  
-  <link rel="shortcut icon" href="../img/favicon.ico">
-  <title>Development SQL - Db2 Magic Commands</title>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
-  <link rel="stylesheet" href="../css/theme.css" />
-  <link rel="stylesheet" href="../css/theme_extra.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
-  
-  <script>
-    // Current page data
-    var mkdocs_page_name = "Development SQL";
-    var mkdocs_page_input_path = "developmentsql.md";
-    var mkdocs_page_url = null;
-  </script>
-  
-  <script src="../js/jquery-2.1.1.min.js" defer></script>
-  <script src="../js/modernizr-2.8.3.min.js" defer></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
-  <script>hljs.initHighlightingOnLoad();</script> 
-</head>
-
-<body class="wy-body-for-nav" role="document">
-
-  <div class="wy-grid-for-nav">
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.3.1, mkdocs-material-8.3.9">
+    
+    
+      
+        <title>Development SQL - Db2 Magic Commands</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.1d29e8d0.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.cbb835fc.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#000000">
+        
+      
+      
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=IBM+Plex+Sans:300,300i,400,400i,700,700i%7CIBM+Plex+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"IBM Plex Sans";--md-code-font:"IBM Plex Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
 
     
-    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
-    <div class="wy-side-scroll">
-      <div class="wy-side-nav-search">
-        <a href=".." class="icon icon-home"> Db2 Magic Commands</a>
-        <div role="search">
-  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
-      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
-  </form>
-</div>
-      </div>
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="black" data-md-color-accent="black">
+  
+    
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#development-sql" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
 
-      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
-                    </li>
-                </ul>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../installation/">Installation</a>
-                    </li>
-                </ul>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../connect/">Getting Connected</a>
-                    </li>
-                </ul>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../linevscell/">SQL Magic Commands</a>
-                    </li>
-                </ul>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../sql_options/">SQL Options</a>
-                    </li>
-                </ul>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../command_options/">Db2 Magic Command Options</a>
-                    </li>
-                </ul>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../plotting/">Plotting</a>
-                    </li>
-                </ul>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../variables/">Variables</a>
-                    </li>
-                </ul>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../resultsets/">Result Sets</a>
-                    </li>
-                </ul>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../stored_procedures/">Stored Procedures</a>
-                    </li>
-                </ul>
-                <ul class="current">
-                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Development SQL</a>
-    <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#autocommit-and-commit-scope">Autocommit and Commit Scope</a>
-        <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#autocommit">AUTOCOMMIT</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#commit-rollback">COMMIT, ROLLBACK</a>
-    </li>
-        </ul>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#prepare-and-execute">PREPARE and EXECUTE</a>
-        <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#using-arrays-and-multiple-parameters">Using Arrays and Multiple Parameters</a>
-    </li>
-        </ul>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#performance-comparisons">Performance Comparisons</a>
-        <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#loop-with-insert-statements">Loop with INSERT Statements</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#loop-with-prepare-statement">Loop with PREPARE Statement</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#loop-with-prepare-statement-and-arrays">Loop with PREPARE Statement and Arrays</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#loop-with-prepare-statement-arrays-and-autocommit-off">Loop with PREPARE Statement, Arrays and AUTOCOMMIT OFF</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#performance-comparison">Performance Comparison</a>
-    </li>
-        </ul>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#error-handling">Error Handling</a>
-    </li>
-    </ul>
-                    </li>
-                </ul>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../pandasdb2/">Pandas to Db2</a>
-                    </li>
-                </ul>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../parallel/">Parallel SQL</a>
-                    </li>
-                </ul>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../macros/">Macros</a>
-                    </li>
-                </ul>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../extramacros/">Predefined Macros</a>
-                    </li>
-                </ul>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../support/">Support</a>
-                    </li>
-                </ul>
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href=".." title="Db2 Magic Commands" class="md-header__button md-logo" aria-label="Db2 Magic Commands" data-md-component="logo">
+      
+  <img src="../img/IBM_logo®_rev_RGB.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Db2 Magic Commands
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Development SQL
+            
+          </span>
+        </div>
       </div>
     </div>
-    </nav>
-
-    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="..">Db2 Magic Commands</a>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5Z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" aria-label="Clear" tabindex="-1">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41Z"/></svg>
+        </button>
       </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
 
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="Db2 Magic Commands" class="md-nav__button md-logo" aria-label="Db2 Magic Commands" data-md-component="logo">
       
-      <div class="wy-nav-content">
-        <div class="rst-content">
-          <div role="navigation" aria-label="breadcrumbs navigation">
-  <ul class="wy-breadcrumbs">
-    <li><a href="..">Docs</a> &raquo;</li>
+  <img src="../img/IBM_logo®_rev_RGB.png" alt="logo">
+
+    </a>
+    Db2 Magic Commands
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
     
       
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        Home
+      </a>
+    </li>
+  
+
     
-    <li>Development SQL</li>
-    <li class="wy-breadcrumbs-aside">
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../installation/" class="md-nav__link">
+        Installation
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../connect/" class="md-nav__link">
+        Getting Connected
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../linevscell/" class="md-nav__link">
+        SQL Magic Commands
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../sql_options/" class="md-nav__link">
+        SQL Options
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../command_options/" class="md-nav__link">
+        Db2 Magic Command Options
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../plotting/" class="md-nav__link">
+        Plotting
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../variables/" class="md-nav__link">
+        Variables
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../resultsets/" class="md-nav__link">
+        Result Sets
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../stored_procedures/" class="md-nav__link">
+        Stored Procedures
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Development SQL
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        Development SQL
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#autocommit-and-commit-scope" class="md-nav__link">
+    Autocommit and Commit Scope
+  </a>
+  
+    <nav class="md-nav" aria-label="Autocommit and Commit Scope">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#autocommit" class="md-nav__link">
+    AUTOCOMMIT
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#commit-rollback" class="md-nav__link">
+    COMMIT, ROLLBACK
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prepare-and-execute" class="md-nav__link">
+    PREPARE and EXECUTE
+  </a>
+  
+    <nav class="md-nav" aria-label="PREPARE and EXECUTE">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#using-arrays-and-multiple-parameters" class="md-nav__link">
+    Using Arrays and Multiple Parameters
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#performance-comparisons" class="md-nav__link">
+    Performance Comparisons
+  </a>
+  
+    <nav class="md-nav" aria-label="Performance Comparisons">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#loop-with-insert-statements" class="md-nav__link">
+    Loop with INSERT Statements
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#loop-with-prepare-statement" class="md-nav__link">
+    Loop with PREPARE Statement
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#loop-with-prepare-statement-and-arrays" class="md-nav__link">
+    Loop with PREPARE Statement and Arrays
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#loop-with-prepare-statement-arrays-and-autocommit-off" class="md-nav__link">
+    Loop with PREPARE Statement, Arrays and AUTOCOMMIT OFF
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#performance-comparison" class="md-nav__link">
+    Performance Comparison
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#error-handling" class="md-nav__link">
+    Error Handling
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
-  </ul>
   
-  <hr/>
-</div>
 
-          <div role="main">
-            <div class="section">
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../pandasdb2/" class="md-nav__link">
+        Pandas to Db2
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../parallel/" class="md-nav__link">
+        Parallel SQL
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../macros/" class="md-nav__link">
+        Macros
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../extramacros/" class="md-nav__link">
+        Predefined Macros
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../support/" class="md-nav__link">
+        Support
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
               
-                <h1 id="development-sql">Development SQL</h1>
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#autocommit-and-commit-scope" class="md-nav__link">
+    Autocommit and Commit Scope
+  </a>
+  
+    <nav class="md-nav" aria-label="Autocommit and Commit Scope">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#autocommit" class="md-nav__link">
+    AUTOCOMMIT
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#commit-rollback" class="md-nav__link">
+    COMMIT, ROLLBACK
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#prepare-and-execute" class="md-nav__link">
+    PREPARE and EXECUTE
+  </a>
+  
+    <nav class="md-nav" aria-label="PREPARE and EXECUTE">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#using-arrays-and-multiple-parameters" class="md-nav__link">
+    Using Arrays and Multiple Parameters
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#performance-comparisons" class="md-nav__link">
+    Performance Comparisons
+  </a>
+  
+    <nav class="md-nav" aria-label="Performance Comparisons">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#loop-with-insert-statements" class="md-nav__link">
+    Loop with INSERT Statements
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#loop-with-prepare-statement" class="md-nav__link">
+    Loop with PREPARE Statement
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#loop-with-prepare-statement-and-arrays" class="md-nav__link">
+    Loop with PREPARE Statement and Arrays
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#loop-with-prepare-statement-arrays-and-autocommit-off" class="md-nav__link">
+    Loop with PREPARE Statement, Arrays and AUTOCOMMIT OFF
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#performance-comparison" class="md-nav__link">
+    Performance Comparison
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#error-handling" class="md-nav__link">
+    Error Handling
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content" data-md-component="content">
+            <article class="md-content__inner md-typeset">
+              
+                
+
+
+<h1 id="development-sql">Development SQL</h1>
 <p>The <code>%sql</code> and <code>%%sql</code> commands deals with SQL statements and commands that are run in an interactive manner. There is a class of SQL commands that are more suited to a development environment where code is iterated or requires changing input. The commands that are associated with this form of SQL are:</p>
 <ul>
 <li><code>AUTOCOMMIT</code></li>
@@ -184,9 +700,9 @@
 <li><code>EXECUTE</code></li>
 </ul>
 <p>In addition, the <code>sqlcode</code>, <code>sqlstate</code> and <code>sqlerror</code> fields are populated after every statement so you can use these variables to test for errors.</p>
-<p>Autocommit is the default manner in which SQL statements are executed. At the end of the successful completion of a statement, the results are commited to the database. There is no concept of a transaction where multiple DML/DDL statements are considered one transaction. The <code>AUTOCOMMIT</code> command allows you to turn autocommit <code>OFF</code> or <code>ON</code>. This means that the set of SQL commands run after the <code>AUTOCOMMIT OFF</code> command are executed are not commited to the database until a <code>COMMIT</code> or <code>ROLLBACK</code> command is issued.</p>
-<p><code>COMMIT (WORK)</code> will finalize all of the transactions (COMMIT) to the database and <code>ROLLBACK</code> will undo all of the changes. If you issue a <code>SELECT</code> statement during the execution of your block, the results will reflect all of your changes. If you <code>ROLLBACK</code> the transaction, the changes will be lost.</p>
-<p><code>PREPARE</code> is typically used in a situation where you want to repeatidly execute an SQL statement with different variables without incurring the SQL compilation overhead. For instance:</p>
+<p>Autocommit is the default manner in which SQL statements are executed. At the end of the successful completion of a statement, the results are committed to the database. There is no concept of a transaction where multiple DML/DDL statements are considered one transaction. The <code>AUTOCOMMIT</code> command allows you to turn autocommit <code>OFF</code> or <code>ON</code>. This means that the set of SQL commands run after the <code>AUTOCOMMIT OFF</code> command are executed are not committed to the database until a <code>COMMIT</code> or <code>ROLLBACK</code> command is issued.</p>
+<p><code>COMMIT (WORK)</code> will finalize all transactions (COMMIT) to the database and <code>ROLLBACK</code> will undo the changes. If you issue a <code>SELECT</code> statement during the execution of your block, the results will reflect all of your changes. If you <code>ROLLBACK</code> the transaction, the changes will be lost.</p>
+<p><code>PREPARE</code> is typically used in a situation where you want to repeatedly execute an SQL statement with different variables without incurring the SQL compilation overhead. For instance:</p>
 <pre><code>x = %sql PREPARE SELECT LASTNAME FROM EMPLOYEE WHERE EMPNO=?
 for y in ['000010','000020','000030']:
     %sql execute :x using :y
@@ -212,13 +728,13 @@ withdrawal = 100
 <p>Autocommit can be turned on or off using the following syntax:</p>
 <pre><code>%sql AUTOCOMMIT ON | OFF
 </code></pre>
-<p>If you turn <code>AUTOCOMMIT OFF</code> then you need to make sure that you <code>COMMIT</code> work at the end of your code. If you don't there is possible you lose your work if the connection is lost to Db2.</p>
+<p>If you turn <code>AUTOCOMMIT OFF</code> then you need to make sure that you <code>COMMIT</code> work at the end of your code. If you don't, there is a possibility that you will lose your work if the connection to Db2 is lost.</p>
 <h3 id="commit-rollback">COMMIT, ROLLBACK</h3>
 <p>To <code>COMMIT</code> all changes to the database you must use the following syntax:</p>
 <pre><code>%sql COMMIT [WORK | HOLD]
 </code></pre>
-<p>The command <code>COMMIT</code> or <code>COMMIT WORK</code> are identical and will commit all work to the database. Issuing a <code>COMMIT</code> command also closes all open cursors or statements that are open. If you had created a prepared statement (see section below) then the compiled statement will be no longer valid. By issuing a <code>COMMIT</code> you are releasing all of the resources and locks that your application may be holding.</p>
-<p><code>COMMIT HOLD</code> will allow you to commit your work to disk, but keeps all of the resources open for further execution. This is useful for situations where you are inserting or updating 1000's of records and do not want to tie up log space waiting for a commit to occur. The following pseudocode gives you an example how this would be used:</p>
+<p>The command <code>COMMIT</code> or <code>COMMIT WORK</code> are identical and will commit all work to the database. Issuing a <code>COMMIT</code> command also closes all open cursors or statements that are open. If you had created a prepared statement (see section below) then the compiled statement will be no longer valid. By issuing a <code>COMMIT</code> you are releasing the resources and locks that your application may be holding.</p>
+<p><code>COMMIT HOLD</code> will allow you to commit your work to disk, but keeps the resources open for further execution. This is useful for situations where you are inserting or updating 1000s of records and do not want to tie up log space waiting for a commit to occur. The following pseudocode gives you an example how this would be used:</p>
 <pre><code>%sql autocommit off
 for i = 1 to 1000
     %sql insert into x values i
@@ -230,9 +746,9 @@ end for
 %sql commit work
 %sql autocommit on
 </code></pre>
-<p>You should always remember to turn <code>AUTOCOMMIT ON</code> at the end of any code block or you will have to issue <code>COMMIT</code> at the end of any SQL command to commit it to the database.</p>
+<p>You should always remember to turn <code>AUTOCOMMIT ON</code> at the end of any code block, or you will have to issue <code>COMMIT</code> at the end of any SQL command to commit it to the database.</p>
 <h2 id="prepare-and-execute">PREPARE and EXECUTE</h2>
-<p>The <code>PREPARE</code> and <code>EXECUTE</code> commands are useful in situations where you want to repeat an SQL statement multiple times while just changing the parameter values. There isn't any benefit from using these statements for simple tasks that may only run occasionally. The benefit of <code>PREPARE</code> and <code>EXECUTE</code> is more evident when dealing with a large number of transactions that are the same.</p>
+<p>The <code>PREPARE</code> and <code>EXECUTE</code> commands are useful in situations where you want to repeat an SQL statement multiple times while just changing the parameter values. There isn't any benefit from using these statements for simple tasks that may only run occasionally. The benefit of <code>PREPARE</code> and <code>EXECUTE</code> is more evident when dealing with several transactions that are the same.</p>
 <p>The <code>PREPARE</code> statement can be used against many types of SQL, but in this implementation, only the following SQL statements are supported:</p>
 <ul>
 <li><code>SELECT</code></li>
@@ -254,11 +770,11 @@ end for
 <p>Once you have prepared a statement, you can execute it using the following syntax:</p>
 <pre><code>%sql EXECUTE :stmt USING :v1,:v2,:v3,....
 </code></pre>
-<p>You must provide the statement variable <code>:stmt</code> to the <code>EXECUTE</code> statement so it knows which prepared code to execute. You can create many prepared statements and use them throughout your code.</p>
+<p>You must provide the statement variable <code>:stmt</code> to the <code>EXECUTE</code> statement so that it knows which prepared code to execute. You can create many prepared statements and use them throughout your code.</p>
 <p>The values that following the <code>USING</code> clause are either constants or SQL host variable names separated by commas. If you place a colon <code>:</code> in front of a variable name, it will be immediately substituted into the statement:</p>
 <pre><code>%sql EXECUTE :stmt USING 3,'asdsa',24.5,:x,x
 </code></pre>
-<p>Variables without a colon in front of them are linked in dynamically. When the <code>EXECUTE</code> statement is processed, the value in the variable is taken directly from memory so there is no conflict with data type, quotes, or anything that might be interpreted incorrectly. In the sample above we have the same variable specified twice:</p>
+<p>Variables without a colon in front of them are linked in dynamically. When the <code>EXECUTE</code> statement is processed, the value in the variable is taken directly from memory so that there is no conflict with data type, quotes, or anything that might be interpreted incorrectly. In the sample above we have the same variable specified twice:</p>
 <pre><code>:x,x
 </code></pre>
 <p>Assuming that <code>x</code> has a value of "Hello", when the statement is compiled, it will look like:</p>
@@ -306,11 +822,11 @@ end for
 <p>This would work as long as the total number of parameters supplied by the name array and details array is equal to 10.</p>
 <h2 id="performance-comparisons">Performance Comparisons</h2>
 <p>The following examples will show the use of <code>AUTOCOMMIT</code> and <code>PREPARE</code>/<code>EXECUTE</code> when running SQL statements.</p>
-<p>This first SQL statement will load the <code>EMPLOYEE</code> and <code>DEPARTMENT</code> tables (if they don't already exist) and then return an array of all of the employees in the company using a <code>SELECT</code> statement. The data is returned as a Python list (array) with the <code>-r</code> option.</p>
+<p>This first SQL statement will load the <code>EMPLOYEE</code> and <code>DEPARTMENT</code> tables (if they don't already exist) and then return an array of the employees in the company using a <code>SELECT</code> statement. The data is returned as a Python list (array) with the <code>-r</code> option.</p>
 <pre><code>%sql SAMPLEDATA
 employees = %sql -r select * from employee
 </code></pre>
-<p>The employees variable contains all of the employee data as a Python array. The next statement will retrieve the contents of the first row only (Remember that row 0 contains the name of the columns).
+<p>The employees variable contains the employee data as a Python array. The next statement will retrieve the contents of the first row only (Remember that row 0 contains the name of the columns).
 <img alt="Develop 1" src="../img/develop1.png" /></p>
 <p>We now will create another EMPLOYEE table that is an exact duplicate of what we already have.</p>
 <pre><code>%%sql -q
@@ -318,14 +834,14 @@ DROP TABLE EMPLOYEE2;
 CREATE TABLE EMPLOYEE2 AS (SELECT * FROM EMPLOYEE) DEFINITION ONLY;
 </code></pre>
 <h3 id="loop-with-insert-statements">Loop with INSERT Statements</h3>
-<p>One could always use SQL to insert into this table, but we will use a loop to execute insert statements. The loop will be timed so we can get a sense of the cost of running this code. In order to make the loop run bit a longer the insert block is run 50 times.
+<p>One could always use SQL to insert into this table, but we will use a loop to execute insert statements. The loop will be timed so that we can get a sense of the cost of running this code. In order to make the loop run bit a longer the insert block is run 50 times.
 <img alt="Develop 2" src="../img/develop2.png" /></p>
 <h3 id="loop-with-prepare-statement">Loop with PREPARE Statement</h3>
 <p>An alternative method would be to use a prepared statement that allows us to compile the statement once in Db2 and then reuse the statement in Db2's memory. This method uses the individual column values as input into the <code>EXECUTE</code> statement.</p>
 <p><img alt="Develop 3" src="../img/develop3.png" /></p>
 <p>Note that this code is run with <code>AUTOCOMMIT OFF</code> which tells Db2 to commit every <code>INSERT</code> statement. Using <code>AUTOCOMMIT OFF</code> results in a lot of additional overhead when running this code.</p>
 <h3 id="loop-with-prepare-statement-and-arrays">Loop with PREPARE Statement and Arrays</h3>
-<p>You will notice that it is a bit tedious to write out all of the columns that are required as part of an <code>INSERT</code>statement. A simpler option is to use a Python list or array to and assign it directly in the EXECUTE statement. So rather than:</p>
+<p>You will notice that it is a bit tedious to write out the columns that are required as part of an <code>INSERT</code>statement. A simpler option is to use a Python list or array to and assign it directly in the EXECUTE statement. So rather than:</p>
 <pre><code>%sql execute :prep using :empno, :firstnme, ...
 </code></pre>
 <p>We can just use the array variable generated as part of the for loop:</p>
@@ -387,58 +903,82 @@ CREATE TABLE EMPLOYEE2 AS (SELECT * FROM EMPLOYEE) DEFINITION ONLY;
 <li><code>100</code> - No records were found</li>
 </ul>
 <p>Another variable called <code>sqlelapsed</code> may be useful in determining the performance of your SQL statements. The <code>sqlelapsed</code> variable contains the execution time of the SQL, not including the time taken to retrieve the answer set.</p>
+
               
+            </article>
+            
+          </div>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+    <nav class="md-footer__inner md-grid" aria-label="Footer" >
+      
+        
+        <a href="../stored_procedures/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Stored Procedures" rel="prev">
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
+          </div>
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              Stored Procedures
             </div>
           </div>
-          <footer>
+        </a>
+      
+      
+        
+        <a href="../pandasdb2/" class="md-footer__link md-footer__link--next" aria-label="Next: Pandas to Db2" rel="next">
+          <div class="md-footer__title">
+            <div class="md-ellipsis">
+              <span class="md-footer__direction">
+                Next
+              </span>
+              Pandas to Db2
+            </div>
+          </div>
+          <div class="md-footer__button md-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
+          </div>
+        </a>
+      
+    </nav>
   
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="../pandasdb2/" class="btn btn-neutral float-right" title="Pandas to Db2">Next <span class="icon icon-circle-arrow-right"></span></a>
-      
-      
-        <a href="../stored_procedures/" class="btn btn-neutral" title="Stored Procedures"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-      
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      Copyright &copy; 2023 IBM
     </div>
   
-
-  <hr/>
-
-  <div role="contentinfo">
-    <!-- Copyright etc -->
-    
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
   </div>
-
-  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
 </footer>
       
-        </div>
-      </div>
-
-    </section>
-
-  </div>
-
-  <div class="rst-versions" role="note" aria-label="versions">
-  <span class="rst-current-version" data-toggle="rst-current-version">
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    <script id="__config" type="application/json">{"base": "..", "features": [], "search": "../assets/javascripts/workers/search.b97dbffb.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version.title": "Select version"}}</script>
     
     
-      <span><a href="../stored_procedures/" style="color: #fcfcfc">&laquo; Previous</a></span>
+      <script src="../assets/javascripts/bundle.6c7ad80a.min.js"></script>
+      
     
-    
-      <span><a href="../pandasdb2/" style="color: #fcfcfc">Next &raquo;</a></span>
-    
-  </span>
-</div>
-    <script>var base_url = '..';</script>
-    <script src="../js/theme_extra.js" defer></script>
-    <script src="../js/theme.js" defer></script>
-      <script src="../search/main.js" defer></script>
-    <script defer>
-        window.onload = function () {
-            SphinxRtdTheme.Navigation.enable(true);
-        };
-    </script>
-
-</body>
+  </body>
 </html>
