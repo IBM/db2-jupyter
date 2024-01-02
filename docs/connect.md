@@ -99,29 +99,28 @@ If you use a `?` for the password field, the system will prompt you for a passwo
 
 The `CREDENTIALS` option allows you to use credentials that are supplied by Db2 on Cloud instances. The credentials can be supplied as a variable and if successful, the variable will be saved to disk for future use. If you create another notebook and use the identical syntax, if the variable is not defined, the contents on disk will be used as the credentials. You should assign the credentials to a variable that represents the database (or schema) that you are communicating with. Using familiar names makes it easier to remember the credentials when connecting. 
 
-Credentials are usually supplied as a JSON dictionary that looks similar to the following:
+Credentials must be supplied as a JSON dictionary that contains the following information:
 ```
 {
-  "hostname": "somesite-txn-blue.net",
-  "password": "somethingrandom",
-  "https_url": "https://somesite-txn-blue.net",
-  "port": 50000,
-  "ssldsn": "DATABASE=BLUDB;HOSTNAME=somesite-txn-blue.net;PORT=50001;PROTOCOL=TCPIP;UID=db2user;PWD=somethingrandom;Security=SSL;", 
-  "host"  : "somesite-txn-blue.net",
-  "jdbcurl": "jdbc:db2://somesite-txn-blue.net:50000/BLUDB",
-  "uri": "db2://db2user:somethingrandom@somesite-txn.blue.net:50000/BLUDB",
-  "db": "BLUDB",
-  "dsn": "DATABASE=BLUDB;HOSTNAME=somesite-txn-blue.net;PORT=50000;PROTOCOL=TCPIP;UID=db2user;PWD=somethingrandom;",
-  "username": "db2user",
-  "ssljdbcurl": "jdbc:db2://somesite-txn-blue.net:50001/BLUDB:sslConnection=true;"
+  "database"    : "bludb",
+  "hostname"    : "somesite-txn-blue.net",
+  "port"        : 50000,
+  "pwd"         : "somethingrandom",
+  "uid"         : "myuserid",
+  "ssl"         : "SSL",
+  "sslfile"     : "filename",
+  "apikey"      : "apikey",
+  "accesstoken" : "accesstoken",
+  "dsn"         : "dsn"
 }
 ```
+Some of these fields are not necessary. For instance, the apikey, accesstoken, and dsn fields are only required if you are using these forms of connections.
 
 To use this as a connection document, assign this dictionary value to a variable:
 ```
 bludb = {
   "hostname": "somesite-txn-blue.net",
-  "password": "somethingrandom",...
+  "pwd": "somethingrandom",...
 }
 ```
 
@@ -142,8 +141,8 @@ If a connection was successfully made, the credentials are written to disk using
 Note that if you want to use the traditional `CONNECT` syntax, you can extract the values required from the credentials file. You will need the following:
 
   * `db` - Database name
-  * `username`  - Connection userid
-  * `password`  - Connection password
+  * `uid`  - Connection userid
+  * `pwd`  - Connection password
   * `hostname`  - Host
   * `port`      - Port number
   * `SSL`       - Add this keyword if you need to connect via SSL
