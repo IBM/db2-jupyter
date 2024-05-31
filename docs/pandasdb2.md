@@ -8,7 +8,7 @@ The primary purpose of the `%sql` command was to allow easy access to Db2 data f
 
 In order to simplify the process of saving dataframe information, an extension to the SQL syntax has been added within the Db2 magic commands. The `USING` keyword in a SQL statement is used to trigger special handling of a dataframe. The syntax of the `USING` command is:
 ```
-USING dataframe [CREATE | REPLACE | APPEND] TABLE <name> options 
+USING dataframe [CREATE | REPLACE | APPEND | DECLARE] TABLE <name> options 
 ```
 
 The purpose of the `USING` command is to create a table based on the dataframe definition, and optionally insert the data into the table. There are additional options which determine how the table is created and whether data is loaded into the table. 
@@ -22,6 +22,7 @@ The `USING` command has three different modes of operation:
 * `CREATE` - Create the table based on the dataframe contents
 * `REPLACE` - Recreate the table (delete the old one) based on the dataframe contents
 * `APPEND` - Use the existing table definition and update the contents 
+* `DECLARE` - Print the table definition only
 
 After each one of these modes you must specify the name of the table. The table can be qualified with a SCHEMA name:
 ```
