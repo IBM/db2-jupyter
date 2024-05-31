@@ -56,7 +56,7 @@ There are five options that can be specified after the mode:
 * `COLUMNS ASIS` - Keep the column names as found in the dataframe instead of Db2-friendly names
 * `KEEP FLOAT64` - Keep all float64 dataframe columns as is
 * `KEEP INT64` - Keep all int64 dataframe columns as is
-
+* `FORMAT SPEC` - See below for column formatting options
 
 ### With Data
 
@@ -115,3 +115,31 @@ If you do not want `float64` or `int64` values to be converted to smaller dataty
 ```
 %sql USING employee CREATE TABLE NEW_EMPLOYEE KEEP FLOAT64 KEEP INT64
 ```
+
+### Format Specification
+
+You can change how the program creates columns by specifying a formatting option. The format options are:
+
+* INTTYPE - SMALLINT, INT, BIGINT
+
+  For any integer column, use SMALLINT, INT, or BIGINT
+
+* CHARTYPE - CHAR, VARCHAR, NVARCHAR, VARGRAPHIC
+
+  For any character column, use VARCHAR, NVARCHAR, VARGRAPHIC, or CHAR. Note that the value after the type (i.e., the "x" in VARCHAR(x)) is computed by the program.
+
+* CLOBTYPE - CLOB, CLOB(x), VARCHAR(x)
+
+  For a CLOBTYPE, you must provide a length when using VARCHAR and optionally for CLOB.
+
+* BLOBTYPE - BLOB, BLOB(x), VARBINARY(x)
+
+  For a BLOBTYPE, you must provide a length when using VARBINARY and optionally for BLOB.
+
+* FLOATTYPE - FLOAT, REAL, NUMERIC, DECIMAL(x,y)
+
+  For a floating point number you can use any of the options above. For DECIMAL, you must specify the length and scale (x,y).
+
+* PADDING multiplier
+
+  The padding multiplier is used with all character columns. The multiplier will pad the character definition by the amount specified after the PADDING keyword. For instance, PADDING 1.5 on CHAR(10) will result in a CHAR(15) definition. 
