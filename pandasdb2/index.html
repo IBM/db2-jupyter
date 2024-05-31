@@ -422,6 +422,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#format-specification" class="md-nav__link">
+    Format Specification
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -564,6 +571,13 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#format-specification" class="md-nav__link">
+    Format Specification
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -591,7 +605,7 @@
 <li>Inserting the contents of the dataframe into the table</li>
 </ul>
 <p>In order to simplify the process of saving dataframe information, an extension to the SQL syntax has been added within the Db2 magic commands. The <code>USING</code> keyword in a SQL statement is used to trigger special handling of a dataframe. The syntax of the <code>USING</code> command is:</p>
-<pre><code>USING dataframe [CREATE | REPLACE | APPEND] TABLE &lt;name&gt; options 
+<pre><code>USING dataframe [CREATE | REPLACE | APPEND | DECLARE] TABLE &lt;name&gt; options 
 </code></pre>
 <p>The purpose of the <code>USING</code> command is to create a table based on the dataframe definition, and optionally insert the data into the table. There are additional options which determine how the table is created and whether data is loaded into the table. </p>
 <p>The <code>dataframe</code> value refers to the Python variable that contains the dataframe contents. Do not use the SQL variable format <code>:dataframe</code> or Python value substitution <code>{dataframe}</code> in the statement.</p>
@@ -601,6 +615,7 @@
 <li><code>CREATE</code> - Create the table based on the dataframe contents</li>
 <li><code>REPLACE</code> - Recreate the table (delete the old one) based on the dataframe contents</li>
 <li><code>APPEND</code> - Use the existing table definition and update the contents </li>
+<li><code>DECLARE</code> - Print the table definition only</li>
 </ul>
 <p>After each one of these modes you must specify the name of the table. The table can be qualified with a SCHEMA name:</p>
 <pre><code>%sql USING df CREATE TABLE db2inst1.flights ...
@@ -622,6 +637,7 @@
 <li><code>COLUMNS ASIS</code> - Keep the column names as found in the dataframe instead of Db2-friendly names</li>
 <li><code>KEEP FLOAT64</code> - Keep all float64 dataframe columns as is</li>
 <li><code>KEEP INT64</code> - Keep all int64 dataframe columns as is</li>
+<li><code>FORMAT SPEC</code> - See below for column formatting options</li>
 </ul>
 <h3 id="with-data">With Data</h3>
 <p>With the <code>CREATE</code> and <code>REPLACE</code> modes, the table will be created, but no data will be inserted in the table. The <code>APPEND</code> mode assumes that you do want the data inserted so it does not require this option. When you specify the <code>WITH DATA</code> option, after creating the table the system will insert the data from the dataframe into the Db2 table.</p>
@@ -654,6 +670,32 @@ SELECT * FROM MYFLIGHTS
 <p>If you do not want <code>float64</code> or <code>int64</code> values to be converted to smaller datatypes, you must use the <code>KEEP FLOAT64</code> and/or <code>KEEP INT64</code> to keep the original values.</p>
 <pre><code>%sql USING employee CREATE TABLE NEW_EMPLOYEE KEEP FLOAT64 KEEP INT64
 </code></pre>
+<h3 id="format-specification">Format Specification</h3>
+<p>You can change how the program creates columns by specifying a formatting option. The format options are:</p>
+<ul>
+<li>INTTYPE - SMALLINT, INT, BIGINT</li>
+</ul>
+<p>For any integer column, use SMALLINT, INT, or BIGINT</p>
+<ul>
+<li>CHARTYPE - CHAR, VARCHAR, NVARCHAR, VARGRAPHIC</li>
+</ul>
+<p>For any character column, use VARCHAR, NVARCHAR, VARGRAPHIC, or CHAR. Note that the value after the type (i.e., the "x" in VARCHAR(x)) is computed by the program.</p>
+<ul>
+<li>CLOBTYPE - CLOB, CLOB(x), VARCHAR(x)</li>
+</ul>
+<p>For a CLOBTYPE, you must provide a length when using VARCHAR and optionally for CLOB.</p>
+<ul>
+<li>BLOBTYPE - BLOB, BLOB(x), VARBINARY(x)</li>
+</ul>
+<p>For a BLOBTYPE, you must provide a length when using VARBINARY and optionally for BLOB.</p>
+<ul>
+<li>FLOATTYPE - FLOAT, REAL, NUMERIC, DECIMAL(x,y)</li>
+</ul>
+<p>For a floating point number you can use any of the options above. For DECIMAL, you must specify the length and scale (x,y).</p>
+<ul>
+<li>PADDING multiplier</li>
+</ul>
+<p>The padding multiplier is used with all character columns. The multiplier will pad the character definition by the amount specified after the PADDING keyword. For instance, PADDING 1.5 on CHAR(10) will result in a CHAR(15) definition. </p>
 
               
             </article>
