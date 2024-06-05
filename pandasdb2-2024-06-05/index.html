@@ -344,100 +344,11 @@
 
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          Pandas to Db2
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../pandasdb2/" class="md-nav__link">
         Pandas to Db2
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#create-replace-or-append-a-table" class="md-nav__link">
-    Create, Replace, or Append a Table
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#options" class="md-nav__link">
-    Options
-  </a>
-  
-    <nav class="md-nav" aria-label="Options">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#with-data" class="md-nav__link">
-    WITH DATA
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#limit-x" class="md-nav__link">
-    LIMIT x
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#names-asis" class="md-nav__link">
-    NAMES ASIS
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#padding-multiplier" class="md-nav__link">
-    PADDING multiplier
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
-  <a href="#columns-list" class="md-nav__link">
-    COLUMNS list
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -545,7 +456,7 @@
         
           <li class="md-nav__item">
   <a href="#with-data" class="md-nav__link">
-    WITH DATA
+    With Data
   </a>
   
 </li>
@@ -558,22 +469,22 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#names-asis" class="md-nav__link">
-    NAMES ASIS
+  <a href="#columns-asis" class="md-nav__link">
+    COLUMNS ASIS
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#padding-multiplier" class="md-nav__link">
-    PADDING multiplier
+  <a href="#keep-float64-int64" class="md-nav__link">
+    KEEP FLOAT64, INT64
   </a>
   
 </li>
         
           <li class="md-nav__item">
-  <a href="#columns-list" class="md-nav__link">
-    COLUMNS list
+  <a href="#format-specification" class="md-nav__link">
+    Format Specification
   </a>
   
 </li>
@@ -615,7 +526,7 @@
 <li><code>CREATE</code> - Create the table based on the dataframe contents</li>
 <li><code>REPLACE</code> - Recreate the table (delete the old one) based on the dataframe contents</li>
 <li><code>APPEND</code> - Use the existing table definition and update the contents </li>
-<li><code>DECLARE</code> - Create a GLOBAL TEMPORARY table</li>
+<li><code>DECLARE</code> - Print the table definition only</li>
 </ul>
 <p>After each one of these modes you must specify the name of the table. The table can be qualified with a SCHEMA name:</p>
 <pre><code>%sql USING df CREATE TABLE db2inst1.flights ...
@@ -630,48 +541,72 @@
 <p><img alt="Pandas" src="../img/appendfail.png" /></p>
 <p>If the table does exist, <code>APPEND</code> will insert the data from the dataframe into the new table.</p>
 <h2 id="options">Options</h2>
-<p>There are six options that can be specified after the mode:</p>
+<p>There are five options that can be specified after the mode:</p>
 <ul>
 <li><code>WITH DATA</code> - Create the table and insert the data from the dataframe</li>
 <li><code>LIMIT x</code> - Limit the amount of data loaded to <code>x</code> rows</li>
-<li><code>NAMES ASIS</code> - Keep the column names as found in the dataframe instead of Db2-friendly names</li>
-<li><code>PADDING x</code> - Increase the size of a character column by multiplying by x</li>
-<li><code>DDL ONLY|EXPORT</code> - <code>ONLY</code> will print the generated DDL and not execute the code. <code>EXPORT</code> will return a string with the DDL statement and this can be assigned to a variable for further use.</li>
-<li><code>COLUMNS column names</code> - The list of columns to include in the create statement. This must be the last option in the list since the number of column names is unknown.</li>
+<li><code>COLUMNS ASIS</code> - Keep the column names as found in the dataframe instead of Db2-friendly names</li>
+<li><code>KEEP FLOAT64</code> - Keep all float64 dataframe columns as is</li>
+<li><code>KEEP INT64</code> - Keep all int64 dataframe columns as is</li>
+<li><code>FORMAT SPEC</code> - See below for column formatting options</li>
 </ul>
-<h3 id="with-data">WITH DATA</h3>
+<h3 id="with-data">With Data</h3>
 <p>With the <code>CREATE</code> and <code>REPLACE</code> modes, the table will be created, but no data will be inserted in the table. The <code>APPEND</code> mode assumes that you do want the data inserted so it does not require this option. When you specify the <code>WITH DATA</code> option, after creating the table the system will insert the data from the dataframe into the Db2 table.</p>
 <p>When data is being loaded into the table, a progress indicator will appear underneath the table definition giving an indication of how many rows have been inserted into the table.</p>
 <p><img alt="DF Create" src="../img/progress.png" /></p>
 <h3 id="limit-x">LIMIT x</h3>
 <p>The <code>WITH DATA</code> option will tell the system to insert the data from the dataframe into the Db2 table. The <code>LIMIT x</code> option will stop the inserts after <code>x</code> number of rows. This may be useful if you only want to store a subset of data into the Db2 table, or if you want to make sure that the data is being properly inserted into the table. You can always test the insert process by using the following steps:</p>
 <p><img alt="DF Create" src="../img/dfcreate.png" /></p>
-<h3 id="names-asis">NAMES ASIS</h3>
+<h3 id="columns-asis">COLUMNS ASIS</h3>
 <p>When the system attempts to create the Db2 table, it takes the column names in the dataframe and makes them Db2 compatible. This means that special characters and blanks are removed from the name and replaced with underscores. In addition, the names are converted to uppercase so that SQL statements do not have to delimit column names with double quotes <code>"</code>. </p>
 <p>The SQL standard allows column names to contain special characters, as long as they are delimited with double quotes. If a column name uses standard characters <code>A-Z,0-9,_</code>, then no quotes are required around the column name. There is also no need to worry about the case of the column names since all names will be folded to uppercase. </p>
 <p>The conversion of column names can be seen in the <code>flights.csv</code> data set. The columns in this CSV file are named:</p>
 <p><img alt="DF Create" src="../img/dfcolumns.png" /></p>
 <p>During the conversion process, the columns are renamed:</p>
 <p><img alt="DF Create" src="../img/columnnames.png" /></p>
-<p>The most notable change is the conversion of blanks to underscore <code>_</code> characters. If you do <strong>not</strong> want this conversion to occur, and keep the column names in their original format, use the <code>NAMES ASIS</code> option. This will cause the program to create the table with the exact column names of the dataframe without any changes. The <code>CREATE</code> example below illustrates how the column names are kept the same.</p>
+<p>The most notable change is the conversion of blanks to underscore <code>_</code> characters. If you do <strong>not</strong> want this conversion to occur, and keep the column names in their original format, use the <code>COLUMNS ASIS</code> option. This will cause the program to create the table with the exact column names of the dataframe without any changes. The <code>CREATE</code> example below illustrates how the column names are kept the same.</p>
 <p><img alt="DF Create" src="../img/columnsasis.png" /></p>
 <p>Note that this will make creating SQL queries slightly more challenging! If you want to query the flights per annum field, you will need to make sure you place the column name in quotes and have the correct spelling:</p>
 <pre><code>%%sql
 SELECT * FROM MYFLIGHTS
   WHERE &quot;Flights p.a.&quot; &gt; 10
 </code></pre>
-<h3 id="padding-multiplier">PADDING multiplier</h3>
-<p>The Db2 magic command uses dataframe functions to determine the length of a column. Due to different character representations, the computed length may be too small. The <code>PADDING</code> option will add more characters to the column definition and hopefully avoid an error on the column not being wide enough for the data. The multiplier will pad the character definition by the amount specified after the PADDING keyword. For instance, PADDING 1.5 on CHAR(10) will result in a CHAR(15) definition. </p>
-<h3 id="columns-list">COLUMNS list</h3>
-<p>By default, all columns found in the dataframe will be created as part of the Db2 table. If you want to limit which columns are created, you can use the <code>COLUMNS</code> option to specify which columns you want in the <code>CREATE TABLE</code> statement. The column names use the original pandas dataframe names, not the column names that are generated.</p>
-<p>The following code shows the content of the flights dataframe. Note that the column names have been truncated.</p>
-<p><img alt="DF Create" src="../img/flightcolumns.png" /></p>
-<p>The following statement creates a <code>FLIGHTS</code> table with all columns in the original dataframe converted to Db2-friendly names.</p>
-<p><img alt="DF Create" src="../img/allcolumns.png" /></p>
-<p>If you only want the <code>FLIGHT_DATE</code>, <code>AIRLINE_CODE</code>, and <code>FLIGHTS_P_A</code> in the column list, you would use the <code>COLUMNS</code> option as shown in the following example. Note the use of the original column names in the dataframe.</p>
-<p><img alt="DF Create" src="../img/columnlist.png" /></p>
-<p>If you want to retain the original column names, use the <code>NAMES ASIS</code> option.</p>
-<p><img alt="DF Create" src="../img/flightcolumnsasis.png" /></p>
+<h3 id="keep-float64-int64">KEEP FLOAT64, INT64</h3>
+<p>Pandas will often convert data into types that are larger than what is required. A good example of this is when a column with decimal or numeric values gets the data converted to float! The sample <code>EMPLOYEE</code> table illustrates this problem. A <code>DESCRIBE</code> of the <code>EMPLOYEE</code> table shows that the <code>SALARY</code> column is decimal.</p>
+<p><img alt="DF Create" src="../img/describeemployee.png" /></p>
+<p>When the dataframe is created from the <code>SELECT</code> statement, the data type for the <code>SALARY</code> column is <code>float64</code>.</p>
+<p><img alt="DF Create" src="../img/float.png" /></p>
+<p>When a table is created from this dataframe, the default behavior is to create a datatype that is closer to the values in the column. In this case the data is converted to <code>DECFLOAT</code> which is more suited to decimal numbers.</p>
+<p><img alt="DF Create" src="../img/decfloat.png" /></p>
+<p>If you do not want <code>float64</code> or <code>int64</code> values to be converted to smaller datatypes, you must use the <code>KEEP FLOAT64</code> and/or <code>KEEP INT64</code> to keep the original values.</p>
+<pre><code>%sql USING employee CREATE TABLE NEW_EMPLOYEE KEEP FLOAT64 KEEP INT64
+</code></pre>
+<h3 id="format-specification">Format Specification</h3>
+<p>You can change how the program creates columns by specifying a formatting option. The format options are:</p>
+<ul>
+<li>INTTYPE - SMALLINT, INT, BIGINT</li>
+</ul>
+<p>For any integer column, use SMALLINT, INT, or BIGINT</p>
+<ul>
+<li>CHARTYPE - CHAR, VARCHAR, NVARCHAR, VARGRAPHIC</li>
+</ul>
+<p>For any character column, use VARCHAR, NVARCHAR, VARGRAPHIC, or CHAR. Note that the value after the type (i.e., the "x" in VARCHAR(x)) is computed by the program.</p>
+<ul>
+<li>CLOBTYPE - CLOB, CLOB(x), VARCHAR(x)</li>
+</ul>
+<p>For a CLOBTYPE, you must provide a length when using VARCHAR and optionally for CLOB.</p>
+<ul>
+<li>BLOBTYPE - BLOB, BLOB(x), VARBINARY(x)</li>
+</ul>
+<p>For a BLOBTYPE, you must provide a length when using VARBINARY and optionally for BLOB.</p>
+<ul>
+<li>FLOATTYPE - FLOAT, REAL, NUMERIC, DECIMAL(x,y)</li>
+</ul>
+<p>For a floating point number you can use any of the options above. For DECIMAL, you must specify the length and scale (x,y).</p>
+<ul>
+<li>PADDING multiplier</li>
+</ul>
+<p>The padding multiplier is used with all character columns. The multiplier will pad the character definition by the amount specified after the PADDING keyword. For instance, PADDING 1.5 on CHAR(10) will result in a CHAR(15) definition. </p>
 
               
             </article>
@@ -682,42 +617,6 @@ SELECT * FROM MYFLIGHTS
       </main>
       
         <footer class="md-footer">
-  
-    
-    <nav class="md-footer__inner md-grid" aria-label="Footer" >
-      
-        
-        <a href="../developmentsql/" class="md-footer__link md-footer__link--prev" aria-label="Previous: Development SQL" rel="prev">
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
-          </div>
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
-                Previous
-              </span>
-              Development SQL
-            </div>
-          </div>
-        </a>
-      
-      
-        
-        <a href="../parallel/" class="md-footer__link md-footer__link--next" aria-label="Next: Parallel SQL" rel="next">
-          <div class="md-footer__title">
-            <div class="md-ellipsis">
-              <span class="md-footer__direction">
-                Next
-              </span>
-              Parallel SQL
-            </div>
-          </div>
-          <div class="md-footer__button md-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4Z"/></svg>
-          </div>
-        </a>
-      
-    </nav>
   
   <div class="md-footer-meta md-typeset">
     <div class="md-footer-meta__inner md-grid">
