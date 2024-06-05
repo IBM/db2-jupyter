@@ -58,7 +58,7 @@ There are six options that can be specified after the mode:
 * `DDL ONLY|EXPORT` - `ONLY` will print the generated DDL and not execute the code. `EXPORT` will return a string with the DDL statement and this can be assigned to a variable for further use.
 * `COLUMNS column names` - The list of columns to include in the create statement. This must be the last option in the list since the number of column names is unknown.
 
-### With Data
+### WITH DATA
 
 With the `CREATE` and `REPLACE` modes, the table will be created, but no data will be inserted in the table. The `APPEND` mode assumes that you do want the data inserted so it does not require this option. When you specify the `WITH DATA` option, after creating the table the system will insert the data from the dataframe into the Db2 table.
 
@@ -99,17 +99,29 @@ SELECT * FROM MYFLIGHTS
 
 ### PADDING multiplier
 
-The padding multiplier is used with all character columns. The multiplier will pad the character definition by the amount specified after the PADDING keyword. For instance, PADDING 1.5 on CHAR(10) will result in a CHAR(15) definition. 
+The Db2 magic command uses dataframe functions to determine the length of a column. Due to different character representations, the computed length may be too small. The `PADDING` option will add more characters to the column definition and hopefully avoid an error on the column not being wide enough for the data. The multiplier will pad the character definition by the amount specified after the PADDING keyword. For instance, PADDING 1.5 on CHAR(10) will result in a CHAR(15) definition. 
+
+
 
 ### COLUMNS list
 
-By default, all columns found in the dataframe will be created as part of the Db2 table. If you want to limit which columns are created, you can use the `COLUMNS` option to specific which columns you want in the `CREATE TABLE` statement. The column names use the Db2-friendly names, not the Pandas dataframe names.
+By default, all columns found in the dataframe will be created as part of the Db2 table. If you want to limit which columns are created, you can use the `COLUMNS` option to specify which columns you want in the `CREATE TABLE` statement. The column names use the original pandas dataframe names, not the column names that are generated.
 
-The following statement creates a `FLIGHTS` table with all columns in the original dataframe.
+The following code shows the content of the flights dataframe. Note that the column names have been truncated.
+
+![DF Create](img/flightcolumns.png)
+
+The following statement creates a `FLIGHTS` table with all columns in the original dataframe converted to Db2-friendly names.
 
 ![DF Create](img/allcolumns.png)
 
-If you only want the `FLIGHT_DATE`, `AIRLINE_CODE`, and `ORIGIN_CITY` in the column list, you would use the `COLUMNS` option as shown in the following example.
+If you only want the `FLIGHT_DATE`, `AIRLINE_CODE`, and `FLIGHTS_P_A` in the column list, you would use the `COLUMNS` option as shown in the following example. Note the use of the original column names in the dataframe.
+
+![DF Create](img/columnlist.png)
+
+If you want to retain the original column names, use the `NAMES ASIS` option.
+
+![DF Create](img/flightcolumnsasis.png)
 
 
 
